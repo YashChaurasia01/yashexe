@@ -21,10 +21,680 @@
     <link rel="stylesheet" href="./static/fonts.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Doto&family=Alata&family=Reggae+One&family=Montserrat:wght@700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Doto&family=Alata&family=Reggae+One&family=Montserrat:wght@700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="./static/404.css">
+    <style>
+        /* 404 Page — retro TV illustration
+   Original concept inspired by Stefan Devai's design on Dribbble.
+   Cleaned up, de-duplicated, and extended with page chrome + a home button. */
+
+        :root {
+            --tv-body: #d36604;
+            --tv-body-light: #e69635;
+            --tv-body-dark: #1d0e01;
+            --tv-knob: #7f5934;
+            --tv-knob-light: #b49577;
+            --tv-knob-dark: #513721;
+            --antenna-orange: #f27405;
+            --antenna-orange-dark: #a85103;
+            --antenna-orange-light: #f69e50;
+            --metal-dark: #171717;
+            --metal-mid: #353535;
+            --metal-light: #979797;
+            --page-bg: #fafafa;
+            --page-fg: #171717;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body.notfound-body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5em;
+            background: var(--page-bg);
+            color: var(--page-fg);
+            font-family: "Alata", sans-serif;
+            padding: 2em 1em;
+            text-align: center;
+        }
+
+        .notfound-copy h1 {
+            font-family: "Reggae One", cursive;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            margin: 0 0 0.4em;
+            letter-spacing: 0.02em;
+        }
+
+        .notfound-copy p {
+            margin: 0;
+            opacity: 0.7;
+            font-size: 0.95rem;
+            max-width: 32em;
+        }
+
+        /* ============ Illustration ============ */
+
+        .main_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30em;
+            max-width: 100%;
+            height: 30em;
+            max-height: 70vh;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5em;
+        }
+
+        .antenna {
+            width: 5em;
+            height: 5em;
+            border-radius: 50%;
+            border: 2px solid black;
+            background-color: var(--antenna-orange);
+            margin-bottom: -6em;
+            z-index: -1;
+        }
+
+        .antenna_shadow {
+            position: absolute;
+            background-color: transparent;
+            width: 50px;
+            height: 56px;
+            margin-left: 1.68em;
+            border-radius: 45%;
+            transform: rotate(140deg);
+            border: 4px solid transparent;
+            box-shadow:
+                inset 0px 16px var(--antenna-orange-dark),
+                inset 0px 16px 1px 1px var(--antenna-orange-dark);
+        }
+
+        .antenna::after {
+            content: "";
+            position: absolute;
+            margin-top: -9.4em;
+            margin-left: 0.4em;
+            transform: rotate(-25deg);
+            width: 1em;
+            height: 0.5em;
+            border-radius: 50%;
+            background-color: var(--antenna-orange-light);
+        }
+
+        .antenna::before {
+            content: "";
+            position: absolute;
+            margin-top: 0.2em;
+            margin-left: 1.25em;
+            transform: rotate(-20deg);
+            width: 1.5em;
+            height: 0.8em;
+            border-radius: 50%;
+            background-color: var(--antenna-orange-light);
+        }
+
+        .a1 {
+            position: relative;
+            top: -102%;
+            left: -130%;
+            width: 12em;
+            height: 5.5em;
+            border-radius: 50px;
+            background-image: linear-gradient(var(--metal-dark),
+                    var(--metal-dark),
+                    var(--metal-mid),
+                    var(--metal-mid),
+                    var(--metal-dark));
+            transform: rotate(-29deg);
+            clip-path: polygon(50% 0%, 49% 100%, 52% 100%);
+        }
+
+        .a1d {
+            position: relative;
+            top: -211%;
+            left: -35%;
+            transform: rotate(45deg);
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            border: 2px solid black;
+            background-color: var(--metal-light);
+            z-index: 99;
+        }
+
+        .a2 {
+            position: relative;
+            top: -210%;
+            left: -10%;
+            width: 12em;
+            height: 4em;
+            border-radius: 50px;
+            background-image: linear-gradient(var(--metal-dark),
+                    var(--metal-dark),
+                    var(--metal-mid),
+                    var(--metal-mid),
+                    var(--metal-dark));
+            margin-right: 5em;
+            clip-path: polygon(47% 0,
+                    47% 0,
+                    34% 34%,
+                    54% 25%,
+                    32% 100%,
+                    29% 96%,
+                    49% 32%,
+                    30% 38%);
+            transform: rotate(-8deg);
+        }
+
+        .a2d {
+            position: relative;
+            top: -294%;
+            left: 94%;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            border: 2px solid black;
+            background-color: var(--metal-light);
+            z-index: 99;
+        }
+
+        .notfound_text {
+            background-color: black;
+            padding-left: 0.3em;
+            padding-right: 0.3em;
+            font-size: 0.75em;
+            color: white;
+            letter-spacing: 0;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .tv {
+            width: 17em;
+            height: 9em;
+            margin-top: 3em;
+            border-radius: 15px;
+            background-color: var(--tv-body);
+            display: flex;
+            justify-content: center;
+            border: 2px solid var(--tv-body-dark);
+            box-shadow: inset 0.2em 0.2em var(--tv-body-light);
+        }
+
+        .tv::after {
+            content: "";
+            position: absolute;
+            width: 17em;
+            height: 9em;
+            border-radius: 15px;
+            background:
+                repeating-radial-gradient(var(--tv-body) 0 0.0001%, #00000070 0 0.0002%) 50% 0/2500px 2500px,
+                repeating-conic-gradient(var(--tv-body) 0 0.0001%, #00000070 0 0.0002%) 60% 60%/2500px 2500px;
+            background-blend-mode: difference;
+            opacity: 0.09;
+        }
+
+        .curve_svg {
+            position: absolute;
+            margin-top: 0.25em;
+            margin-left: -0.25em;
+            height: 12px;
+            width: 12px;
+        }
+
+        .display_div {
+            display: flex;
+            align-items: center;
+            align-self: center;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 3.5px 3.5px 0px var(--tv-body-light);
+        }
+
+        .screen_out {
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .screen_out1 {
+            width: 11em;
+            height: 7.75em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .screen {
+            width: 13em;
+            height: 7.85em;
+            font-family: "Montserrat", sans-serif;
+            border: 2px solid var(--tv-body-dark);
+            background:
+                repeating-radial-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 50% 0/2500px 2500px,
+                repeating-conic-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 60% 60%/2500px 2500px;
+            background-blend-mode: difference;
+            animation: static-flicker 0.2s infinite alternate;
+            border-radius: 10px;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #252525;
+            letter-spacing: 0.15em;
+            text-align: center;
+        }
+
+        .screenM {
+            width: 13em;
+            height: 7.85em;
+            position: relative;
+            font-family: "Montserrat", sans-serif;
+            background: linear-gradient(to right,
+                    #002fc6 0%,
+                    #002bb2 14.2857142857%,
+                    #3a3a3a 14.2857142857%,
+                    #303030 28.5714285714%,
+                    #ff0afe 28.5714285714%,
+                    #f500f4 42.8571428571%,
+                    #6c6c6c 42.8571428571%,
+                    #626262 57.1428571429%,
+                    #0affd9 57.1428571429%,
+                    #00f5ce 71.4285714286%,
+                    #3a3a3a 71.4285714286%,
+                    #303030 85.7142857143%,
+                    white 85.7142857143%,
+                    #fafafa 100%);
+            border-radius: 10px;
+            border: 2px solid black;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #252525;
+            letter-spacing: 0.15em;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .screenM::before,
+        .screenM::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .screenM::before {
+            top: 0;
+            height: 68.4782608696%;
+            background: linear-gradient(to right,
+                    white 0%,
+                    #fafafa 14.2857142857%,
+                    #ffe60a 14.2857142857%,
+                    #f5dc00 28.5714285714%,
+                    #0affd9 28.5714285714%,
+                    #00f5ce 42.8571428571%,
+                    #10ea00 42.8571428571%,
+                    #0ed600 57.1428571429%,
+                    #ff0afe 57.1428571429%,
+                    #f500f4 71.4285714286%,
+                    #ed0014 71.4285714286%,
+                    #d90012 85.7142857143%,
+                    #002fc6 85.7142857143%,
+                    #002bb2 100%);
+        }
+
+        .screenM::after {
+            bottom: 0;
+            height: 21.7391304348%;
+            background: linear-gradient(to right,
+                    #006c6b 0%,
+                    #005857 16.6666666667%,
+                    white 16.6666666667%,
+                    #fafafa 33.3333333333%,
+                    #001b75 33.3333333333%,
+                    #001761 50%,
+                    #6c6c6c 50%,
+                    #626262 66.6666666667%,
+                    #929292 66.6666666667%,
+                    #888888 83.3333333333%,
+                    #3a3a3a 83.3333333333%,
+                    #303030 100%);
+        }
+
+        @keyframes static-flicker {
+            100% {
+                background-position:
+                    50% 0,
+                    60% 50%;
+            }
+        }
+
+        .lines {
+            display: flex;
+            column-gap: 0.1em;
+            align-self: flex-end;
+        }
+
+        .line1,
+        .line3 {
+            width: 2px;
+            height: 0.5em;
+            background-color: black;
+            border-radius: 25px 25px 0px 0px;
+            margin-top: 0.5em;
+        }
+
+        .line2 {
+            flex-grow: 1;
+            width: 2px;
+            height: 1em;
+            background-color: black;
+            border-radius: 25px 25px 0px 0px;
+        }
+
+        .buttons_div {
+            width: 4.25em;
+            align-self: center;
+            height: 8em;
+            background-color: var(--tv-body-light);
+            border: 2px solid var(--tv-body-dark);
+            padding: 0.6em;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            row-gap: 0.75em;
+            box-shadow: 3px 3px 0px var(--tv-body-light);
+        }
+
+        .b1,
+        .b2 {
+            width: 1.65em;
+            height: 1.65em;
+            border-radius: 50%;
+            background-color: var(--tv-knob);
+            border: 2px solid black;
+            box-shadow:
+                inset 2px 2px 1px var(--tv-knob-light),
+                -2px 0px var(--tv-knob-dark),
+                -2px 0px 0px 1px black;
+        }
+
+        .b1::before {
+            content: "";
+            position: absolute;
+            margin-top: 1em;
+            margin-left: 0.5em;
+            transform: rotate(47deg);
+            border-radius: 5px;
+            width: 0.1em;
+            height: 0.4em;
+            background-color: #000000;
+        }
+
+        .b1::after {
+            content: "";
+            position: absolute;
+            margin-top: 0.9em;
+            margin-left: 0.8em;
+            transform: rotate(47deg);
+            border-radius: 5px;
+            width: 0.1em;
+            height: 0.55em;
+            background-color: #000000;
+        }
+
+        .b1 div {
+            content: "";
+            position: absolute;
+            margin-top: -0.1em;
+            margin-left: 0.65em;
+            transform: rotate(45deg);
+            width: 0.15em;
+            height: 1.5em;
+            background-color: #000000;
+        }
+
+        .b2::before {
+            content: "";
+            position: absolute;
+            margin-top: 1.05em;
+            margin-left: 0.8em;
+            transform: rotate(-45deg);
+            border-radius: 5px;
+            width: 0.15em;
+            height: 0.4em;
+            background-color: #000000;
+        }
+
+        .b2::after {
+            content: "";
+            position: absolute;
+            margin-top: -0.1em;
+            margin-left: 0.65em;
+            transform: rotate(-45deg);
+            width: 0.15em;
+            height: 1.5em;
+            background-color: #000000;
+        }
+
+        .speakers {
+            display: flex;
+            flex-direction: column;
+            row-gap: 0.5em;
+        }
+
+        .speakers .g1 {
+            display: flex;
+            column-gap: 0.25em;
+        }
+
+        .speakers .g1 .g11,
+        .speakers .g1 .g12,
+        .speakers .g1 .g13 {
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            background-color: var(--tv-knob);
+            border: 2px solid black;
+            box-shadow: inset 1.25px 1.25px 1px var(--tv-knob-light);
+        }
+
+        .speakers .g {
+            width: auto;
+            height: 2px;
+            background-color: var(--metal-dark);
+        }
+
+        .bottom {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 8.7em;
+        }
+
+        .base1,
+        .base2 {
+            height: 1em;
+            width: 2em;
+            border: 2px solid var(--metal-dark);
+            background-color: #4d4d4d;
+            margin-top: -0.15em;
+            z-index: -1;
+        }
+
+        .base3 {
+            position: absolute;
+            height: 0.15em;
+            width: 17.5em;
+            background-color: var(--metal-dark);
+            margin-top: 0.8em;
+        }
+
+        .text_404 {
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            column-gap: 6em;
+            z-index: -5;
+            margin-bottom: 2em;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.5;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .text_4041,
+        .text_4042,
+        .text_4043 {
+            transform: scaleY(24.5) scaleX(9);
+        }
+
+        @media only screen and (max-width: 495px) {
+            .text_404 {
+                column-gap: 6em;
+            }
+        }
+
+        @media only screen and (max-width: 395px) {
+            .text_404 {
+                column-gap: 4em;
+            }
+
+            .text_4041,
+            .text_4042,
+            .text_4043 {
+                transform: scaleY(25) scaleX(8);
+            }
+        }
+
+        @media (max-width: 275px),
+        (max-height: 520px) {
+            .main {
+                position: relative;
+            }
+        }
+
+        @media only screen and (max-width: 1024px) {
+            .screenM {
+                display: flex;
+            }
+
+            .screen {
+                display: none;
+            }
+        }
+
+        @media only screen and (min-width: 1025px) {
+            .screen {
+                display: flex;
+            }
+
+            .screenM {
+                display: none;
+            }
+        }
+
+        /* ============ Home button ============ */
+
+        .notfound-home-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6em;
+            padding: 0.75em 1.5em;
+            background: var(--metal-dark);
+            color: #fff;
+            border: 2px solid var(--metal-dark);
+            border-radius: 8px;
+            font-family: "Alata", sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+            box-shadow: 3px 3px 0px var(--tv-body-light);
+        }
+
+        .notfound-home-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--tv-body-light);
+            background: #000;
+        }
+
+        .notfound-home-btn:active {
+            transform: translate(0, 0);
+            box-shadow: 1px 1px 0px var(--tv-body-light);
+        }
+
+        .notfound-home-btn:focus-visible {
+            outline: 3px solid var(--antenna-orange);
+            outline-offset: 2px;
+        }
+
+        .notfound-home-btn svg {
+            width: 1.1em;
+            height: 1.1em;
+            transition: transform 0.18s ease;
+        }
+
+        .notfound-home-btn:hover svg {
+            transform: translateX(-3px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .screen {
+                animation: none;
+            }
+
+            .notfound-home-btn,
+            .notfound-home-btn svg {
+                transition: none;
+            }
+        }
+
+        /* ============ Dark theme ============ */
+        @media (prefers-color-scheme: dark) {
+            body.notfound-body {
+                --page-bg: #0d0d0d;
+                --page-fg: #f5f5f5;
+            }
+
+            .notfound-home-btn {
+                background: #f5f5f5;
+                color: #171717;
+                border-color: #f5f5f5;
+            }
+
+            .notfound-home-btn:hover {
+                background: #fff;
+            }
+        }
+    </style>
 </head>
 
 <body class="notfound-body">
@@ -41,8 +711,7 @@
             <div class="tv">
                 <div class="cruve">
                     <svg class="curve_svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 189.929 189.929"
-                        xml:space="preserve">
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 189.929 189.929" xml:space="preserve">
                         <path
                             d="M70.343,70.343c-30.554,30.553-44.806,72.7-39.102,115.635l-29.738,3.951C-5.442,137.659,11.917,86.34,49.129,49.13
                         C86.34,11.918,137.664-5.445,189.928,1.502l-3.95,29.738C143.041,25.54,100.895,39.789,70.343,70.343z">
