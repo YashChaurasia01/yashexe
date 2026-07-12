@@ -1,0 +1,683 @@
+/* ═══════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════ */
+#hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-image: var(--homebg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* Text centered inside red-banner */
+.red-banner .king-watermark {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Font1;
+    font-size: 9vw;
+    font-weight: 1000;
+    color: rgba(15, 15, 15, 0.774);
+    line-height: 1;
+    letter-spacing: 0.3vw;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    --enc-stroke-size: 1px;
+}
+
+.corner-card svg {
+  width: 11%;
+  fill: var(--c4);
+  height: auto;
+  margin: 15px;
+}
+.cc2{
+    position: absolute;
+    width: 100%;
+    fill: var(--c4);
+    bottom: 0;
+    right: 0;
+    rotate: 180deg;
+    z-index: 52;
+}
+
+
+/* ─── LAYER 3: RED BANNER ─── */
+.red-banner {
+    position: absolute;
+    top: 15%;
+    left: 33.5%;
+    width: 35rem;
+    height: 35rem;
+    background: var(--c3);
+    z-index: 1;
+    border-radius: 50%;
+    overflow: visible;
+}
+
+.warning-box {
+    position: absolute;
+    bottom: 9%;
+    left: 2%;
+    border: 1.5px solid var(--txt);
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    z-index: 52;
+    background: transparent;
+    border-radius: 12px 0 0 12px;
+    padding: 0 10px 0 0;
+}
+
+.warning-icon {
+    height: 1em;
+    display: inline-block; /* Required */
+    width: 60px;
+    height: 60px;
+    background: url("./img/cat.gif") center/cover;
+    background-color: var(--txt);
+    padding: 0 0.01vw;
+    border-radius: 11px 0 0 11px;
+}
+
+.warning-text {
+    font-family: "Alata", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 0.62vw;
+    /* text-transform: uppercase; */
+    color: var(--txt);
+    letter-spacing: 2.8px;
+    user-select: none;
+    --encrypt-size:.4rem;
+    --encrypt-color: var(--c3);
+}
+
+.warning-text-span{
+    color: var(--c3);
+    font-weight: 600;
+    letter-spacing: 4.8px;
+    user-select: none;
+    --encrypt-color: var(--txt);
+
+}
+
+/* ─── TOP RIGHT: BARCODE + SERIAL ─── */
+.top-right-meta {
+    position: absolute;
+    top: 9%;
+    right: 2%;
+    text-align: right;
+    z-index: 15;
+}
+
+.barcode {
+    width: 6.5vw;
+    height: 1.6vw;
+    margin-left: auto;
+    margin-bottom: 0.2vw;
+}
+
+.barcode rect {
+    fill: var(--txt);
+}
+
+.barcode-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.61vw;
+    letter-spacing: 1px;
+    color: var(--txt);
+    --encrypt-size:.4rem;
+    --encrypt-color: var(--c3);
+    
+}
+
+.serial {
+    font-family: Font3;
+    font-size: 1.6vw;
+    font-weight: 900;
+    color: var(--c4);
+    letter-spacing: 1px;
+    margin-top: 0.2vw;
+    --encrypt-size:1.2rem;
+    --encrypt-color: var(--txt, var(--c3));
+    
+}
+
+/* ─── FOUR ARMS MAIN TITLE ─── */
+.title-layer {
+    position: absolute;
+    top: 27%;
+    left: 1%;
+    width: 100%;
+    z-index: 10;
+    user-select: none;
+    pointer-events: none;
+}
+
+.title-frame {
+    position: relative;
+    display: inline-block;
+    padding: 1.5vw;
+}
+
+
+.title-main {
+    font-family: font1;
+    font-size: 4vw;
+    font-weight: 600;
+    text-align: center;
+    display: block;
+    position: relative;
+    z-index: 5;
+    color: var(--c3);
+    --encrypt-color: var(--c3);
+    --encrypt-size:3.7rem;
+
+}
+
+.surname {
+    position: absolute;
+    font-family: "Alata", sans-serif;;
+    left: 55px;
+    top: 52px;
+    color: var(--txt);
+    padding: 1px;
+    font-size: 4.7vw;
+    font-weight: 1000;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    z-index: 3;
+    opacity: .8;
+}
+.japan-name {
+    position: absolute;
+    font-family: "Reggae One", system-ui;
+    left: 15px;
+    bottom: -25px;
+    color: var(--c3);
+    padding: 1px;
+    font-size: 2vw;
+    font-weight: 1000;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    z-index: 3;
+    --encrypt-color: var(--c3);
+    --encrypt-size:2.2rem;
+}
+
+.bg-watermark {
+    position: absolute;
+    top: 20%;
+    left: 37%;
+    width: 100%;
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+
+}
+
+.bg-watermark h1{
+    font-size: 22vw;
+    font-weight: 600;
+    text-align: center;
+    display: block;
+    color: var(--txt);
+    opacity: .2;
+    --encrypt-size: 22vw;
+    --encrypt-color: var(--txt, var(--c3));
+}
+.title-ghost {
+    font-family: "Sankofa Display", sans-serif;
+    color: var(--c3);
+    font-size: 15.5vw;
+    line-height: 0.85;
+    letter-spacing: 1.5vw;
+    text-align: center;
+    display: block;
+    opacity: 0.9;
+    margin-top: -180px;
+    z-index: 4;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 60%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 60%, black 100%);
+}
+
+
+#layer-bottom {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 50;
+
+}
+
+#layer-bottom img {
+    height: 97%;
+    width: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    z-index: 50;
+}
+
+/* Top reveal layer — mask managed by JS */
+#layer-top {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    -webkit-mask-image: radial-gradient(circle 0px at 50% 50%, black 40%, transparent 100%);
+    mask-image: radial-gradient(circle 0px at 50% 50%, black 40%, transparent 100%);
+    z-index: 50;
+
+}
+
+#layer-top img {
+    height: 110%;
+    width: 50%;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: saturate(1.2) brightness(1.05);
+    z-index: 50;
+}
+
+#ui {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 10;
+}
+
+h1.hero-title {
+    font-family: Font4;
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 400;
+    color: var(--c2);
+    line-height: 1.05;
+    text-align: center;
+    letter-spacing: -0.01em;
+}
+
+h1.hero-title em {
+    font-style: italic;
+    color: var(--c2);
+}
+
+.sub {
+    margin-top: 24px;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--c2);
+    letter-spacing: 0.06em;
+    text-align: center;
+}
+
+.rule {
+    width: 1px;
+    height: 50px;
+    background: var(--c1);
+    opacity: 0.35;
+    margin: 36px auto 0;
+}
+
+#hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+    z-index: 20;
+    transition: opacity 0.6s;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 20;
+    pointer-events: none;
+    animation: fadeInUp 2s ease 1.5s both;
+}
+
+.scroll-indicator span {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.scroll-indicator-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(232, 213, 176, 0.4), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scaleY(1)
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scaleY(1.1)
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0)
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+       GRADIENT SEPARATOR — replaces hard dividing line.
+       Overlaps hero bottom and fades to site bg colour.
+       ═══════════════════════════════════════════════════ */
+.section-gradient-sep {
+    height: 140px;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg) 95%);
+    margin-top: -140px;
+    position: relative;
+    z-index: 51;
+    pointer-events: none;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — HERO
+   ═══════════════════════════════════════════════════ */
+
+/* ── Tablet / small laptop ── */
+@media (max-width: 1024px) {
+  .red-banner {
+    width: 26rem;
+    height: 26rem;
+    left: 30%;
+    top: 13%;
+  }
+
+  .warning-box {
+    bottom: 11%;
+    left: 3%;
+  }
+
+  .warning-text {
+    font-size: 1.1vw;
+  }
+
+  .warning-text-span {
+    letter-spacing: 3px;
+  }
+
+  .top-right-meta {
+    top: 7%;
+  }
+
+  .barcode {
+    width: 9vw;
+    height: 2.2vw;
+  }
+
+  .barcode-num {
+    font-size: 0.9vw;
+  }
+
+  .serial {
+    font-size: 2.2vw;
+  }
+
+  .title-layer {
+    top: 25%;
+  }
+
+  .title-main {
+    font-size: 5.5vw;
+  }
+
+  .surname {
+    font-size: 5.8vw;
+    left: 40px;
+    top: 42px;
+  }
+
+  .japan-name {
+    font-size: 2.6vw;
+    left: 12px;
+    bottom: -20px;
+  }
+
+  .bg-watermark {
+    top: 22%;
+  }
+
+  .bg-watermark h1 {
+    font-size: 26vw;
+  }
+}
+
+/* ── Tablet portrait ── */
+@media (max-width: 768px) {
+  .red-banner {
+    width: 20rem;
+    height: 20rem;
+    left: 26%;
+    top: 15%;
+  }
+
+  .warning-box {
+    bottom: 12%;
+    left: 4%;
+  }
+
+
+  .warning-text {
+    font-size: 1.6vw;
+    letter-spacing: 1.5px;
+    --encrypt-size: 0.65rem;
+  }
+
+  .warning-text-span {
+    letter-spacing: 2.5px;
+  }
+
+  .top-right-meta {
+    top: 6%;
+    right: 3%;
+  }
+
+  .barcode {
+    width: 12vw;
+    height: 3vw;
+  }
+
+  .barcode-num {
+    font-size: 1.3vw;
+    --encrypt-size: 0.6rem;
+  }
+
+  .serial {
+    font-size: 3vw;
+    --encrypt-size: 1rem;
+  }
+
+  .title-layer {
+    top: 24%;
+    left: 0;
+  }
+
+  .title-frame {
+    display: block;
+    text-align: center;
+    padding: 1vw;
+  }
+
+  .title-main {
+    font-size: 8vw;
+    --encrypt-size: 2.6rem;
+  }
+
+  .surname {
+    position: static;
+    display: block;
+    font-size: 8.5vw;
+    letter-spacing: 0.15em;
+    margin-top: 4px;
+    opacity: 0.85;
+  }
+
+  .japan-name {
+    position: static;
+    display: block;
+    font-size: 4vw;
+    letter-spacing: 0.2em;
+    margin-top: 6px;
+    --encrypt-size: 1.4rem;
+  }
+
+  .bg-watermark {
+    top: 30%;
+    left: 0;
+  }
+
+  .bg-watermark h1 {
+    font-size: 32vw;
+    opacity: 0.15;
+  }
+}
+
+/* ── Mobile — centered ── */
+@media (max-width: 480px) {
+  #hero {
+    height: 100svh;
+  }
+
+  .red-banner {
+    width: 15rem;
+    height: 15rem;
+    left: 50%;
+    bottom: 4%;
+    transform: translateX(-50%);
+  }
+
+  .warning-box {
+    left: 34%;
+    bottom: 1%;
+    transform: translateX(-50%);
+    max-width: 92vw;
+  }
+
+
+  .warning-text {
+    font-size: 2.4vw;
+    letter-spacing: 1px;
+    --encrypt-size: 0.5rem;
+  }
+
+  .warning-text-span {
+    letter-spacing: 1.5px;
+  }
+
+  .top-right-meta {
+    top: 7%;
+    right: 4%;
+  }
+
+  .barcode {
+    width: 16vw;
+    height: 4vw;
+    margin-bottom: 1vw;
+  }
+
+  .barcode-num {
+    font-size: 1.8vw;
+    --encrypt-size: 0.3rem;
+    letter-spacing: 0px;
+  }
+
+  .serial {
+    font-size: 4vw;
+    --encrypt-size: 0.7rem;
+  }
+
+  .title-layer {
+    top: 40%;
+    left: -30%;
+  }
+
+  .title-frame {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .title-main {
+    font-size: 11vw;
+    --encrypt-size: 2.2rem;
+  }
+
+  .surname {
+    position: absolute;
+    left: 175px;
+    top: 25px;
+    font-size: 10vw;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    z-index: 3;
+    opacity: .8;
+  }
+
+  .japan-name {
+    position: absolute;
+    display: block;
+    font-size: 5vw;
+    letter-spacing: 0.15em;
+    --encrypt-size: 1.1rem;
+  }
+
+  .bg-watermark {
+    top: 50%;
+  }
+
+  .bg-watermark h1 {
+    font-size: 38vw;
+    opacity: 0.12;
+    --encrypt-size: 38vw;
+  }
+
+  .corner-card svg {
+    width: 16%;
+    margin: 8px;
+  }
+}

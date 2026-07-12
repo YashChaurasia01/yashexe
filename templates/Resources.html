@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yash's · Resource Vault</title>
+
+  <!-- ============Favicon==================== -->
+  <!-- Link to the main favicon.ico file -->
+  <link rel="icon" href="../static/img/favicon/favicon.ico" type="image/x-icon">
+  <!-- Link to Android Chrome icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="../static/img/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../static/img/favicon/android-chrome-512x512.png">
+  <!-- Link to Apple Touch Icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon/apple-touch-icon.png">
+  <!-- Link to other favicon sizes -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../static/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../static/img/favicon/favicon-16x16.png">
+  <!-- Link to site.webmanifest -->
+  <link rel="manifest" href="../static/img/favicon/site.webmanifest">
+
+  <!-- ============================================= Fontawsome ==================================================== -->
+  <script src="https://kit.fontawesome.com/def00d5f6e.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Gaegu:wght@300;400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F9F6EE;
+      --txt: #000;
+      --gtxt: #0f0f0fe0;
+      --c1: #330000;
+      --c2: #660000;
+      --c3: #a50101;
+      --c4: #c00000;
+      --c5: #a50101ae;
+      --c6: #a5010174;
+      --neu-bg: #F0EDE5;
+      --card-bg: #F4F1E9;
+      --neu-shadow-dark: #d1cec6;
+      --neu-shadow-light: #ffffff;
+      --neu-shadow-dark-soft: rgba(209, 206, 198, 0.6);
+      --neu-shadow-light-soft: rgba(255, 255, 255, 0.7);
+      --accent-glow: rgba(165, 1, 1, 0.25);
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: 'Space Grotesk', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    ::selection {
+      background-color: #debefa;
+      /* color: var(--bg); */
+    }
+
+    @font-face {
+      font-family: Font4;
+      src: url(../static/Fonts/PublicaPlay.otf);
+    }
+
+
+    /* ── Progress Bar ── */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4));
+      z-index: 9999;
+      transition: width 0.05s linear;
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: transparent;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .logo {
+      width: 45px;
+      height: auto;
+      display: block;
+      overflow: hidden;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--card-bg);
+      box-shadow: 4px 4px 10px var(--neu-shadow-dark), -4px -4px 10px var(--neu-shadow-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Gaegu', cursive;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--c3);
+      transition: box-shadow 0.2s;
+      overflow: hidden;
+    }
+
+    .logo-mark:hover {
+      box-shadow: 6px 6px 14px var(--neu-shadow-dark), -6px -6px 14px var(--neu-shadow-light);
+    }
+
+    .logo-label {
+      font-family: Font4;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--gtxt);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-socials {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      box-shadow: 3px 3px 8px var(--neu-shadow-dark), -3px -3px 8px var(--neu-shadow-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--gtxt);
+      transition: box-shadow 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .social-btn:hover {
+      box-shadow: inset 3px 3px 6px var(--neu-shadow-dark), inset -3px -3px 6px var(--neu-shadow-light);
+      color: var(--c3);
+      transform: scale(0.95);
+    }
+
+    .social-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 8rem 2.5rem 3.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Gaegu', cursive;
+      font-size: 0.85rem;
+      color: var(--c3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      color: var(--c3);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--gtxt);
+      max-width: 460px;
+      line-height: 1.75;
+    }
+
+    .hero-count {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--card-bg);
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      box-shadow: 3px 3px 8px var(--neu-shadow-dark), -3px -3px 8px var(--neu-shadow-light);
+      font-size: 0.78rem;
+      color: var(--gtxt);
+    }
+
+    .hero-count strong {
+      color: var(--c3);
+      font-size: 0.95rem;
+    }
+
+    /* ── Filter Bar ── */
+    .filter-bar {
+      padding: 0 2.5rem 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-pill {
+      padding: 0.38rem 1rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      background: var(--card-bg);
+      color: var(--gtxt);
+      box-shadow: 3px 3px 7px var(--neu-shadow-dark), -3px -3px 7px var(--neu-shadow-light);
+      transition: all 0.2s;
+    }
+
+    .filter-pill:hover {
+      color: var(--c3);
+    }
+
+    .filter-pill.active {
+      background: var(--c3);
+      color: #fff;
+      box-shadow: inset 2px 2px 5px var(--c2), inset -2px -2px 5px var(--c4);
+    }
+
+    /* ── Section Divider ── */
+    .section-divider {
+      max-width: 1000px;
+      margin: 0 auto 2rem;
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-divider span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c3);
+      white-space: nowrap;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--neu-shadow-dark), transparent);
+    }
+
+    /* ── Grid ── */
+    .resources-grid {
+      padding: 0 2.5rem 6rem;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    /* ── Card ── */
+    .resource-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      border-radius: 20px;
+      background: var(--card-bg);
+      box-shadow: 8px 8px 20px var(--neu-shadow-dark), -8px -8px 20px var(--neu-shadow-light);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+      will-change: transform, opacity;
+      /* initial state set via JS */
+    }
+
+    .resource-card:hover {
+      box-shadow: 12px 12px 26px var(--neu-shadow-dark), -12px -12px 26px var(--neu-shadow-light);
+    }
+
+    /* ── Image ── */
+    .card-image-wrap {
+      padding: 1rem 0 1rem 1rem;
+      flex-shrink: 0;
+      height: 100%;
+      min-height: 180px;
+    }
+
+    .card-image-inner {
+      width: 100%;
+      height: 80%;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--neu-bg);
+      position: relative;
+    }
+
+    .card-image-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .resource-card:hover .card-image-inner img {
+      transform: scale(1.06);
+    }
+
+    .card-image-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 158px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      border-radius: 14px;
+    }
+
+    /* ── Card Body ── */
+    .card-body {
+      padding: 1.3rem 1.5rem 1.3rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.7rem;
+      min-width: 0;
+      /* prevents text overflow */
+    }
+
+    .card-top {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      min-width: 0;
+    }
+
+    .card-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      width: fit-content;
+      background: var(--neu-bg);
+      box-shadow: 2px 2px 5px var(--neu-shadow-dark), -2px -2px 5px var(--neu-shadow-light);
+      color: var(--c3);
+      flex-shrink: 0;
+    }
+
+    .card-pill::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--c3);
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--txt);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      white-space: normal;
+      overflow-wrap: break-word;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--gtxt);
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 1em;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .card-meta {
+      font-size: 0.7rem;
+      color: var(--c5);
+      font-family: 'Gaegu', cursive;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+
+    /* ── Visit Button ── */
+    .cart-button {
+      position: relative;
+      padding: 0.8em 0.7em;
+      font-family: 'Bitcount Prop Single', monospace;
+      font-size: 0.85em;
+      color: #4a4a4a;
+      cursor: pointer;
+      line-height: 1;
+      background: transparent;
+      border-radius: 0.77em;
+      border: none;
+      transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      isolation: isolate;
+      text-decoration: none;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .glass-effect {
+      position: absolute;
+      inset: -0.45em;
+      border-radius: .5rem;
+      background: linear-gradient(165deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(255, 255, 255, 0.2) 30%,
+          rgba(255, 255, 255, 0.05) 80%,
+          rgba(0, 0, 0, 0.02));
+      z-index: -3;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.9),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.15),
+        0 0 20px 1px rgb(200 200 200 / 60%);
+      transition: box-shadow 0.12s ease;
+    }
+
+    .cart-button::before {
+      content: "";
+      position: absolute;
+      inset: -0.8em;
+      background:
+        radial-gradient(circle at top center, rgba(255, 200, 135, 0.6) 0%, transparent 50%),
+        radial-gradient(circle at top left, rgba(102, 190, 240, 0.6) 0%, transparent 50%),
+        radial-gradient(circle at top right, rgba(255, 100, 100, 0.6) 0%, transparent 50%),
+        radial-gradient(circle at bottom center, rgba(147, 112, 190, 0.6) 0%, transparent 80%);
+      border-radius: inherit;
+      filter: blur(0.3em);
+      opacity: 0.9;
+      z-index: -2;
+      transition: all 0.12s ease;
+    }
+
+    .cart-button::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(#f0f0f0, #e0e0e0);
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    .button-text {
+      position: relative;
+      background: linear-gradient(#e0e0e0, #f0f0f0);
+      padding: 0.5em 3em;
+      border: none;
+      border-radius: 999em;
+      display: block;
+      user-select: none;
+      z-index: 2;
+      transition: all 0.12s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      font-family: 'Bitcount Prop Single', monospace;
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+      color: #3a3a3a;
+      white-space: nowrap;
+    }
+
+    .cart-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .cart-button:hover .glass-effect {
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.95),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.15),
+        0 0 30px 2px rgb(220 220 220 / 70%);
+    }
+
+    .cart-button:hover::before {
+      opacity: 1;
+      filter: blur(0.4em);
+      transform: scale(1.05);
+    }
+
+    .cart-button:hover .button-text {
+      transform: scale(1.02);
+    }
+
+    .cart-button:active {
+      transform: translateY(3px) scale(0.95);
+      transition: transform 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cart-button:active .glass-effect {
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.8),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.1),
+        0 0 15px 0 rgb(200 200 200 / 50%);
+      opacity: 0.3;
+    }
+
+    .cart-button:active::before {
+      opacity: 1;
+      filter: blur(1em);
+      transform: scale(1.1);
+      inset: -0.45em;
+    }
+
+    .cart-button:active .button-text {
+      transform: scale(0.92);
+      background: linear-gradient(#ececec, #dcdcdc);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 3rem;
+      font-size: 0.78rem;
+      color: var(--c5);
+      font-family: 'Gaegu', cursive;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 620px) {
+      .resource-card {
+        grid-template-columns: 1fr;
+      }
+
+      .card-image-wrap {
+        padding: 1rem 1rem 0 1rem;
+        min-height: 160px;
+      }
+
+      .card-image-inner {
+        min-height: 150px;
+      }
+
+      nav {
+        padding: 0.8rem 1.2rem;
+      }
+
+      .hero,
+      .filter-bar,
+      .resources-grid {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+      }
+
+      .section-divider {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .resource-card {
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+
+    /* ── Responsive — Nav fix + general scaling ── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0.9rem 1.5rem;
+      }
+
+      .logo-label {
+        display: none;
+      }
+
+      .nav-socials {
+        gap: 0.4rem;
+      }
+
+      .social-btn {
+        width: 34px;
+        height: 34px;
+      }
+
+      .social-btn svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      .hero {
+        padding: 7rem 1.8rem 3rem;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .resource-card {
+        grid-template-columns: 1fr;
+      }
+
+      .card-image-wrap {
+        padding: 1rem 1rem 0 1rem;
+        min-height: 160px;
+      }
+
+      .card-image-inner {
+        min-height: 150px;
+      }
+
+      nav {
+        padding: 0.8rem 1.2rem;
+      }
+
+      .hero,
+      .filter-bar,
+      .resources-grid {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+      }
+
+      .section-divider {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 0.75rem 1rem;
+      }
+
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      .logo {
+        width: 38px;
+      }
+
+      .nav-socials {
+        gap: 0.35rem;
+      }
+
+      .social-btn {
+        width: 30px;
+        height: 30px;
+      }
+
+      .social-btn svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .hero-title {
+        font-size: clamp(1.9rem, 8vw, 2.6rem);
+      }
+
+      .hero-sub {
+        font-size: 0.88rem;
+      }
+
+      .filter-pill {
+        font-size: 0.7rem;
+        padding: 0.32rem 0.85rem;
+      }
+
+      .card-body {
+        padding: 1.1rem 1.2rem 1.1rem 1rem;
+      }
+
+      .card-title {
+        font-size: 0.92rem;
+      }
+
+      .card-desc {
+        font-size: 0.76rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .nav-socials {
+        gap: 0.25rem;
+      }
+
+      .social-btn {
+        width: 27px;
+        height: 27px;
+      }
+
+      .social-btn svg {
+        width: 11px;
+        height: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="progress-bar"></div>
+
+  <!-- Nav -->
+  <nav>
+    <a href="../index.html#resources" class="nav-logo" title="Back to portfolio">
+      <div class="logo-mark"><img src="../static/img/logo.png" alt="Logo" class="logo"></div>
+      <span class="logo-label">The Vault by <strong style="color: var(--c3);">Yash Chaurasia.</strong></span>
+    </a>
+    <div class="nav-socials">
+      <a href="https://instagram.com/yashc.exe" target="_blank" class="social-btn" title="Twitter">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://github.com/YashChaurasia01" target="_blank" class="social-btn" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://linkedin.com/in/yashchaurasia01" target="_blank" class="social-btn" title="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+        </svg>
+      </a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=xukyosho@gmail.com" class="social-btn" title="Email">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-eyebrow">✦ curated collection</p>
+    <h1 class="hero-title">The <span>Resource</span><br>Vault</h1>
+    <p class="hero-sub">Every tool, article, library, and inspiration I keep coming back to — organised and ready to
+      revisit.</p>
+    <div class="hero-count">
+      <strong id="resource-count">0</strong>&nbsp;resources catalogued
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-pill active" data-filter="all">All</button>
+  </div>
+
+  <!-- Divider -->
+  <div class="section-divider">
+    <span>Resources</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Cards injected here -->
+  <main class="resources-grid" id="resources-grid"></main>
+
+  <footer>
+    ✦ Built by Yash Chaurasia · © <span id="year"></span> Yash Chaurasia. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    /* ============================================================
+       RESOURCES DATA — add / edit entries here only
+       ============================================================
+       Fields:
+         title       — card heading
+         desc        — short description (2 lines shown)
+         category    — must match a key in CATEGORIES below
+         link        — destination URL
+         domain      — display string under the button
+         image       — URL string OR null for emoji placeholder
+         emoji       — shown when image is null
+         gradient    — CSS gradient string for placeholder bg
+       ============================================================ */
+
+    const CATEGORIES = {
+      animation: 'Animation',
+      design: 'Design',
+      dev: 'Dev',
+      inspiration: 'Inspiration',
+      tools: 'Tools',
+      fonts: 'Fonts',
+      d3: '3D Modals',
+      pirate: 'Pirated OTT',
+      llm: 'LLMs',
+      anime: 'Anime',
+      image: 'Vision',
+      shop: 'Shopping',
+      git: 'Git Resources',
+      video: 'Video',
+      learn: 'Learning',
+    };
+
+    const RESOURCES = [
+      {
+        title: 'GSAP — GreenSock Animation Platform',
+        desc: 'Industry-standard JS animation library. Handles timelines, ScrollTrigger, morphing and so much more with buttery-smooth performance.',
+        category: 'animation',
+        link: 'https://gsap.com',
+        domain: 'gsap.com',
+        image: 'https://i.pinimg.com/1200x/15/ab/e1/15abe1570219337a6e075d185f1312d7.jpg',
+        emoji: '🎞️',
+        gradient: 'linear-gradient(135deg,#e8e4dc,#d5d0c8)',
+      },
+      {
+        title: 'Lenis — Smooth Scroll Library',
+        desc: 'Minimal, lightweight smooth scroll with lerp easing. Perfect companion to GSAP ScrollTrigger for cinematic scroll experiences.',
+        category: 'animation',
+        link: 'https://lenis.darkroom.engineering',
+        domain: 'lenis.darkroom.engineering',
+        image: 'https://cdn.landing.love/images/lenis.webp',
+        emoji: '🌊',
+        gradient: 'linear-gradient(135deg,#dce8e0,#c8d8d0)',
+      },
+      {
+        title: 'Figma — Collaborative Design',
+        desc: 'Browser-first UI design and prototyping tool. Component libraries, auto-layout, and real-time collaboration make it the go-to for wireframing and high-fidelity work.',
+        category: 'design',
+        link: 'https://figma.com',
+        domain: 'figma.com',
+        image: 'https://i.pinimg.com/1200x/99/48/53/994853d921632093175096ff628133bc.jpg',
+        emoji: '🎨',
+        gradient: 'linear-gradient(135deg,#e8dce8,#d8c8d8)',
+      },
+      {
+        title: 'Awwwards — Web Design Inspiration',
+        desc: 'Daily showcase of the most creative, technically impressive websites on the internet. Judges award sites on design, usability, creativity, and content.',
+        category: 'inspiration',
+        link: 'https://awwwards.com',
+        domain: 'awwwards.com',
+        image: 'https://assets.awwwards.com/assets/redesign/images/pages/about-us/cover.jpg',
+        emoji: '✦',
+        gradient: 'linear-gradient(135deg,#e8e4d0,#d8d0b8)',
+      },
+      {
+        title: 'Google Fonts — Free Typefaces',
+        desc: 'Over 1,400 open-source fonts with a simple embed API. Variable fonts, on-demand loading, and excellent pairing suggestions built in.',
+        category: 'fonts',
+        link: 'https://fonts.google.com',
+        domain: 'fonts.google.com',
+        image: 'https://i.pinimg.com/736x/38/eb/dc/38ebdc5944be8d210287882594c10c30.jpg',
+        emoji: 'Aa',
+        gradient: 'linear-gradient(135deg,#dce0e8,#c8ced8)',
+      },
+      {
+        title: 'Vite — Next Gen Frontend Tooling',
+        desc: 'Blazing fast dev server and build tool powered by native ES modules. Hot module replacement under 50ms and optimised production bundles out of the box.',
+        category: 'dev',
+        link: 'https://vitejs.dev',
+        domain: 'vitejs.dev',
+        image: 'https://blog.stackblitz.com/posts/what-is-vite-introduction/vite_popularity.png',
+        emoji: '⚡',
+        gradient: 'linear-gradient(135deg,#e0e8dc,#ccd8c8)',
+      },
+      {
+        title: 'Coolors — Color Palette Generator',
+        desc: 'Hit spacebar to generate beautiful palettes instantly. Export to CSS variables, lock favourites, explore trending schemes and contrast-check for accessibility.',
+        category: 'tools',
+        link: 'https://coolors.co',
+        domain: 'coolors.co',
+        image: 'https://i0.wp.com/straightforward.se/wp-content/uploads/2023/04/coolors-homepage.png?resize=1536%2C745&ssl=1',
+        emoji: '🎨',
+        gradient: 'linear-gradient(135deg,#e8e0dc,#d8d0cc)',
+      },
+      {
+        title: 'Minimal.gallery — Minimal UI Showcase',
+        desc: 'A curated gallery of clean, minimal website designs. Excellent reference when stripping away noise to focus on typography and whitespace.',
+        category: 'inspiration',
+        link: 'https://minimal.gallery',
+        domain: 'minimal.gallery',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYW-zEv6ntr-CQlxduBKVywVt5UxBqwzofGIqdy4HF1TYFqZc4IiDC27A&s=10',
+        emoji: '🏆',
+        gradient: 'linear-gradient(135deg,#e4e8e0,#d4d8d0)',
+      },
+      {
+        title: 'Three.js — 3D in the Browser',
+        desc: 'WebGL abstraction library for rendering 3D scenes with minimal boilerplate. Pairs beautifully with React Three Fiber for declarative 3D UIs.',
+        category: 'dev',
+        link: 'https://threejs.org',
+        domain: 'threejs.org',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAEjGyb3Jbg6yPjoNre9sjaM5myO-jSQ61GEGNhK2hSADS0hcI3Lp5kBU&s=10',
+        emoji: '🔷',
+        gradient: 'linear-gradient(135deg,#dce8e4,#c8d8d4)',
+      },
+      {
+        title: 'cubic-bezier.com — Easing Playground',
+        desc: 'Interactive playground for crafting custom CSS easing curves. Visualise, compare, and copy the exact cubic-bezier values you need for polished transitions.',
+        category: 'tools',
+        link: 'https://cubic-bezier.com',
+        domain: 'cubic-bezier.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgxgLjHo6U6bNE2Pad9ZLMehrOtf5ymKqwBw6a_BPZGr9uAFg9wstQtZth&s=10',
+        emoji: '📐',
+        gradient: 'linear-gradient(135deg,#e8e0dc,#d8d0cc)',
+      },
+      {
+        title: 'Mobbin — UI Pattern Library',
+        desc: 'Searchable database of real mobile and web UI screenshots from leading apps. Invaluable for onboarding flows, empty states, and navigation patterns.',
+        category: 'design',
+        link: 'https://mobbin.com',
+        domain: 'mobbin.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjCSD8v64FWM8dViFMKMEqsorXOVTPQ8M6MxV0p8VB2DHwP3RNStR8hs4&s=10',
+        emoji: '🖼️',
+        gradient: 'linear-gradient(135deg,#e4dce8,#d4ccd8)',
+      },
+      {
+        title: 'Vercel — Frontend Cloud Deployment',
+        desc: 'Zero-config deployments with global CDN, preview URLs per branch, and seamless Next.js integration. Git push is all it takes to ship.',
+        category: 'dev',
+        link: 'https://vercel.com',
+        domain: 'vercel.com',
+        image: 'https://i.pinimg.com/736x/54/89/7c/54897c84bcf1596c2e3a454dce00015d.jpg',
+        emoji: '▲',
+        gradient: 'linear-gradient(135deg,#e0e4e8,#d0d4d8)',
+      },
+      {
+        title: 'Shapes Gallery — Free SVG Shape Library',
+        desc: 'Explore a curated collection of beautiful, copy-paste SVG shapes for modern web design. Perfect for landing pages, UI projects, and creative interfaces with instant copy functionality.',
+        category: 'design',
+        link: 'https://www.shapes.gallery',
+        domain: 'shapes.gallery',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQYDH1RXRijPY8XmeeTbOk54coa3ctA7c7sNZSUUeu7A&s=10',
+        emoji: '⬡',
+        gradient: 'linear-gradient(135deg,#D9E4F5,#A8C5E8)',
+      },
+      {
+        title: 'DaFont — Free Font Collection',
+        desc: 'Discover thousands of downloadable fonts across a wide range of styles, from modern sans-serifs to decorative display typefaces. Browse, preview, and find the perfect font for branding, UI, and creative projects.',
+        category: 'fonts',
+        link: 'https://www.dafont.com',
+        domain: 'dafont.com',
+        image: 'https://thetechhacker.com/wp-content/uploads/2019/12/dafont.com-Review-Best-site-to-download-thousands-of-free-fonts.jpg',
+        emoji: '𝓐',
+        gradient: 'linear-gradient(135deg,#F8E9E9,#D9D9D9)',
+      },
+      {
+        title: 'Pacdora — 3D Mockup Generator',
+        desc: 'Create realistic 3D product and packaging mockups directly in your browser. Customize packaging, apparel, books, bottles, and more with real-time previews, then export high-quality renders for branding, presentations, and e-commerce.',
+        category: 'd3',
+        link: 'https://www.pacdora.com/mockups',
+        domain: 'pacdora.com',
+        image: 'https://cdn.pacdora.com/ui/topic/71daf1f6-3a55-4fd2-802f-931b72b85abd.webp',
+        emoji: '📦',
+        gradient: 'linear-gradient(135deg,#CFE8FF,#7DB8FF)',
+      },
+      {
+        title: 'Sketchfab — 3D Model Library',
+        desc: 'Discover millions of interactive 3D models for games, AR/VR, product visualization, architecture, and creative projects. Preview, download, embed, and share high-quality assets directly in your browser.',
+        category: 'd3',
+        link: 'https://sketchfab.com/3d-models',
+        domain: 'sketchfab.com',
+        image: 'https://media.sketchfab.com/models/5e980955bede4999abdae88764f64c70/thumbnails/d8f0c37cb5204ab7bc0785bb8c9a360b/14ec55bc958b4241a2b5b1610c55b245.jpeg',
+        emoji: '🧊',
+        gradient: 'linear-gradient(135deg,#6DD5FA,#2980B9)',
+      },
+      {
+        title: 'Moctale — Stories That Matter',
+        desc: 'Discover meaningful stories, insightful articles, and thought-provoking narratives across culture, technology, entertainment, and society. A modern platform dedicated to storytelling that informs, inspires, and sparks conversation.',
+        category: 'pirate',
+        link: 'https://www.moctale.in',
+        domain: 'moctale.in',
+        image: 'https://www.moctale.in/apple-touch-icon-180x180.png',
+        emoji: '📖',
+        gradient: 'linear-gradient(135deg,#E9D8C4,#B08968)',
+      },
+      {
+        title: 'QMovies — Movie & TV Discovery',
+        desc: 'Browse a vast collection of movies and TV shows with an intuitive interface, powerful search, trending titles, genre-based exploration, and personalized watchlists for an enhanced entertainment experience.',
+        category: 'pirate',
+        link: 'https://qmovies.org',
+        domain: 'qmovies.org',
+        image: '../static/img/resource/qmovie.png',
+        emoji: '🎬',
+        gradient: 'linear-gradient(135deg,#2C3E50,#4CA1AF)',
+      },
+      {
+        title: 'FlickZone — Movies & TV Streaming',
+        desc: 'Browse a vast library of movies and TV shows with trending titles, curated collections, genre-based discovery, watchlists, and HD streaming in a clean, modern interface.',
+        category: 'pirate',
+        link: 'https://flickzone.to',
+        domain: 'flickzone.to',
+        image: 'https://i.pinimg.com/736x/06/9e/5c/069e5cc53dfd2d254bbb1ce88a7bbeae.jpg',
+        emoji: '🍿',
+        gradient: 'linear-gradient(135deg,#1F2937,#4B5563)',
+      },
+      {
+        title: 'Rare Animes — Anime Streaming & Downloads',
+        desc: 'Browse a large collection of anime series and movies with dubbed and subbed content, organized by genre, language, and release for easy discovery.',
+        category: 'pirate',
+        link: 'https://www.rareanimes.mov',
+        domain: 'rareanimes.mov',
+        image: 'https://i.pinimg.com/736x/3c/56/e9/3c56e95050848f9829b6a8eb478e5052.jpg',
+        emoji: '🏴‍☠️',
+        gradient: 'linear-gradient(135deg,#2B2D42,#6C63FF)',
+      },
+      {
+        title: 'NetMirror — Movies & TV Streaming',
+        desc: 'Access a large collection of movies, TV series, anime, and content from multiple streaming platforms through a single interface with web and app support.',
+        category: 'pirate',
+        link: 'https://netmirror.gg',
+        domain: 'netmirror.gg',
+        image: 'https://i.pinimg.com/1200x/9f/79/fb/9f79fb283ddd171e48d6ac2442ab80d2.jpg',
+        emoji: '🏴‍☠️',
+        gradient: 'linear-gradient(135deg,#1E293B,#4F46E5)',
+      },
+      {
+        title: 'ChatGPT — AI Assistant',
+        desc: 'An advanced AI assistant for writing, coding, research, brainstorming, image generation, data analysis, and solving complex problems through natural conversations.',
+        category: 'llm',
+        link: 'https://chatgpt.com',
+        domain: 'chatgpt.com',
+        image: 'https://i.pinimg.com/736x/f2/0a/48/f20a48b70d0a3be29d3a62cb04d70909.jpg',
+        emoji: '🤖',
+        gradient: 'linear-gradient(135deg,#74AA9C,#2D3748)',
+      },
+      {
+        title: 'Claude — AI Assistant',
+        desc: 'A powerful AI assistant designed for thoughtful conversations, coding, writing, document analysis, research, and complex reasoning with long-context understanding.',
+        category: 'llm',
+        link: 'https://claude.ai',
+        domain: 'claude.ai',
+        image: 'https://i.pinimg.com/736x/d9/50/42/d9504243684395b12055df84e80e648f.jpg',
+        emoji: '🧠',
+        gradient: 'linear-gradient(135deg,#F4E8D5,#C98F5C)',
+      },
+      {
+        title: "Gemini — Google's AI Assistant",
+        desc: 'Google’s multimodal AI assistant for coding, writing, research, image understanding, productivity, and seamless integration with Google Workspace.',
+        category: 'llm',
+        link: 'https://gemini.google.com',
+        domain: 'gemini.google.com',
+        image: 'https://i.pinimg.com/1200x/49/ad/de/49addee87e78ed632b9a8ccfb5d90f20.jpg',
+        emoji: '✨',
+        gradient: 'linear-gradient(135deg,#4F8CFF,#9B6DFF)',
+      },
+      {
+        title: 'DeepSeek — AI Reasoning Model',
+        desc: 'An advanced AI platform offering powerful reasoning, coding assistance, mathematics, research, and multilingual conversational capabilities.',
+        category: 'llm',
+        link: 'https://chat.deepseek.com',
+        domain: 'chat.deepseek.com',
+        image: 'https://i.pinimg.com/736x/f4/00/ac/f400ac39dd653e860f796bcbccd8caea.jpg',
+        emoji: '🔷',
+        gradient: 'linear-gradient(135deg,#2563EB,#60A5FA)',
+      },
+      {
+        title: 'BLACKBOX AI — Coding Assistant',
+        desc: 'An AI-powered coding companion for code generation, debugging, autocomplete, repository exploration, and developer productivity across multiple programming languages.',
+        category: 'llm',
+        link: 'https://www.blackbox.ai',
+        domain: 'blackbox.ai',
+        image: 'https://i.pinimg.com/736x/ee/27/4c/ee274c9e26a1bce845eb2709632e6225.jpg',
+        emoji: '⚫',
+        gradient: 'linear-gradient(135deg,#1E1E1E,#5A5A5A)',
+      },
+      {
+        title: 'v0 — AI UI Generator',
+        desc: 'Generate beautiful React, Next.js, and Tailwind CSS interfaces from natural language prompts, accelerating modern web application development.',
+        category: 'llm',
+        link: 'https://v0.dev',
+        domain: 'v0.dev',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi0JmwyNPUU-2D075o8JuDZE95pjrXFLri44vy8ovtS5TDvVQpX1HEYIUh&s=10',
+        emoji: '▲',
+        gradient: 'linear-gradient(135deg,#111827,#4B5563)',
+      },
+      {
+        title: 'OpenCode — AI Coding Agent',
+        desc: 'An open-source AI coding agent that helps developers write, refactor, debug, and manage codebases directly from the terminal with support for multiple AI models.',
+        category: 'llm',
+        link: 'https://opencode.ai',
+        domain: 'opencode.ai',
+        image: 'https://www.aidown.com.cn/wp-content/uploads/2026/04/social-share-1024x577.png',
+        emoji: '💻',
+        gradient: 'linear-gradient(135deg,#0F172A,#2563EB)',
+      },
+      {
+        title: 'VidBox — Streaming Platform',
+        desc: 'Browse and stream movies, TV shows, and anime through a modern interface featuring trending content, provider discovery, personalized recommendations, and cross-platform accessibility.',
+        category: 'pirate',
+        link: 'https://vidbox.dev/home',
+        domain: 'vidbox.dev',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRV2Y4iUh96N9ucZsuqQrKq1s5dxDTkS_sx-SngKGppw&s=10',
+        emoji: '📺',
+        gradient: 'linear-gradient(135deg,#1E293B,#7C3AED)',
+      },
+      {
+        title: 'HuraWatch — Movies & TV Streaming',
+        desc: 'Stream a vast collection of movies, TV shows, and anime with HD playback, trending releases, genre-based browsing, subtitles, and a clean, user-friendly interface.',
+        category: 'pirate',
+        link: 'https://hurawatch.sx/home',
+        domain: 'hurawatch.sx',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLPdgMBbKHwAWlFwJHthSkWxsYqz-hEHrAXVNZ5HRJQYct0WA5GVbhgOkX&s=10',
+        emoji: '🎥',
+        gradient: 'linear-gradient(135deg,#0F172A,#6D28D9)',
+      },
+      {
+        title: 'Anikoto — Anime Streaming',
+        desc: 'Watch a vast collection of anime series and movies with subbed and dubbed episodes, HD streaming, trending releases, seasonal titles, and an easy-to-browse interface.',
+        category: 'anime',
+        link: 'https://anikoto.cz/home',
+        domain: 'anikoto.cz',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS91bsfesSEn47J2G1aVZDG8AXQ76ywXQXKOodcOV5xXwQQ4MxFvT8U3bs&s=10',
+        emoji: '🍥',
+        gradient: 'linear-gradient(135deg,#5B21B6,#EC4899)',
+      },
+      {
+        title: 'ZoroTo — Anime Streaming',
+        desc: 'Watch thousands of anime series and movies with subbed and dubbed episodes, HD streaming, seasonal releases, trending titles, and an intuitive anime discovery experience.',
+        category: 'anime',
+        link: 'https://www.zoroto.se',
+        domain: 'zoroto.se',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxUr3ep-UMo5gOn_P_4Lkfryl43183O6H_n2bcVq6cVXI9LVJMpEgjFicp&s=10',
+        emoji: '🍥',
+        gradient: 'linear-gradient(135deg,#312E81,#EC4899)',
+      },
+      {
+        title: 'AniWatch — Anime Streaming',
+        desc: 'Watch thousands of anime series and movies with subbed and dubbed episodes, HD streaming, seasonal releases, trending titles, and an intuitive anime discovery experience.',
+        category: 'anime',
+        link: 'https://aniwatch.co.at',
+        domain: 'aniwatch.co.at',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp53ODwgGAr3wIUC9yVcJF5LO4i-6ukJFVXVOzyCqSMQ&s=10',
+        emoji: '🍜',
+        gradient: 'linear-gradient(135deg,#4338CA,#EC4899)',
+      },
+      {
+        title: 'HiAnime — Anime Streaming',
+        desc: 'Watch thousands of anime series and movies with subbed and dubbed episodes, HD streaming, seasonal releases, trending titles, and an intuitive anime discovery experience.',
+        category: 'anime',
+        link: 'https://hianimes.se/home',
+        domain: 'hianimes.se | hianimestv.su',
+        image: 'https://i.pinimg.com/736x/27/9d/89/279d8946fca6d437f279a6d6320eaba0.jpg',
+        emoji: '🍜',
+        gradient: 'linear-gradient(135deg,#4F46E5,#EC4899)',
+      },
+      {
+        title: 'AIGC Arena — AI Image Generation',
+        desc: 'Create stunning AI-generated images from text prompts using state-of-the-art generative models. Explore community creations, compare outputs, and experiment with powerful image generation workflows.',
+        category: 'image',
+        link: 'https://aigcarena.com',
+        domain: 'aigcarena.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPvIjZYOlDihHVaHh46QLEeDsa-vWYRuv_T04woCpBSg&s=10',
+        emoji: '🎨',
+        gradient: 'linear-gradient(135deg,#8B5CF6,#EC4899)',
+      },
+      {
+        title: 'Pixelcut — AI Image Studio',
+        desc: 'Generate, edit, and enhance stunning images with AI. Create product photos, remove backgrounds, upscale images, expand scenes, erase objects, and produce professional visuals from simple text prompts.',
+        category: 'image',
+        link: 'https://www.pixelcut.ai/create',
+        domain: 'pixelcut.ai',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_5Ph-CSd-OmdLG84KZJRQy3eWT0fhtlIG3X5tNI_j-PkzsmxVAMkMNGyu&s=10',
+        emoji: '🖼️',
+        gradient: 'linear-gradient(135deg,#38BDF8,#8B5CF6)',
+      },
+      {
+        title: 'Seedream 4.0 — AI Image Generator',
+        desc: 'Generate high-quality images from text prompts using ByteDance’s advanced Seedream model. Create photorealistic artwork, illustrations, concept designs, and creative visuals with powerful AI generation capabilities.',
+        category: 'image',
+        link: 'https://seed.bytedance.com/en/seedream4_0',
+        domain: 'seed.bytedance.com',
+        image: 'https://i.pinimg.com/1200x/4f/a8/de/4fa8de87cbb010ebc957a7fb67f87e9f.jpg',
+        emoji: '🎨',
+        gradient: 'linear-gradient(135deg,#4F46E5,#06B6D4)',
+      },
+      {
+        title: 'Poe — Multi-Model AI Platform',
+        desc: 'Access and compare the world’s leading AI models in one place. Chat with GPT, Claude, Gemini, DeepSeek, FLUX, Veo, and hundreds of other text, image, video, and audio models while creating custom AI bots and workflows.',
+        category: 'llm',
+        link: 'https://poe.com',
+        domain: 'poe.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZYNqUZCyPryV5QvUGD99ARp0Es782VkxF-ZraVsrtAg&s=10',
+        emoji: '🧩',
+        gradient: 'linear-gradient(135deg,#7C3AED,#3B82F6)',
+      },
+      {
+        title: 'Cyber Techwear — Futuristic Fashion Store',
+        desc: 'Shop futuristic techwear, cyberpunk apparel, tactical jackets, cargo pants, masks, footwear, and accessories designed with modern aesthetics, functionality, and everyday streetwear in mind.',
+        category: 'shop',
+        link: 'https://cyber-techwear.com',
+        domain: 'cyber-techwear.com',
+        image: 'https://i.pinimg.com/736x/e1/72/3f/e1723f18b79af3979dc1794607607b5b.jpg',
+        emoji: '🦾',
+        gradient: 'linear-gradient(135deg,#0F172A,#06B6D4)',
+      },
+      {
+        title: 'Wan.Video — AI Video Generator',
+        desc: 'Create cinematic AI videos from text, images, and reference videos using Alibaba’s advanced Wan models. Generate high-quality animations, storytelling sequences, video edits, and realistic motion with state-of-the-art generative AI.',
+        category: 'video',
+        link: 'https://wan.video',
+        domain: 'wan.video',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV5beER98K30PeG0rnvy8UGFjTF1QcmiG-3ePTyb0qPg&s=10',
+        emoji: '🎬',
+        gradient: 'linear-gradient(135deg,#0EA5E9,#6366F1)',
+      },
+      {
+        title: 'Dimensions — Design Reference Library',
+        desc: 'Explore a comprehensive library of dimensioned drawings, scaled references, CAD blocks, and 3D models for architecture, interior design, product design, and creative workflows.',
+        category: 'design',
+        link: 'https://www.dimensions.com',
+        domain: 'dimensions.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-tLV8NfHFLGWQ8FmCJbRnOA1l_XMeppBfHC1g1QGdPM-m6q5Y6hrjjMo&s=10',
+        emoji: '📐',
+        gradient: 'linear-gradient(135deg,#CBD5E1,#64748B)',
+      },
+      {
+        title: 'Huemint — AI Color Palette Generator',
+        desc: 'Generate beautiful, context-aware color palettes for websites, logos, illustrations, and UI designs using machine learning. Instantly preview, customize, and refine harmonious color schemes for your creative projects.',
+        category: 'design',
+        link: 'https://huemint.com',
+        domain: 'huemint.com',
+        image: 'https://www.ilovefreesoftware.com/wp-content/uploads/2022/03/Featured-1.jpg',
+        emoji: '🎨',
+        gradient: 'linear-gradient(135deg,#8EC5FC,#E0C3FC)',
+      },
+      {
+        title: 'Uiverse — Open-Source UI Library',
+        desc: 'Explore thousands of community-built UI components, animations, buttons, forms, loaders, cards, backgrounds, and interactive elements. Copy production-ready HTML, CSS, Tailwind, React, and Figma code to build modern interfaces faster.',
+        category: 'design',
+        link: 'https://uiverse.io',
+        domain: 'uiverse.io',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmVpOdo-QbXvgFuOrjliX_dQy0ZiZR7XZssBYg9rpqCtDZoPGIvXpiHK9n&s=10',
+        emoji: '🌌',
+        gradient: 'linear-gradient(135deg,#6366F1,#06B6D4)',
+      },
+      {
+        title: 'ASC11 — ASCII Art Editor',
+        desc: 'Transform images, videos, and live camera feeds into animated ASCII art. Customize styles, preview directly in HTML, and export clean JavaScript for creative coding and interactive web experiences.',
+        category: 'design',
+        link: 'https://asc11.com',
+        domain: 'asc11.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLcIGVISH4fn9lZB1gt03M6Rnzq4bEZp2xoV3FIif7AUBh19bDGrVWrH4&s=10',
+        emoji: '🔠',
+        gradient: 'linear-gradient(135deg,#111827,#22D3EE)',
+      },
+      {
+        title: 'CSS Grid Generator — Visual Grid Builder',
+        desc: 'Design responsive CSS Grid layouts with an intuitive drag-and-drop editor. Customize rows, columns, gaps, and grid items, then instantly export clean HTML and CSS code for modern web projects.',
+        category: 'design',
+        link: 'https://cssgridgenerator.io',
+        domain: 'cssgridgenerator.io',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYn5Zgt66w3_HBpBJ2uMBEMCWXoFwxL_uf4n2ydOqtkHgra-8Nk78yLtY&s=10',
+        emoji: '▦',
+        gradient: 'linear-gradient(135deg,#3B82F6,#06B6D4)',
+      },
+      {
+        title: 'SVG to Code — SVG Converter',
+        desc: 'Convert SVG images to clean HTML/SVG code and back with a fast, browser-based editor. Instantly preview, edit, copy, and export vector graphics for web development and UI design.',
+        category: 'design',
+        link: 'https://nikitahl.github.io/svg-2-code/',
+        domain: 'nikitahl.github.io',
+        image: 'https://i.pinimg.com/736x/ba/12/95/ba1295a1e33307de571b5005019e0dae.jpg',
+        emoji: '🧩',
+        gradient: 'linear-gradient(135deg,#3B82F6,#14B8A6)',
+      },
+      {
+        title: 'Huaban — Design Inspiration Hub',
+        desc: 'Discover millions of creative references across UI/UX, branding, illustration, typography, photography, packaging, and graphic design. Save, organize, and explore visual inspiration with Pinterest-style boards.',
+        category: 'design',
+        link: 'https://huaban.com',
+        domain: 'huaban.com',
+        image: 'https://images.seeklogo.com/logo-png/43/1/huaban-logo-png_seeklogo-436919.png',
+        emoji: '🌸',
+        gradient: 'linear-gradient(135deg,#F472B6,#F59E0B)',
+      },
+      {
+        title: 'Material UI — React Component Library',
+        desc: 'Build modern, responsive React applications with a comprehensive library of production-ready Material Design components, powerful theming, customizable layouts, and developer-friendly APIs.',
+        category: 'design',
+        link: 'https://mui.com/material-ui/',
+        domain: 'mui.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF82LHaGSnuRsQ30j68yJnVp1YaV1GRLjV8i6LSZ1OUCG7Hi6gqRRf0b4&s=10',
+        emoji: '🧩',
+        gradient: 'linear-gradient(135deg,#007FFF,#42A5F5)',
+      },
+      {
+        title: 'Ant Design — React UI Framework',
+        desc: 'Build enterprise-grade React applications with a comprehensive library of production-ready components, advanced theming, powerful design patterns, and a robust design system for modern web interfaces.',
+        category: 'design',
+        link: 'https://ant.design',
+        domain: 'ant.design',
+        image: 'https://s3-alpha.figma.com/hub/file/2403780110/bd68c2c9-90df-4997-9a05-f697585ef9e6-cover.png',
+        emoji: '🐜',
+        gradient: 'linear-gradient(135deg,#1677FF,#69B1FF)',
+      },
+      {
+        title: 'React Bits — Animated React Components',
+        desc: 'Discover 130+ beautifully crafted, customizable React components, animations, interactive backgrounds, text effects, and UI patterns. Copy production-ready code in JavaScript, TypeScript, CSS, or Tailwind to build stunning modern interfaces faster.',
+        category: 'design',
+        link: 'https://reactbits.dev',
+        domain: 'reactbits.dev',
+        image: 'https://media.daily.dev/image/upload/s--osVQ5nZf--/f_auto/v1751533637/posts/aA6pL18gN?_a=BAMClqZW0',
+        emoji: '⚛️',
+        gradient: 'linear-gradient(135deg,#61DAFB,#2563EB)',
+      },
+      {
+        title: 'Design Arena — AI Design Playground',
+        desc: 'Generate websites, UI components, logos, SVGs, games, 3D designs, images, videos, and more using leading AI models. Compare results side by side, explore community leaderboards, and discover which models produce the best designs.',
+        category: 'llm',
+        link: 'https://www.designarena.ai',
+        domain: 'designarena.ai',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdhbv2YrYYOPCdDPChUUMP9kaGQ0PWEAiFOD8z1iJB_ibo1TU9UDpouqzJ&s=10',
+        emoji: '🎨',
+        gradient: 'linear-gradient(135deg,#7C3AED,#3B82F6)',
+      },
+      {
+        title: 'Git Resources — UI/UX Learning Repository',
+        desc: 'A comprehensive open-source GitHub repository packed with curated UI/UX learning resources, design principles, typography guides, tools, articles, courses, and roadmaps for beginners to advanced designers.',
+        category: 'git',
+        link: 'https://github.com/hendurhance/ui-ux',
+        domain: 'github.com',
+        image: 'https://i.pinimg.com/736x/ac/36/69/ac3669812466a726a70b95881298ae96.jpg',
+        emoji: '📚',
+        gradient: 'linear-gradient(135deg,#24292E,#4B5563)',
+      },
+      {
+        title: 'Git Resources — Final Year Projects Repository',
+        desc: 'Explore a curated collection of 50+ final-year computer science and engineering projects with source code, documentation, reports, presentations, research papers, and implementation guides across AI, Machine Learning, Blockchain, Cybersecurity, Web Development, and more.',
+        category: 'git',
+        link: 'https://github.com/Projects-Developer/50-Final-Year-Projects-with-Source-Code',
+        domain: 'github.com',
+        image: 'https://i.pinimg.com/736x/ac/36/69/ac3669812466a726a70b95881298ae96.jpg',
+        emoji: '🎓',
+        gradient: 'linear-gradient(135deg,#24292E,#586069)',
+      },
+      {
+        title: 'Playbook — Creative Asset Manager',
+        desc: 'Organize, store, and collaborate on creative assets with a visual-first workspace built for designers, photographers, agencies, and content creators. Manage files, portfolios, and client projects with AI-powered search and smart organization.',
+        category: 'design',
+        link: 'https://www.playbook.com',
+        domain: 'playbook.com',
+        image: 'https://mir-s3-cdn-cf.behance.net/projects/404/c9e0e8224917949.Y3JvcCwxNjE2LDEyNjQsMCww.jpg',
+        emoji: '📂',
+        gradient: 'linear-gradient(135deg,#7C3AED,#2563EB)',
+      },
+      {
+        title: 'VMEG AI — Video Localization Platform',
+        desc: 'Translate, dub, lip-sync, and localize videos into 170+ languages using AI voice cloning, multilingual subtitles, and natural-sounding voices. Perfect for creators, businesses, educators, and global content distribution.',
+        category: 'video',
+        link: 'https://www.vmeg.ai',
+        domain: 'vmeg.ai',
+        image: 'https://ph-files.imgix.net/b19cfff7-e2bf-4487-9584-531361a7101b.png?auto=compress,format&codec=mozjpeg&cs=strip&fit=max&frame=1&h=210&w=373',
+        emoji: '🎙️',
+        gradient: 'linear-gradient(135deg,#2563EB,#06B6D4)',
+      },
+      {
+        title: 'BreachLab — Cybersecurity Training',
+        desc: 'Master offensive cybersecurity through hands-on labs covering Linux, web exploitation, privilege escalation, Active Directory, red teaming, OSINT, cryptography, and AI security with real-world attack scenarios.',
+        category: 'learn',
+        link: 'https://breachlab.org',
+        domain: 'breachlab.org',
+        image: 'https://preview.redd.it/breachlab-2-0-is-live-v0-rqi19159xv5h1.jpeg?auto=webp&s=29ec6e4dee729e23b2610450046e561e9b2dd2c3',
+        emoji: '🛡️',
+        gradient: 'linear-gradient(135deg,#111827,#10B981)',
+      },
+      {
+        title: 'Class Central — Online Course Directory',
+        desc: 'Discover thousands of free and paid online courses from top universities and learning platforms. Compare reviews, track your learning, earn certificates, and find the best courses across technology, AI, business, design, and more.',
+        category: 'learn',
+        link: 'https://www.classcentral.com',
+        domain: 'classcentral.com',
+        image: 'https://us1.discourse-cdn.com/flex016/uploads/ccstudygroup/original/2X/a/a8d266087f2b44f85565fc5c98b46677310b55a9.png',
+        emoji: '🎓',
+        gradient: 'linear-gradient(135deg,#2563EB,#14B8A6)',
+      },
+      {
+        title: 'Infosys Springboard — Free Learning Platform',
+        desc: 'Access thousands of free courses, certifications, coding challenges, virtual labs, and industry-ready learning paths in AI, programming, cloud, cybersecurity, data science, business, and soft skills from Infosys and global learning partners.',
+        category: 'learn',
+        link: 'https://infyspringboard.onwingspan.com',
+        domain: 'infyspringboard.onwingspan.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnlIPSVxuyQPsXrxchxObtsTjOhqJt6L4aGsxHJ4Fa3rblsLoD2FI-lyM&s=10',
+        emoji: '🚀',
+        gradient: 'linear-gradient(135deg,#007CC3,#00A6E7)',
+      },
+      {
+        title: 'TuteDude Upskill — Career Learning Platform',
+        desc: 'Upskill with industry-focused courses, live mentorship, hands-on projects, coding challenges, certifications, internship support, and structured learning paths across AI, web development, cybersecurity, design, cloud, and more.',
+        category: 'learn',
+        link: 'https://upskill.tutedude.com/dashboard/login',
+        domain: 'upskill.tutedude.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSqeWN4SJMHcXYA8XbrzzoAscaZL4ghdcyzQ5yTWLi-gbhnKRq2odJhSU&s=10',
+        emoji: '📚',
+        gradient: 'linear-gradient(135deg,#2563EB,#8B5CF6)',
+      },
+      {
+        title: 'NHK Easy Japanese — Learn Japanese',
+        desc: 'Learn practical Japanese through free interactive lessons, grammar guides, listening exercises, conversation practice, hiragana, katakana, and cultural insights designed for absolute beginners in over 20 languages.',
+        category: 'learn',
+        link: 'https://www3.nhk.or.jp/nhkworld/lesson/english/learn/list/1.html',
+        domain: 'www3.nhk.or.jp',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSssGvTAqptBZp5BQub5GqNeAixNTomuM_fBacoDJOzlbrPd1WPqF8kat4l&s=10',
+        emoji: '🇯🇵',
+        gradient: 'linear-gradient(135deg,#DC2626,#F59E0B)',
+      },
+      {
+        title: 'Unicorn Studio — Interactive WebGL Designer',
+        desc: 'Create stunning interactive WebGL animations, motion graphics, shaders, particle effects, and immersive website experiences without writing code. Export lightweight assets for Framer, Webflow, Figma Sites, Wix, or any modern website.',
+        category: 'animation',
+        link: 'https://www.unicorn.studio',
+        domain: 'unicorn.studio',
+        image: 'https://marketstorage.b-cdn.net/previews/a981126c-30d9-4ce1-a551-291c8e8f47f8/www.unicorn.-tudio_-1-1.png',
+        emoji: '🦄',
+        gradient: 'linear-gradient(135deg,#7C3AED,#06B6D4)',
+      },
+      {
+        title: 'Git Resources — LeetCode Company-wise Problems',
+        desc: 'Prepare for coding interviews with a curated collection of company-wise LeetCode questions organized by interview frequency, difficulty, and recency. Covers hundreds of companies with CSV lists for the last 30, 60, 90 days, and all-time interview trends.',
+        category: 'git',
+        link: 'https://github.com/liquidslr/leetcode-company-wise-problems',
+        domain: 'github.com',
+        image: 'https://i.pinimg.com/736x/ac/36/69/ac3669812466a726a70b95881298ae96.jpg',
+        emoji: '💻',
+        gradient: 'linear-gradient(135deg,#24292E,#2563EB)',
+      },
+      {
+        title: 'JapaneseTest4You — JLPT Practice Hub',
+        desc: 'Master Japanese with free JLPT practice tests, grammar guides, vocabulary, kanji, listening exercises, flashcards, infographics, and structured lessons from N5 to N1 levels.',
+        category: 'learn',
+        link: 'https://japanesetest4you.com',
+        domain: 'japanesetest4you.com',
+        image: 'https://i.pinimg.com/736x/d6/b9/8e/d6b98e7d8a87b0b2be68585e92af0446.jpg',
+        emoji: '🈶',
+        gradient: 'linear-gradient(135deg,#DC2626,#F59E0B)',
+      },
+      {
+        title: 'DeepLearning.AI — AI Learning Platform',
+        desc: 'Learn AI from industry leaders through hands-on courses, interactive labs, and professional certificates covering machine learning, deep learning, LLMs, agents, computer vision, RAG, MLOps, prompt engineering, and generative AI.',
+        category: 'learn',
+        link: 'https://learn.deeplearning.ai',
+        domain: 'learn.deeplearning.ai',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjWA_EGe9sGIH-b08omugujuTnnO9rEZoG87Vi3ili2d1ES_a9kQ2AzCYZ&s=10',
+        emoji: '🧠',
+        gradient: 'linear-gradient(135deg,#0F766E,#2563EB)',
+      },
+      {
+        title: 'Scaler — Tech Upskilling Platform',
+        desc: 'Advance your career with industry-led programs in software engineering, AI, data science, machine learning, cloud, DevOps, and cybersecurity. Learn through live classes, hands-on projects, mentorship, coding practice, and career support.',
+        category: 'learn',
+        link: 'https://www.scaler.com',
+        domain: 'scaler.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgCn-na39J8aK3FQRrTW0xrzFHpAhJpdcyzJYVD7PJhz2sz2Ue0gCTVHc&s=10',
+        emoji: '🚀',
+        gradient: 'linear-gradient(135deg,#2563EB,#7C3AED)',
+      },
+      {
+        title: 'ClipCaption — AI Caption Generator',
+        desc: 'Generate eye-catching AI captions for short-form videos with word-by-word karaoke effects, viral caption styles, multilingual support, automatic transcription, and one-click exports for TikTok, Reels, and YouTube Shorts.',
+        category: 'video',
+        link: 'https://clipcaption.io',
+        domain: 'clipcaption.io',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd6wdVcKi9V3dQ_uEEt6IlMCNhaMyjivjrPh7LnTC8dQ&s',
+        emoji: '🎬',
+        gradient: 'linear-gradient(135deg,#8B5CF6,#EC4899)',
+      },
+      {
+        title: 'Hermes Agent — Autonomous AI Agent',
+        desc: 'Deploy a self-hosted AI agent with persistent memory, autonomous task execution, browser automation, code execution, scheduling, and multi-platform integrations. Build custom skills and automate complex workflows that improve over time.',
+        category: 'llm',
+        link: 'https://hermes-agent.ai',
+        domain: 'hermes-agent.ai',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-UzdoQtydLalsfmCx8SrIs9y2gB3_nJlZKPC1Z9LM1i1xMtM9irbtbiqR&s=10',
+        emoji: '🧠',
+        gradient: 'linear-gradient(135deg,#0F172A,#10B981)',
+      },
+      {
+        title: 'Sakana Chat — AI Orchestrator',
+        desc: 'Access an intelligent AI assistant powered by Sakana AI’s multi-agent orchestration technology. Automatically routes tasks across specialized AI models to deliver high-quality reasoning, coding, research, writing, and problem-solving through a single chat interface.',
+        category: 'llm',
+        link: 'https://chat.sakana.ai',
+        domain: 'chat.sakana.ai',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT80XSZz1gLqZv6SkUefsiURDcvDGZ7Y8mQGPWsrlne3iqIGdpgRCQspCwO&s=10',
+        emoji: '🐟',
+        gradient: 'linear-gradient(135deg,#0EA5E9,#14B8A6)',
+      },
+      {
+        title: 'Uncensored Chat — AI Chat Platform',
+        desc: 'Chat with AI models in an open-ended conversational platform featuring multiple assistants, image generation, custom characters, roleplay, and privacy-focused chats with temporary conversation storage.',
+        category: 'llm',
+        link: 'https://uncensored.chat',
+        domain: 'uncensored.chat',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaFz_itLXNmlqvAmtZG-U1U3rfiTdsOr5wVH7Vsk_bJQ&s=10',
+        emoji: '💬',
+        gradient: 'linear-gradient(135deg,#111827,#7C3AED)',
+      },
+      {
+        title: 'Font Interceptor — Font Extractor',
+        desc: 'Discover and download fonts used on any website instantly. Analyze web pages, identify loaded font files, inspect typography, and extract font assets directly from your browser for design inspiration and development.',
+        category: 'fonts',
+        link: 'https://fontinterceptor.mschfmag.com',
+        domain: 'fontinterceptor.mschfmag.com',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnA7o1f-C_qD7y16jQspdInBL8xSN1CJ_xqhABC_xOrp9XCeGTJkzytxFE&s=10',
+        emoji: '🔤',
+        gradient: 'linear-gradient(135deg,#1F2937,#6366F1)',
+      },
+      {
+        title: 'Unlumen UI — Animated React Components',
+        desc: 'Build stunning React interfaces with beautifully crafted animated components, interactive backgrounds, text effects, and production-ready UI elements. Install with shadcn/ui, customize effortlessly, and create polished user experiences faster.',
+        category: 'design',
+        link: 'https://ui.unlumen.com',
+        domain: 'ui.unlumen.com',
+        image: 'https://ui.unlumen.com/_next/image?url=%2Fshowcase%2Faeski.png&w=3840&q=75',
+        emoji: '✨',
+        gradient: 'linear-gradient(135deg,#2563EB,#8B5CF6)',
+      },
+      {
+        title: 'Magic UI — Animated React Components',
+        desc: 'Build beautiful modern interfaces with 150+ free animated React components, UI effects, templates, and landing page sections. Copy production-ready code powered by React, TypeScript, Tailwind CSS, and Motion for lightning-fast development.',
+        category: 'design',
+        link: 'https://magicui.design',
+        domain: 'magicui.design',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-H-BBvsVYpZ93dQyEwGefYN4T6CGqUjXqYuxYCV27uQ&s',
+        emoji: '✨',
+        gradient: 'linear-gradient(135deg,#3B82F6,#8B5CF6)',
+      },
+      {
+        title: 'SmoothUI — Animated React UI Library',
+        desc: 'Build elegant React applications with beautifully crafted animated components, interactive blocks, smooth Motion and GSAP effects, and production-ready UI patterns. Install via shadcn/ui or the SmoothUI CLI for rapid development.',
+        category: 'design',
+        link: 'https://smoothui.dev',
+        domain: 'smoothui.dev',
+        image: 'https://smoothui.dev/og-optimized.webp',
+        emoji: '🌊',
+        gradient: 'linear-gradient(135deg,#0EA5E9,#6366F1)',
+      },
+    ];
+
+    /* ── Build filter pills from categories used ── */
+    const usedCats = [...new Set(RESOURCES.map(r => r.category))];
+    const filterBar = document.getElementById('filter-bar');
+    usedCats.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-pill';
+      btn.dataset.filter = cat;
+      btn.textContent = CATEGORIES[cat] || cat;
+      filterBar.appendChild(btn);
+    });
+
+    /* ── Visit button HTML helper ── */
+    function visitBtn(link) {
+      return `<a href="${link}" target="_blank" rel="noopener" class="cart-button">
+    <div class="glass-effect"></div>
+    <span class="button-text">Visit Link</span>
+  </a>`;
+    }
+
+    /* ── Build cards ── */
+    function buildCard(r) {
+      const imgHTML = r.image
+        ? `<img src="${r.image}" alt="${r.title}" loading="lazy"/>`
+        : `<div class="card-image-placeholder" style="background:${r.gradient}">${r.emoji}</div>`;
+
+      const article = document.createElement('article');
+      article.className = 'resource-card';
+      article.dataset.category = r.category;
+      article.innerHTML = `
+    <div class="card-image-wrap">
+      <div class="card-image-inner">${imgHTML}</div>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <span class="card-pill">${CATEGORIES[r.category] || r.category}</span>
+        <h2 class="card-title">${r.title}</h2>
+        <p class="card-desc">${r.desc}</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">${r.domain}</span>
+        ${visitBtn(r.link)}
+      </div>
+    </div>`;
+      return article;
+    }
+
+    const grid = document.getElementById('resources-grid');
+    RESOURCES.forEach(r => grid.appendChild(buildCard(r)));
+
+    document.getElementById('resource-count').textContent = RESOURCES.length;
+
+    /* ── Lenis (lerp 0.03) ── */
+    const lenis = new Lenis({ lerp: 0.03, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    /* ── Progress bar ── */
+    const progressBar = document.getElementById('progress-bar');
+    lenis.on('scroll', ({ progress }) => {
+      progressBar.style.width = (progress * 100) + '%';
+    });
+
+    /* ── Card scroll animations — repeating scale 0.9 → 1 ── */
+    document.querySelectorAll('.resource-card').forEach(card => {
+      gsap.set(card, { scale: 0.9, opacity: 0 });
+
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 88%',
+        onEnter: () => gsap.to(card, { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }),
+        onLeaveBack: () => gsap.to(card, { scale: 0.9, opacity: 0, duration: 0.4, ease: 'power2.in' }),
+        onEnterBack: () => gsap.to(card, { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }),
+        onLeave: () => gsap.to(card, { scale: 0.9, opacity: 0, duration: 0.4, ease: 'power2.in' }),
+      });
+    });
+
+    /* ── Filter pills ── */
+    filterBar.addEventListener('click', e => {
+      const pill = e.target.closest('.filter-pill');
+      if (!pill) return;
+
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      const filter = pill.dataset.filter;
+      let count = 0;
+
+      document.querySelectorAll('.resource-card').forEach(card => {
+        const show = filter === 'all' || card.dataset.category === filter;
+        card.style.display = show ? '' : 'none';
+        if (show) count++;
+      });
+
+      document.getElementById('resource-count').textContent = count;
+      ScrollTrigger.refresh();
+    });
+  </script>
+</body>
+
+</html>

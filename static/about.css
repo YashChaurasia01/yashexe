@@ -1,0 +1,514 @@
+/* ══════════════════════════════════
+   ABOUT ME
+   ══════════════════════════════════ */
+#about {
+    background: var(--bg);
+    overflow: hidden;
+    color: var(--txt);
+    padding: 6rem 8% 8rem;
+    font-family: "Alata", sans-serif;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+.about-header {
+    text-align: start;
+    margin-bottom: 3rem;
+}
+
+.about-title {
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--c3);
+}
+
+.about-line {
+    width: 100px;
+    height: 4px;
+    background: var(--c3);
+    margin: .5rem auto 0;
+    border-radius: 10px;
+}
+
+/* ===== Neumorphic Card Base ===== */
+.neu-card {
+    background: var(--card-bg);
+    border-radius: 22px;
+    box-shadow:
+        8px 8px 18px var(--neu-shadow-dark-soft),
+        -8px -8px 18px var(--neu-shadow-light-soft);
+    transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.4s ease;
+}
+
+/* ===== Intro Block ===== */
+.about-intro {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2.5rem;
+    margin-bottom: 4rem;
+    margin-left: 3rem;
+    max-width: 87%;
+}
+
+.about-intro-img {
+    flex-shrink: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 5px;
+    border: 3px dashed var(--c4);
+    box-shadow:
+        8px 8px 18px var(--neu-shadow-dark-soft),
+        -8px -8px 18px var(--neu-shadow-light-soft);
+}
+
+.about-intro-img img {
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-intro-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: var(--c3);
+    --encrypt-size: 1.4rem;
+    --encrypt-color: var(--txt);
+}
+
+.about-intro-text p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--gtxt);
+    --encrypt-size: .8rem;
+    --encrypt-color: var(--c3);
+    --encrypt-opacity: .8;
+}
+
+/* ══════════════════════════════════
+   SCROLL-SPY LAYOUT
+   ══════════════════════════════════ */
+.about-body {
+    display: grid;
+    grid-template-columns: 280px 1fr 18px;
+    gap: 2.5rem;
+    max-width: 93%;
+    margin: 0 auto;
+    align-items: start;
+}
+
+/* Sticky nav column */
+.about-nav-sticky {
+    position: sticky;
+    top: 10rem;
+    align-self: start;
+}
+
+/* ===== Navigation ===== */
+.about-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.4rem;
+    background: var(--card-bg);
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--gtxt);
+    box-shadow:
+        6px 6px 14px var(--neu-shadow-dark-soft),
+        -6px -6px 14px var(--neu-shadow-light-soft);
+    transition: box-shadow 0.3s ease, transform 0.25s ease, color 0.3s ease;
+}
+
+.nav-index {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--c5);
+    border-right: 2px solid var(--c6);
+    padding-right: 0.8rem;
+    transition: color 0.3s ease, border-color 0.3s ease;
+    font-family: Font4;
+}
+
+.nav-label {
+    font-size: 1.1rem;
+    transition: 0.7s ease-in-out;
+    font-family: Font4;
+    --encrypt-size: .9rem;
+    --encrypt-color: var(--res3);
+}
+
+.nav-btn:hover {
+    transform: translateY(-4px) translateX(-20px) scale(1.04);
+}
+
+.nav-btn.active {
+    color: var(--txt);
+    box-shadow:
+        inset 4px 4px 10px var(--neu-shadow-dark-soft),
+        inset -4px -4px 10px var(--neu-shadow-light-soft);
+}
+
+.nav-btn.active .nav-index {
+    color: var(--c3);
+    border-color: var(--c3);
+}
+
+.nav-btn.active .nav-label {
+    color: var(--c3);
+}
+
+/* ===== Scrollable content window ===== */
+.about-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    /* Scrollable box — Lenis must NOT intercept this */
+    max-height: 70vh;
+    overflow-y: scroll;
+    /* scroll-behavior: smooth; */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    /* Padding so first/last card aren't clipped by the fade */
+    padding: 3rem 0.5rem;
+
+    /* Fade mask — cards dissolve in/out at top and bottom */
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 8%,
+            black 92%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 8%,
+            black 92%,
+            transparent 100%);
+}
+
+.about-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* ===== Individual panels ===== */
+.content-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 2.5rem;
+    flex-shrink: 0;
+
+    /* Dim inactive panels */
+    opacity: 0.9;
+    transform: scale(0.98);
+    transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* The panel currently in view */
+.content-panel.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.panel-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--c4);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+}
+
+.content-panel h3 {
+    color: var(--c3);
+    margin: 0;
+    --encrypt-size: .7rem;
+    --encrypt-color: var(--res4);
+    --encrypt-opacity: .8;
+}
+
+.panel-school {
+    color: var(--txt);
+    opacity: 0.85;
+    margin: 0;
+    font-weight: 700;
+}
+
+.content-panel p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--gtxt);
+    margin: 0.5rem 0 1rem;
+}
+
+.content-panel p strong {
+    color: var(--c4);
+}
+
+.panel-meta {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.panel-meta span {
+    background: var(--bg);
+    padding: 0.5rem 1.1rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    box-shadow:
+        inset 3px 3px 8px var(--neu-shadow-dark-soft),
+        inset -3px -3px 8px var(--neu-shadow-light-soft);
+}
+
+/* ══════════════════════════════════
+   ABOUT — vertical scroll progress bar
+   ══════════════════════════════════ */
+.about-scroll-track {
+    position: sticky;
+    top: 6rem;
+    align-self: start;
+    width: 30px;
+    height: 70vh;
+    background: var(--neu-shadow-dark-soft);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: auto;
+    box-shadow:
+        2px 2px 6px var(--neu-shadow-dark-soft),
+        -2px -2px 6px var(--neu-shadow-light-soft);
+}
+
+.about-scroll-fill {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(var(--c1), var(--c2), var(--c3), var(--c4));
+    border-radius: 10px;
+    transition: height 0.05s linear;
+    box-shadow: 0 0 8px var(--c3);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — ABOUT
+   ═══════════════════════════════════════════════════ */
+
+/* ── Tablet / small laptop ── */
+@media (max-width: 1024px) {
+    #about {
+        padding: 5rem 6% 6rem;
+    }
+
+    .about-body {
+        grid-template-columns: 220px 1fr 16px;
+        gap: 1.75rem;
+        max-width: 96%;
+    }
+
+    .about-intro {
+        margin-left: 1.5rem;
+        max-width: 94%;
+        gap: 1.75rem;
+        padding: 2rem;
+    }
+
+    .about-intro-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .content-panel {
+        padding: 2rem;
+    }
+}
+
+/* ── Tablet portrait — sidebar becomes top tab strip ── */
+@media (max-width: 768px) {
+    #about {
+        padding: 4.5rem 5% 5rem;
+    }
+
+    .about-body {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        gap: 1.25rem;
+    }
+
+    /* Nav becomes a sticky horizontal tab strip */
+    .about-nav-sticky {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        width: 100%;
+        background: var(--bg);
+        padding: 0.75rem 0;
+    }
+
+    .about-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0.75rem;
+        padding: 0.25rem 0.25rem 0.75rem;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .about-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-btn {
+        flex: 0 0 auto;
+        padding: 0.7rem 1.1rem;
+        white-space: nowrap;
+        gap: 0.6rem;
+    }
+
+    /* the vertical lift-on-hover looks broken in a horizontal strip */
+    .nav-btn:hover {
+        transform: none;
+    }
+
+    .nav-index {
+        font-size: 0.7rem;
+        padding-right: 0.6rem;
+    }
+
+    .nav-label {
+        font-size: 0.95rem;
+    }
+
+    /* vertical progress bar doesn't fit a stacked layout */
+    /* progress bar becomes a horizontal strip under the tabs */
+    .about-scroll-track {
+        position: static;
+        order: 2;
+        width: 100%;
+        height: 6px;
+        margin: 0.5rem 0 0.25rem;
+    }
+
+    .about-scroll-fill {
+        background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4));
+    }
+
+    .about-nav-sticky {
+        order: 1;
+    }
+
+    .about-content {
+        order: 3;
+    }
+
+    .about-content {
+        max-height: 65vh;
+        padding: 2rem 0.25rem;
+    }
+
+    .about-intro {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        margin-left: 0;
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+        gap: 1.25rem;
+    }
+
+    .about-intro-img {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+/* ── Mobile — centered ── */
+@media (max-width: 480px) {
+    #about {
+        padding: 4rem 6% 4.5rem;
+    }
+
+    .about-intro {
+        padding: 1.75rem 1.25rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .about-intro-img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .about-intro-text h3 {
+        font-size: 1.4rem;
+        --encrypt-size: 1.1rem;
+    }
+
+    .about-intro-text p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        --encrypt-size: .65rem;
+    }
+
+    .nav-btn {
+        padding: 0.6rem 0.9rem;
+        gap: 0.5rem;
+        border-radius: 12px;
+    }
+
+    .nav-index {
+        font-size: 0.65rem;
+        padding-right: 0.5rem;
+    }
+
+    .nav-label {
+        font-size: 0.85rem;
+        --encrypt-size: 0.7rem;
+    }
+
+    .about-content {
+        max-height: 60vh;
+        gap: 2.5rem;
+        padding: 1.5rem 0.25rem;
+    }
+
+    .content-panel {
+        padding: 1.5rem;
+        gap: 0.4rem;
+    }
+
+    .content-panel h3 {
+        font-size: 1.1rem;
+        --encrypt-size: 0.85rem;
+    }
+
+    .panel-school {
+        font-size: 0.9rem;
+    }
+
+    .content-panel p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .panel-meta {
+        gap: 0.6rem;
+    }
+
+    .panel-meta span {
+        font-size: 0.78rem;
+        padding: 0.4rem 0.8rem;
+    }
+}

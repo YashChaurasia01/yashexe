@@ -1,0 +1,1518 @@
+<!-- This is 3.html  -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>CropCure — Project Showcase</title>
+    <!-- ============Favicon==================== -->
+    <!-- Link to the main favicon.ico file -->
+    <link rel="icon" href="../../static/img/favicon/favicon.ico" type="image/x-icon">
+    <!-- Link to Android Chrome icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="../../static/img/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../static/img/favicon/android-chrome-512x512.png">
+    <!-- Link to Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../static/img/favicon/apple-touch-icon.png">
+    <!-- Link to other favicon sizes -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../../static/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../static/img/favicon/favicon-16x16.png">
+    <!-- Link to site.webmanifest -->
+    <link rel="manifest" href="../../static/img/favicon/site.webmanifest">
+
+    <style>
+        @font-face {
+            font-family: 'PublicaPlay';
+            src: url('../../static/Fonts/PublicaPlay.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- ============================================= Fontawsome ==================================================== -->
+    <script src="https://kit.fontawesome.com/def00d5f6e.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* ══════════════════════════════
+       RESET & TOKENS
+    ══════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0a0005;
+            --surface: #12000a;
+            --border: rgba(255, 0, 102, 0.08);
+            --accent: #FF0066;
+            --accent2: #ff3d9a;
+            --text: #e8e8e8;
+            --muted: #555;
+            --white: #ffffff;
+            --fd: 'PublicaPlay', 'Arial Black', sans-serif;
+            --fb: 'DM Sans', 'Inter', sans-serif;
+            --ease: cubic-bezier(0.65, 0, 0.076, 1);
+        }
+
+        html {
+            background: var(--bg);
+        }
+
+        body {
+            font-family: var(--fb);
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #000;
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 2px;
+        }
+
+        /* ══════════════════════════════
+       PAGE-TRANSITION  OVERLAY
+    ══════════════════════════════ */
+        #pt {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        #pt-panel {
+            position: absolute;
+            left: 50%;
+            bottom: -110%;
+            transform: translateX(-50%) scale(0.28);
+            transform-origin: center bottom;
+            width: 46vw;
+            height: 56vw;
+            max-height: 90vh;
+            background: var(--accent);
+            border-radius: 6px 6px 0 0;
+            will-change: transform, bottom;
+        }
+
+        /* entry: panel arrives from top (reverse) */
+        #pt.entry #pt-panel {
+            animation: ptEntry 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes ptEntry {
+            from {
+                bottom: 110%;
+                transform: translateX(-50%) scale(1.05);
+            }
+
+            to {
+                bottom: -110%;
+                transform: translateX(-50%) scale(0.28);
+            }
+        }
+
+        /* ══════════════════════════════
+       NAV
+    ══════════════════════════════ */
+        #nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 22px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #logo {
+            font-family: var(--fd);
+            font-size: 1rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s ease-in-out;
+        }
+
+        #logo:hover {
+            color: var(--accent);
+            scale: 1.1;
+        }
+
+        #logo svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        #socials {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color 0.3s, background 0.3s;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .social-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #000;
+        }
+
+        .social-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .social-btn i {
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        /* ══════════════════════════════
+       PILL BUTTON  (arrow style)
+    ══════════════════════════════ */
+        .pill-btn {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            border: 0;
+            background: transparent;
+            padding: 0;
+            font-size: 0.72rem;
+            font-family: var(--fb);
+            width: 10rem;
+            height: auto;
+        }
+
+        .pill-btn .circle {
+            transition: all 0.45s var(--ease);
+            position: relative;
+            display: block;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--accent);
+            border-radius: 1.5rem;
+        }
+
+        .pill-btn .icon {
+            transition: all 0.45s var(--ease);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .pill-btn .icon.arrow {
+            left: 0.55rem;
+            width: 1rem;
+            height: 0.1rem;
+            background: none;
+        }
+
+        .pill-btn .icon.arrow::before {
+            content: "";
+            position: absolute;
+            top: -0.25rem;
+            right: 0.05rem;
+            width: 0.55rem;
+            height: 0.55rem;
+            border-top: 0.1rem solid #000;
+            border-right: 0.1rem solid #000;
+            transform: rotate(45deg);
+        }
+
+        .pill-btn .btn-text {
+            transition: all 0.45s var(--ease);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.65rem 0;
+            margin-left: 1.5rem;
+            color: var(--accent);
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+        }
+
+        .pill-btn:hover .circle {
+            width: 100%;
+        }
+
+        .pill-btn:hover .icon.arrow {
+            background: #000;
+            transform: translate(0.8rem, 0);
+        }
+
+        .pill-btn:hover .btn-text {
+            color: #000;
+        }
+
+        /* ══════════════════════════════
+       FIXED BOTTOM-LEFT
+    ══════════════════════════════ */
+        #fixed-bottom {
+            position: fixed;
+            bottom: 32px;
+            left: 36px;
+            z-index: 200;
+            display: flex;
+            gap: 14px;
+        }
+
+        /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 60px 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://i.pinimg.com/736x/70/42/8c/70428cecb13f2e3bd3a8bcc3d67728bf.jpg') center/cover no-repeat;
+            filter: brightness(0.22);
+            transform: scale(1.05);
+            transition: transform 8s ease;
+        }
+
+        #hero.vis #hero-bg {
+            transform: scale(1);
+        }
+
+        .hero-eyebrow {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--accent);
+            margin-bottom: 18px;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: var(--fd);
+            font-size: clamp(4rem, 11vw, 9.5rem);
+            line-height: 0.92;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            margin-top: 28px;
+            font-size: 0.95rem;
+            color: var(--muted);
+            max-width: 420px;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .hero-meta {
+            position: absolute;
+            right: 36px;
+            bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: right;
+        }
+
+        .hero-meta span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+        }
+
+        .hero-meta strong {
+            font-size: 0.82rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .hero-meta a {
+            color: var(--accent);
+            transition: 0.3s ease-in-out;
+        }
+
+        .hero-meta a:hover {
+            color: var(--accent2);
+        }
+
+        /* ══════════════════════════════
+       SECTION LABEL
+    ══════════════════════════════ */
+        .section-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.28em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        /* ══════════════════════════════
+       3×3 GRID  (pinned scroll-zoom)
+       
+       Structure:
+       #grid-section  — height: 600vh (scroll space)
+         #grid-sticky — sticky, 100vh, clips everything
+           #grid      — the 3×3 grid
+           #grid-zoom-img — full-screen image that fades/scales in
+    ══════════════════════════════ */
+        #grid-section {
+            position: relative;
+            height: 600vh;
+            background: radial-gradient(circle, rgb(40, 8, 66) 0%, rgba(75, 10, 110, 0.5) 50%, hsla(280, 30%, 6%, 1) 100%);
+        }
+
+        #grid-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #grid {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 15px;
+            will-change: transform, opacity;
+            transform-origin: center center;
+            padding: 10px;
+        }
+
+        .grid-cell {
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .grid-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transform: scale(1.05);
+            transition: transform 0.6s ease;
+            pointer-events: none;
+        }
+
+        .grid-cell .cell-label {
+            position: absolute;
+            bottom: 12px;
+            left: 14px;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+        }
+
+        /* ══════════════════════════════
+       ABOUT  (after grid)
+    ══════════════════════════════ */
+        #about {
+            padding: 140px 36px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        #about h2 {
+            font-family: var(--fd);
+            font-size: clamp(2.4rem, 6vw, 5.2rem);
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            margin-bottom: 40px;
+        }
+
+        #about h2 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .about-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .about-body p {
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: var(--muted);
+        }
+
+        .about-body p strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .disclaimer {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 18px 24px;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            line-height: 1.7;
+            color: var(--muted);
+        }
+
+        /* stats */
+        .stats-row {
+            display: flex;
+            gap: 48px;
+            padding: 60px 36px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            max-width: 1100px;
+            margin: 0 auto 80px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-num {
+            font-family: var(--fd);
+            font-size: clamp(2rem, 5vw, 3.6rem);
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .stat-num span {
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+        }
+
+        /* wide images */
+        .wide-img-wrap {
+            width: 100%;
+            overflow: hidden;
+            margin: 0 0 3px;
+            position: relative;
+        }
+
+        .wide-img-wrap img {
+            width: 100%;
+            height: 55vw;
+            max-height: 72vh;
+            object-fit: cover;
+            display: block;
+            transform: scale(1.04);
+            transition: transform 1.2s ease;
+            will-change: transform;
+        }
+
+        .wide-img-wrap.in-view img {
+            transform: scale(1);
+        }
+
+        .img-caption {
+            padding: 14px 36px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ══════════════════════════════
+       PROCESS
+    ══════════════════════════════ */
+        #process {
+            padding: 80px 36px 120px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        #process h3 {
+            font-family: var(--fd);
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 60px;
+        }
+
+        .process-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .process-item {
+            display: grid;
+            grid-template-columns: 80px 1fr 1fr;
+            gap: 32px;
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            align-items: start;
+            transition: background 0.3s;
+        }
+
+        .process-item:hover {
+            background: rgba(181, 255, 71, 0.02);
+        }
+
+        .process-num {
+            font-family: var(--fd);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            padding-top: 4px;
+        }
+
+        .process-title {
+            font-size: 1.05rem;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .process-desc {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        /* ══════════════════════════════
+       NEXT PROJECT  (pinned scroll)
+    ══════════════════════════════ */
+        #next-section {
+            position: relative;
+            height: 300vh;
+        }
+
+        #next-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #next-img-wrap {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 0;
+        }
+
+        #next-img {
+            /* JS drives width/height directly */
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+            will-change: width, height, border-radius;
+            position: relative;
+        }
+
+        /* wrapper so progress bar + percent sit INSIDE the image */
+        #next-img-inner {
+            position: relative;
+            width: 80%;
+            height: 80%;
+            will-change: width, height;
+            flex-shrink: 0;
+        }
+
+        #next-img-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+            will-change: border-radius;
+        }
+
+        /* progress bar — inside image, pinned to its bottom */
+        #progress-bar-wrap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.07);
+            z-index: 10;
+            border-radius: 0 0 4px 4px;
+            /* overflow: hidden; */
+        }
+
+        #progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            will-change: width;
+            border-radius: 15px;
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        /* percentage — bottom-right inside the image */
+        #next-percent {
+            position: absolute;
+            bottom: 20px;
+            right: 24px;
+            font-family: var(--fd);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+            line-height: 1;
+            z-index: 11;
+            pointer-events: none;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        #next-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            pointer-events: none;
+        }
+
+        /* next-content label + title overlay */
+        #next-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            pointer-events: none;
+        }
+
+        .next-eyebrow {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+        }
+
+        #next-title {
+            font-family: var(--fd);
+            font-size: clamp(3rem, 9vw, 8rem);
+            text-transform: uppercase;
+            color: var(--white);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+
+        /* ══════════════════════════════
+       REVEAL HELPER
+    ══════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.vis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ══════════════════════════════
+   RESPONSIVE — MEDIA QUERIES
+   (footer / #next-section intentionally untouched)
+══════════════════════════════ */
+
+        /* ── Laptop / small desktop (≤1200px) ── */
+        @media (max-width: 1200px) {
+            #hero {
+                padding: 50px 30px;
+            }
+
+            .hero-meta {
+                right: 30px;
+                bottom: 50px;
+            }
+
+            #about,
+            #process {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            .stats-row {
+                padding: 50px 30px;
+                gap: 32px;
+            }
+
+            .wide-img-wrap img {
+                height: 58vw;
+            }
+        }
+
+        /* ── Tablet landscape (≤1024px) ── */
+        @media (max-width: 1024px) {
+            #nav {
+                padding: 18px 28px;
+            }
+
+            #fixed-bottom {
+                bottom: 24px;
+                left: 28px;
+                gap: 10px;
+            }
+
+            .pill-btn {
+                width: 8.5rem;
+                font-size: 0.66rem;
+            }
+
+            .hero-title {
+                font-size: clamp(3.4rem, 10vw, 8rem);
+            }
+
+            .hero-sub {
+                max-width: 360px;
+            }
+
+            .about-body {
+                gap: 40px;
+            }
+
+            .stat-num {
+                font-size: clamp(1.8rem, 4.5vw, 3rem);
+            }
+
+            .process-item {
+                grid-template-columns: 60px 1fr 1fr;
+                gap: 24px;
+            }
+        }
+
+        /* ── Tablet portrait (≤768px) ── */
+        @media (max-width: 768px) {
+            #nav {
+                padding: 16px 20px;
+            }
+
+            #logo {
+                font-size: 0.85rem;
+            }
+
+            .social-btn {
+                width: 34px;
+                height: 34px;
+            }
+
+            #fixed-bottom {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .pill-btn {
+                width: 100%;
+            }
+
+            #hero {
+                padding: 40px 20px;
+                justify-content: flex-start;
+                padding-top: 120px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.8rem, 12vw, 6rem);
+            }
+
+            .hero-meta {
+                position: static;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 18px;
+                text-align: left;
+                margin-top: 32px;
+            }
+
+            .hero-sub {
+                max-width: 100%;
+            }
+
+            #grid {
+                gap: 8px;
+                padding: 6px;
+            }
+
+            .grid-cell .cell-label {
+                font-size: 0.54rem;
+            }
+
+            #about {
+                padding: 100px 20px 60px;
+            }
+
+            #about h2 {
+                font-size: clamp(2rem, 8vw, 3.6rem);
+                margin-bottom: 28px;
+            }
+
+            .about-body {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .stats-row {
+                padding: 40px 20px;
+                gap: 28px;
+                flex-wrap: wrap;
+            }
+
+            .stat {
+                flex: 1 1 40%;
+            }
+
+            .wide-img-wrap img {
+                height: 65vw;
+            }
+
+            .img-caption {
+                padding: 12px 20px;
+                font-size: 0.6rem;
+            }
+
+            #process {
+                padding: 60px 20px 90px;
+            }
+
+            #process h3 {
+                margin-bottom: 40px;
+            }
+
+            .process-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 24px 0;
+            }
+
+            .process-num {
+                padding-top: 0;
+            }
+        }
+
+        /* ── Mobile (≤480px) ── */
+        @media (max-width: 480px) {
+            #nav {
+                padding: 14px 16px;
+            }
+
+            #socials {
+                gap: 6px;
+            }
+
+            .social-btn {
+                width: 30px;
+                height: 30px;
+            }
+
+            .social-btn svg,
+            .social-btn i {
+                width: 12px;
+                height: 12px;
+                font-size: 12px;
+            }
+
+            #fixed-bottom {
+                bottom: 16px;
+                left: 16px;
+                right: 16px;
+            }
+
+            .pill-btn {
+                font-size: 0.62rem;
+            }
+
+            .pill-btn .circle {
+                width: 2.2rem;
+                height: 2.2rem;
+            }
+
+            #hero {
+                padding: 32px 16px;
+                padding-top: 110px;
+            }
+
+            .hero-eyebrow {
+                font-size: 0.62rem;
+                letter-spacing: 0.2em;
+            }
+
+            .hero-title {
+                font-size: clamp(2.4rem, 13vw, 4.5rem);
+            }
+
+            .hero-meta {
+                gap: 12px;
+                margin-top: 24px;
+                z-index: 200;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .hero-meta span {
+                font-size: 0.6rem;
+            }
+
+            .hero-meta strong {
+                font-size: 0.72rem;
+            }
+
+            #grid {
+                gap: 5px;
+                padding: 4px;
+            }
+
+            .grid-cell .cell-label {
+                font-size: 0.48rem;
+                bottom: 8px;
+                left: 8px;
+            }
+
+            #about h2 {
+                margin-bottom: 20px;
+            }
+
+            .about-body p {
+                font-size: 0.86rem;
+                line-height: 1.7;
+            }
+
+            .stats-row {
+                gap: 20px;
+            }
+
+            .stat {
+                flex: 1 1 100%;
+            }
+
+            .stat-num {
+                font-size: clamp(1.7rem, 8vw, 2.4rem);
+            }
+
+            .wide-img-wrap img {
+                height: 78vw;
+            }
+
+            .img-caption {
+                font-size: 0.55rem;
+                padding: 10px 16px;
+            }
+
+            #process {
+                padding: 48px 16px 70px;
+            }
+
+            #process h3 {
+                font-size: clamp(1.5rem, 8vw, 2.4rem);
+                margin-bottom: 32px;
+            }
+
+            .process-desc {
+                font-size: 0.82rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="pt">
+    <div id="pt-panel"></div>
+</div>
+
+<nav id="nav">
+    <a id="logo" href="../../index.html#projects">
+        <i class="fa-solid fa-shapes"></i>
+        To Origin
+    </a>
+    <div id="socials">
+        <a class="social-btn" href="https://instagram.com/yashc.exe" target="_blank" rel="noopener noreferrer"
+            aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a class="social-btn" href="https://github.com/YashChaurasia01" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a class="social-btn" href="https://linkedin.com/in/yashchaurasia01" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a class="social-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=xukyosho@gmail.com"
+            target="_blank" rel="noopener noreferrer" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+</nav>
+
+<div id="fixed-bottom">
+    <button class="pill-btn" onclick="window.location.href='../../index.html#projects'">
+        <span class="circle"><span class="icon arrow"></span></span>
+        <span class="btn-text">Back to home</span>
+    </button>
+    <button class="pill-btn" onclick="window.open('https://partsdrive.in','_blank')">
+        <span class="circle"><span class="icon arrow"></span></span>
+        <span class="btn-text">&nbsp;Visit Partsdrive</span>
+    </button>
+    <button class="pill-btn" onclick="window.open('https://github.com/YashChaurasia01/PartsDriveIndia','_blank')">
+        <span class="circle"><span class="icon arrow"></span></span>
+        <span class="btn-text">GitHub</span>
+    </button>
+</div>
+
+<section id="hero">
+    <div id="hero-bg"></div>
+    <p class="hero-eyebrow reveal">— Project Showcase</p>
+    <h1 class="hero-title reveal">
+        Parts<span>Drive</span>
+    </h1>
+    <p class="hero-sub reveal">
+        A dealership platform for new &amp; quality-tested used auto parts, built for Mitsubishi and luxury
+        cars — covering upholstery, customization, LED lighting, off-road gear, and full workshop services.
+    </p>
+    <div class="hero-meta">
+        <span>Year</span><strong>2024</strong>
+        <span>Role</span><strong>Design &amp; Development</strong>
+        <span>Category</span><strong>Automotive · Web App</strong>
+    </div>
+</section>
+
+<section id="grid-section">
+    <div id="grid-sticky">
+        <div id="grid">
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80&auto=format&fit=crop"
+                    alt="New Parts" loading="lazy" />
+                <span class="cell-label">New Parts</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80&auto=format&fit=crop"
+                    alt="Used Parts" loading="lazy" />
+                <span class="cell-label">Used Parts</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&q=80&auto=format&fit=crop"
+                    alt="Upholstery" loading="lazy" />
+                <span class="cell-label">Upholstery</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=1200&q=80&auto=format&fit=crop"
+                    alt="Customization" loading="lazy" />
+                <span class="cell-label">Customization</span>
+            </div>
+            <div class="grid-cell" id="zoom-source-cell">
+                <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&q=80&auto=format&fit=crop"
+                    alt="LED Lighting" loading="lazy" />
+                <span class="cell-label">LED Lighting</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1200&q=80&auto=format&fit=crop"
+                    alt="Mitsubishi Workshop" loading="lazy" />
+                <span class="cell-label">Mitsubishi Workshop</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=1200&q=80&auto=format&fit=crop"
+                    alt="Repaint" loading="lazy" />
+                <span class="cell-label">Repaint</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&q=80&auto=format&fit=crop"
+                    alt="Off-Road Equipment" loading="lazy" />
+                <span class="cell-label">Off-Road Gear</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1600661653561-629509216228?w=1200&q=80&auto=format&fit=crop"
+                    alt="Luxury Car Service" loading="lazy" />
+                <span class="cell-label">Luxury Service</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <p class="section-label reveal">Overview</p>
+    <h2 class="reveal">Genuine parts.<br />Trusted <em>service</em>.</h2>
+    <div class="about-body">
+        <p class="reveal">
+            <strong>Parts Drive India is a New and Used Car Parts</strong> platform offering new and
+            quality-tested used auto parts for Mitsubishi and luxury cars. Value-added services span
+            upholstery, seat covers, and 7D floor matting, along with customization and restoration projects
+            for every kind of build.
+        </p>
+        <p class="reveal">
+            The platform also covers a wide range of high-performance multi-LED head and fog lamps, imported
+            off-road equipment like snorkels and winches, and a dedicated Mitsubishi service workshop staffed
+            by trained mechanics with 10+ years of experience across Audi, BMW, Mercedes Benz, and Volvo.
+        </p>
+    </div>
+</section>
+
+<div class="stats-row">
+    <div class="stat reveal"><span class="stat-num">10<span>+</span></span><span class="stat-label">Years
+            experience</span></div>
+    <div class="stat reveal"><span class="stat-num">04<span>+</span></span><span class="stat-label">Core
+            services</span></div>
+    <div class="stat reveal"><span class="stat-num">10<span>yr</span></span><span class="stat-label">Repaint
+            guarantee</span></div>
+    <div class="stat reveal"><span class="stat-num">01<span>.</span></span><span class="stat-label">Solo
+            developer</span></div>
+</div>
+
+<div class="wide-img-wrap">
+    <img src="https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=1600&q=80&auto=format&fit=crop"
+        alt="Workshop interior" loading="lazy" />
+</div>
+<div class="img-caption"><span>Mitsubishi service workshop</span><span>01 / 04</span></div>
+
+<section id="process">
+    <p class="section-label reveal">Process</p>
+    <h3 class="reveal">How we made it</h3>
+    <div class="process-list">
+        <div class="process-item reveal">
+            <span class="process-num">01</span>
+            <span class="process-title">Research &amp; Inventory</span>
+            <p class="process-desc">Mapped out the full parts catalogue — new and used, Mitsubishi and luxury
+                brands — alongside the value-added and workshop service categories.</p>
+        </div>
+        <div class="process-item reveal">
+            <span class="process-num">02</span>
+            <span class="process-title">Service Structuring</span>
+            <p class="process-desc">Organized offerings into clear service pillars: parts, upholstery &amp;
+                customization, Mitsubishi workshop, and automotive repaint.</p>
+        </div>
+        <div class="process-item reveal">
+            <span class="process-num">03</span>
+            <span class="process-title">Interface Design</span>
+            <p class="process-desc">Designed a dealership-style browsing experience for parts discovery and
+                service booking, built for clarity and trust.</p>
+        </div>
+        <div class="process-item reveal">
+            <span class="process-num">04</span>
+            <span class="process-title">Testing &amp; Refinement</span>
+            <p class="process-desc">Refined navigation and layout across desktop and mobile for a smoother
+                customer journey from browsing to service inquiry.</p>
+        </div>
+    </div>
+</section>
+
+<div class="wide-img-wrap">
+    <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1600&q=80&auto=format&fit=crop"
+        alt="Repaint craftsmanship" loading="lazy" />
+</div>
+<div class="img-caption"><span>Automotive repaint services</span><span>02 / 04</span></div>
+
+<section id="next-section">
+    <div id="next-sticky">
+        <div id="next-img-wrap">
+            <div id="next-img-inner">
+                <img id="next-img" src="https://i.pinimg.com/736x/c1/a4/9e/c1a49ee3c08151db097ade7114a3c067.jpg"
+                    alt="More projects" />
+                <div id="progress-bar-wrap">
+                    <div id="progress-bar-fill"></div>
+                </div>
+                <div id="next-percent">0%</div>
+            </div>
+        </div>
+        <div id="next-content">
+            <span class="next-eyebrow">Next Project →</span>
+            <div id="next-title">CropCure</div>
+        </div>
+    </div>
+</section>
+
+    <!-- ══════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════ -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            // FIX: back-button redirect loop.
+            // When you press Back, the browser restores your last scroll position
+            // (bottom of #next-section), so tickNext() fires instantly with p=1
+            // and redirects to the next-project href again before you can do anything.
+            // scrollRestoration='manual' stops the browser restoring position;
+            // scrollTo(0,0) guarantees the page always starts at the top.
+            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+            window.scrollTo(0, 0);
+
+            /* ─────────────────────────────────
+               LENIS
+            ───────────────────────────────── */
+            const lenis = new Lenis({
+                duration: 1.4,
+                easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smooth: true,
+                smoothTouch: false,
+                lerp: 0.03,
+            });
+
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+
+            /* ─────────────────────────────────
+               HERO ENTRY
+            ───────────────────────────────── */
+            window.addEventListener('load', () => {
+                document.getElementById('hero').classList.add('vis');
+                document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+                    setTimeout(() => el.classList.add('vis'), 200 + i * 140);
+                });
+            });
+
+            /* ─────────────────────────────────
+               PAGE-ENTRY ANIMATION
+               (play panel-falling-away on arrival)
+            ───────────────────────────────── */
+            if (sessionStorage.getItem('ptActive')) {
+                sessionStorage.removeItem('ptActive');
+                const pt = document.getElementById('pt');
+                const panel = document.getElementById('pt-panel');
+                // start from full-screen covering position
+                panel.style.cssText = `
+      bottom: auto; top: 0;
+      transform: translateX(-50%) scale(1.05);
+      width: 100vw; height: 100vh;
+      border-radius: 0;
+    `;
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        panel.style.transition = 'transform 0.8s cubic-bezier(0.16,1,0.3,1), bottom 0.8s cubic-bezier(0.16,1,0.3,1), width 0.8s, height 0.8s, border-radius 0.8s, top 0.8s';
+                        panel.style.top = '110%';
+                    });
+                });
+            }
+
+            /* ─────────────────────────────────
+               PAGE TRANSITION  (box rising up)
+            ───────────────────────────────── */
+            window.handleNav = function (e, href) {
+                e.preventDefault();
+                if (document.body.dataset.going) return;
+                document.body.dataset.going = '1';
+                lenis.stop();
+
+                const panel = document.getElementById('pt-panel');
+                // reset to starting position: small box at bottom
+                panel.style.transition = 'none';
+                panel.style.cssText = `
+      position: absolute;
+      left: 50%;
+      bottom: -110%;
+      transform: translateX(-50%) scale(0.28);
+      transform-origin: center bottom;
+      width: 46vw;
+      height: 56vw;
+      max-height: 90vh;
+      background: var(--accent);
+      border-radius: 6px 6px 0 0;
+      will-change: transform, bottom, width, height;
+    `;
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        // rise up + expand to full screen
+                        panel.style.transition = [
+                            'bottom 1.1s cubic-bezier(0.16,1,0.3,1)',
+                            'transform 1.1s cubic-bezier(0.16,1,0.3,1)',
+                            'width 1.1s cubic-bezier(0.16,1,0.3,1)',
+                            'height 1.1s cubic-bezier(0.16,1,0.3,1)',
+                            'border-radius 0.6s ease',
+                        ].join(',');
+                        panel.style.bottom = '0';
+                        panel.style.width = '100vw';
+                        panel.style.height = '100vh';
+                        panel.style.maxHeight = '100vh';
+                        panel.style.transform = 'translateX(-50%) scale(1)';
+                        panel.style.borderRadius = '0';
+
+                        setTimeout(() => {
+                            sessionStorage.setItem('ptActive', '1');
+                            window.location.href = href;
+                        }, 1100);
+                    });
+                });
+            };
+
+            /* ─────────────────────────────────
+               REVEAL OBSERVER  (all .reveal)
+            ───────────────────────────────── */
+            const revObs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('vis');
+                        revObs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.reveal:not(#hero .reveal)').forEach(el => revObs.observe(el));
+
+            /* wide image reveal */
+            const wideObs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('in-view'); wideObs.unobserve(e.target); }
+                });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.wide-img-wrap').forEach(el => wideObs.observe(el));
+
+            /* ─────────────────────────────────
+               GRID ZOOM  — scroll-driven, smooth
+          
+               The whole #grid scales up from 1 → ~3.
+               Because the centre cell is exactly 1/3 of each axis,
+               a ×3 scale makes it fill the viewport perfectly.
+               #grid-sticky overflow:hidden clips everything outside.
+               No overlay, no fade — purely one transform on #grid.
+            ───────────────────────────────── */
+            const gridSection = document.getElementById('grid-section');
+            const gridEl = document.getElementById('grid');
+
+            // Lerp helpers
+            function lerp(a, b, t) { return a + (b - a) * t; }
+            function clamp01(v) { return Math.max(0, Math.min(1, v)); }
+            function invlerp(a, b, v) { return clamp01((v - a) / (b - a)); }
+            function easeInOut(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+
+            let currentScroll = 0;
+
+            lenis.on('scroll', ({ scroll }) => {
+                currentScroll = scroll;
+                tickGrid();
+                tickNext();
+            });
+
+            function tickGrid() {
+                const rect = gridSection.getBoundingClientRect();
+                const total = gridSection.offsetHeight - window.innerHeight;
+                const raw = clamp01(-rect.top / total);
+
+                // Scale the whole grid from 1 → 3.
+                // The 3px gap means the exact fill is (vw / cell_width) but
+                // 3.0 is close enough — the sticky container clips any hair-line.
+                const t = easeInOut(raw);
+                const scale = lerp(1.0, 3.11, t);
+                gridEl.style.transform = `scale(${scale})`;
+            }
+
+            /* ─────────────────────────────────
+               NEXT PROJECT  — progress + zoom
+            ───────────────────────────────── */
+            const nextSection = document.getElementById('next-section');
+            const progressFill = document.getElementById('progress-bar-fill');
+            const nextImgInner = document.getElementById('next-img-inner');
+            const nextImg = document.getElementById('next-img');
+            const nextPercent = document.getElementById('next-percent');
+            let nextActive = false;
+
+            function tickNext() {
+                const rect = nextSection.getBoundingClientRect();
+                const total = nextSection.offsetHeight - window.innerHeight;
+                const p = clamp01(-rect.top / total);
+
+                // progress bar — direct, no transition
+                progressFill.style.width = (p * 100).toFixed(2) + '%';
+
+                // percentage counter
+                nextPercent.textContent = Math.round(p * 100) + '%';
+
+                // image wrapper: 80% → 96% width+height, border-radius shrinks
+                const sz = lerp(80, 100, p);
+                const br = lerp(20, 0, p);
+                nextImgInner.style.width = sz + '%';
+                nextImgInner.style.height = sz + 'vh';
+                nextImg.style.borderRadius = br + 'px';
+                document.getElementById('progress-bar-wrap').style.borderRadius = `0 0 ${br}px ${br}px`;
+
+                // auto-navigate when progress hits 100%
+                if (p >= 0.99 && !nextActive) {
+                    nextActive = true;
+                    // small delay so the 100% state is visible for a moment
+                    setTimeout(() => {
+                        handleNav({ preventDefault: () => { } }, '1.html');
+                    }, 400);
+                }
+            }
+
+        })();
+    </script>
+</body>
+
+</html>

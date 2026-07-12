@@ -1,0 +1,412 @@
+/* ── RESOURCE VAULT ─────────────────────────────────────────── */
+#resources {
+    background: var(--bg);
+}
+
+.rt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem 2rem;
+    padding: 2rem 8% 8rem;
+    justify-items: center;
+    align-items: start;
+}
+
+.rt-link {
+    cursor: pointer;
+}
+
+.ticket-canvas {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.ticket-wrapper {
+    /* fallback values — overridden per .rt-theme-* below */
+    --t-bg: var(--c1);
+    --t-bg-light: var(--c2);
+    --t-accent: var(--c4);
+    --t-accent-glow: var(--accent-glow);
+    --t-text-main: #fdfaf5;
+    --t-text-muted: #fdfaf5a8;
+    font-size: 10px;
+    perspective: 1000px;
+    width: 100%;
+    max-width: 23em;
+}
+
+/* ── Theme 1: default accent scale ─────────────────────────── */
+.rt-theme-1 {
+    --t-bg: var(--c1);
+    --t-bg-light: #000126;
+    --t-accent: var(--c4);
+    --t-accent-glow: var(--accent-glow);
+    --t-text-main: #fdfaf5;
+    --t-text-muted: #fdfaf5a8;
+}
+
+
+body.dark-theme .rt-theme-3 {
+    --t-text-main: #0e0e11;
+    --t-text-muted: #0e0e11b0;
+    --t-accent: var(--c2);
+}
+
+.ticket {
+    position: relative;
+    width: 100%;
+    color: var(--t-text-main);
+    font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.35));
+    border-top-left-radius: 2em;
+    border-top-right-radius: 2em;
+}
+
+.ticket-wrapper:hover .ticket {
+    transform: rotateX(10deg) rotateY(-20deg) scale(1.05);
+}
+
+.ticket::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 1em;
+    pointer-events: none;
+    /* hover shine */
+    background: linear-gradient(115deg, transparent 0%, transparent 40%,
+            rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0.1) 55%, transparent 60%, transparent 100%);
+    z-index: 10;
+    background-size: 250% 250%;
+    background-position: 100% 100%;
+    transition: background-position 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    mix-blend-mode: overlay;
+}
+
+.ticket-wrapper:hover .ticket::after {
+    background-position: 0% 0%;
+}
+
+/* ── t-main: real corner cutouts via mask, image sits behind content ── */
+.t-main {
+    position: relative;
+    padding: 2em;
+    overflow: hidden;
+    min-height: 22em;
+    background: var(--t-bg);
+    /* solid fallback if no image is given */
+    -webkit-mask-image:
+        radial-gradient(circle at bottom left, transparent 1em, #000 1.05em),
+        radial-gradient(circle at bottom right, transparent 1em, #000 1.05em);
+    -webkit-mask-size: 51% 100%;
+    -webkit-mask-position: bottom left, bottom right;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-composite: source-over;
+    mask-image:
+        radial-gradient(circle at bottom left, transparent 1em, #000 1.05em),
+        radial-gradient(circle at bottom right, transparent 1em, #000 1.05em);
+    mask-size: 51% 100%;
+    mask-position: bottom left, bottom right;
+    mask-repeat: no-repeat;
+    mask-composite: add;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+.t-bg-img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.t-bg-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.t-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.78) 100%);
+    pointer-events: none;
+}
+
+
+.t-content {
+    position: relative;
+    z-index: 2;
+}
+
+.t-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2em;
+}
+
+.t-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Font3;
+    gap: 0.5em;
+    font-weight: 900;
+    font-size: 1.5em;
+    letter-spacing: .3em;
+    color: #ffffff;
+}
+
+.t-logo span {
+    color: #F9F6EE;
+}
+
+.ico1 {
+    filter: drop-shadow(0 0 5px var(--txt1));
+}
+
+.ico2 {
+    filter: drop-shadow(0 0 5px var(--txt2));
+}
+
+.ico3 {
+    filter: drop-shadow(0 0 5px var(--res3));
+}
+
+.ico4 {
+    filter: drop-shadow(0 0 5px var(--txt4));
+}
+
+.t-type {
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--t-accent);
+    border: 1px solid var(--t-accent);
+    padding: 0.4em 0.8em;
+    border-radius: 99em;
+    font-weight: 700;
+}
+
+.typ1 {
+    color: var(--txt1);
+    border: 1px solid var(--res1);
+}
+
+.typ2 {
+    color: var(--txt2);
+    border: 1px solid var(--res2);
+}
+
+.typ3 {
+    color: var(--res3);
+    border: 1px solid var(--res3);
+}
+
+.typ4 {
+    color: var(--txt4);
+    border: 1px solid var(--res4);
+}
+
+
+.t-title {
+    font-size: 2.2em;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 0.2em;
+    text-transform: uppercase;
+    color: var(--t-text-main);
+    font-family: Font4;
+    letter-spacing: .05em;
+}
+
+.t-subtitle {
+    color: var(--t-text-muted);
+    font-size: 0.9em;
+    margin-bottom: 2.5em;
+}
+
+.t-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5em;
+    margin-bottom: 1em;
+}
+
+.t-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+}
+
+.t-label {
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--t-text-muted);
+}
+
+.t-value {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--t-text-main);
+}
+
+.t-perforation {
+    display: flex;
+    justify-content: space-between;
+    height: 1em;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.t-perf-line {
+    flex-grow: 1;
+    height: 0;
+    border-top: 2px dashed rgba(255, 255, 255, 0.25);
+    margin: 0 1.5em;
+}
+
+/* ── t-stub: same real-cutout approach, no image, just the lighter tone ── */
+.t-stub {
+    position: relative;
+    padding: 2em;
+    background: var(--t-bg-light);
+    -webkit-mask-image:
+        radial-gradient(circle at top left, transparent 1em, #000 1.05em),
+        radial-gradient(circle at top right, transparent 1em, #000 1.05em);
+    -webkit-mask-size: 51% 100%;
+    -webkit-mask-position: top left, top right;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-composite: source-over;
+    mask-image:
+        radial-gradient(circle at top left, transparent 1em, #000 1.05em),
+        radial-gradient(circle at top right, transparent 1em, #000 1.05em);
+    mask-size: 51% 100%;
+    mask-position: top left, top right;
+    mask-repeat: no-repeat;
+    mask-composite: add;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tst1 {
+    background: var(--res1);
+}
+
+.tst2 {
+    background: var(--res2);
+}
+
+.tst3 {
+    background: var(--res3);
+}
+
+.tst4 {
+    background: var(--res4);
+}
+
+.t-barcode-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.t-barcode {
+    width: 10em;
+    height: 3em;
+    background: repeating-linear-gradient(90deg, var(--t-text-main) 0, var(--t-text-main) 2px,
+            transparent 2px, transparent 4px, var(--t-text-main) 4px, var(--t-text-main) 5px,
+            transparent 5px, transparent 8px, var(--t-text-main) 8px, var(--t-text-main) 12px,
+            transparent 12px, transparent 15px, var(--t-text-main) 15px, var(--t-text-main) 16px,
+            transparent 16px, transparent 18px);
+    opacity: 0.85;
+}
+
+.t-barcode-id {
+    font-family: monospace;
+    font-size: 0.7em;
+    color: var(--t-text-muted);
+    letter-spacing: 0.15em;
+}
+
+.t-admit {
+    text-align: right;
+}
+
+.t-admit-text {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--t-text-muted);
+}
+
+.t-admit-num {
+    font-size: 2.6em;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--t-accent);
+    text-shadow: 0 0 15px var(--t-accent-glow);
+}
+
+.tan1 {
+    color: var(--txt1);
+}
+
+.tan2 {
+    color: var(--txt2);
+}
+
+.tan3 {
+    color: var(--txt3);
+}
+
+.tan4 {
+    color: var(--txt4);
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — RESOURCE VAULT
+   ═══════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .ticket-wrapper {
+        max-width: 23em;
+        font-size: 11px;
+    }
+
+    .t-subtitle {
+        margin-bottom: 8.5em;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .rt-grid{
+        padding: 2rem 8% 2rem;
+    }
+    .ticket-wrapper {
+        max-width: 26em;
+        font-size: 11.5px;
+    }
+
+    .t-title{
+        margin-TOP: 3.5em;
+    }
+
+    .t-subtitle {
+        margin-bottom: 1.5em;
+    }
+
+}

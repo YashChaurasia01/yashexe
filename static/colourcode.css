@@ -1,0 +1,86 @@
+:root {
+    /* ===== Base ===== */
+    --bg: #F9F6EE;
+    --txt: #000;
+    --gtxt: #0f0f0fd4;
+    --homebg: url("./img/light.png");
+    --selection: #debefa;
+
+    /* ===== Accent Reds ===== */
+    --c1: #330000;
+    --c2: #660000;
+    --c3: #a50101;
+    --c4: #c00000;
+    --c5: #a50101ae;
+    --c6: #a5010174;
+    --bl: #ffafaf;
+
+    /* ===== Neumorphism ===== */
+    --neu-bg: #F0EDE5;
+    --card-bg: #eeebe3;
+    --neu-shadow-dark: #d1cec6;
+    --neu-shadow-light: #ffffff;
+    --neu-shadow-dark-soft: rgba(209, 206, 198, 0.6);
+    --neu-shadow-light-soft: rgba(255, 255, 255, 0.7);
+    --accent-glow: rgba(165, 1, 1, 0.25);
+
+    /* card 2 */
+    --card2l: #be0101;
+    --card2d: #8c0101;
+
+    /* card 3 */
+    --card3l: #2e2e363a;
+    --card3d: #0E0E11;
+
+    /* Resoucres cards */
+    /* card1 */
+    --res1: #08354a;
+    --txt1: #0c72a1;
+
+    /* card2 */
+    --res2: #3c3939;
+    --txt2: #dde6eb;
+
+    /* card3 */
+    --res3: #c0a56b;
+    --txt3: #A82F35;
+
+    /* card4 */
+    --res4: #264941;
+    --txt4: #E0DBD1;
+}
+
+body.dark-theme {
+    /* ===== Base ===== */
+    --bg: #16161A;
+    --txt: #F5F1EA;
+    --gtxt: #C9C5BEcc;
+    --homebg: url("./img/dark.png");
+    --selection: #4c2b67;
+
+    /* ===== Accent Reds (DB0037 family) ===== */
+    --c1: #4D0017;
+    --c2: #8A0027;
+    --c3: #BC002D;
+    --c4: #FF1F58;
+    --c5: #DB0037ae;
+    --c6: #DB003774;
+    --bl: #7a001d;
+
+    /* ===== Neumorphism ===== */
+    --neu-bg: #1E1E24;
+    --card-bg: #232328;
+    --neu-shadow-dark: #0E0E11;
+    --neu-shadow-light: #2E2E36;
+    --neu-shadow-dark-soft: rgba(8, 8, 10, 0.7);
+    --neu-shadow-light-soft: rgba(50, 50, 60, 0.45);
+    --accent-glow: rgba(255, 31, 88, 0.25);
+
+    /* card 2 */
+    --card2l: #d80034;
+    --card2d: #a00026;
+
+    /* card 3 */
+    --card3l: #ffffff;
+    --card3d: #d1cec6;
+}

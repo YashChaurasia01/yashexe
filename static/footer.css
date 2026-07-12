@@ -1,0 +1,417 @@
+/* ══════════════════════════════════════════════════════════════
+   FOOTER — dark bookend panel, sits below #contact.
+   Uses the site's --c1..c6 accent tokens on a fixed dark image bed,
+   independent of light/dark theme toggle (deliberate, like the hero).
+   ══════════════════════════════════════════════════════════════ */
+
+footer#site-footer {
+    position: relative;
+    color: #F1ECE2;
+    background:
+        linear-gradient(180deg, rgba(10, 6, 6, 0.17) 0%, rgba(8, 4, 4, 0.299) 55%, #08050580 100%),
+        url("./img/foot.png") center 30% / cover no-repeat;
+    padding: 5rem 6vw 0;
+    overflow: hidden;
+}
+
+footer#site-footer::before {
+    /* subtle grain, echoes the hero/ticket texture language */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#5656569c 1px, transparent .1px);
+    background-size: 4px 4px;
+    opacity: .4;
+    pointer-events: none;
+}
+
+.ftr-top {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr 1fr .9fr;
+    gap: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+/* ---- Brand block ---- */
+.ftr-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ftr-logo-mark {
+    width: 6.1rem;
+    height: 6.1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ftr-name {
+    font-family: Font1;
+    font-size: 2rem;
+    color: var(--c3);
+    margin: 0;
+}
+
+.ftr-role {
+    font-size: .78rem;
+    color: #0f0f0fa7;
+    margin: 0;
+    max-width: 26ch;
+}
+
+.ftr-socials {
+    display: flex;
+    gap: .6rem;
+    margin-top: .6rem;
+}
+
+.ftr-social {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border: 1px dashed #0f0f0fd4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F1ECE2;
+    text-decoration: none;
+    font-size: .95rem;
+    transition: background .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+.ftr-social i {
+    font-size: 2.5em;
+}
+
+.ftr-social:hover {
+    background: #000;
+    border-color: var(--c4);
+    transform: translateY(-3px);
+}
+
+.ftr-social:hover i {
+    color: var(--c3);
+    text-shadow: 0 0 5px var(--c3);
+}
+
+.ftr-email {
+    margin-top: .3rem;
+    font-size: .82rem;
+    color: #F1ECE2;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .5em;
+    width: fit-content;
+    border-bottom: 1px solid rgba(241, 236, 226, .35);
+    padding-bottom: 2px;
+    transition: .25s ease-in-out;
+
+}
+
+.ftr-email:hover {
+    color: var(--c3);
+    border-color: var(--txt);
+    transform: translateY(-3px);
+}
+
+/* ---- Link columns ---- */
+.ftr-col h4 {
+    font-family: var(--font-mono, "Courier New", monospace);
+    font-size: .68rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--gtxt);
+    margin: 0 0 1.1rem;
+}
+
+.ftr-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+}
+
+.ftr-col a {
+    color: var(--c3);
+    text-decoration: none;
+    font-size: .88rem;
+    position: relative;
+    width: fit-content;
+    transition: color .25s ease, padding-left .25s ease;
+}
+
+.ftr-col a::before {
+    content: "→";
+    position: absolute;
+    left: -1.1em;
+    opacity: 0;
+    transition: opacity .25s ease, left .25s ease;
+    color: var(--c3);
+}
+
+.ftr-col a:hover {
+    color: #fff;
+    padding-left: 1.3em;
+}
+
+.ftr-col a:hover::before {
+    opacity: 1;
+    left: 0;
+}
+
+/* ============================================================
+   FOOTER TEXT REVEAL — hidden under .ftr-bottom, rises at page end
+============================================================ */
+.ftr-reveal {
+    position: relative;
+    height: 14rem;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+
+}
+
+.ftr-reveal-track {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.05em;
+}
+
+.ftr-reveal .rev-letter {
+    display: block;
+    font-family: Font4;
+    font-size: 12rem;
+    /* tune to taste */
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #1e1624;
+    /* matches footer's own palette, not theme vars */
+    will-change: transform;
+    user-select: none;
+    -webkit-mask-image: linear-gradient(to bottom, black 10%, transparent 85%);
+    mask-image: linear-gradient(to bottom, black 10%, transparent 85%);
+}
+
+@media (max-width: 900px) {
+    .ftr-reveal {
+        height: 6rem;
+    }
+
+    .ftr-reveal .rev-letter {
+        font-size: 4.5rem;
+    }
+}
+
+/* ---- Bottom bar ---- */
+.ftr-bottom {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .8rem;
+    padding: 1.6rem 0 1.8rem;
+    font-size: .75rem;
+    color: #B8B0A2;
+    border-top: 1px solid rgba(241, 236, 226, .18);
+}
+
+.ftr-bottom span {
+    text-align: center;
+}
+
+#ftr-year {
+    color: var(--c3);
+}
+#ftr-signature {
+    color: var(--c3);
+}
+
+.ftr-made {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    width: 10em;
+    opacity: .4;
+}
+
+
+@media (max-width: 1024px) {
+    .ftr-top {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 2.5rem;
+    }
+
+    .ftr-brand {
+        gap: 1.2rem;
+    }
+
+    .ftr-logo-mark {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .ftr-name {
+        font-size: 1.7rem;
+    }
+
+    .ftr-social {
+        height: 3.4rem;
+        width: 3.4rem;
+    }
+
+    .ftr-social i {
+        font-size: 2em;
+    }
+
+    .ftr-made {
+        position: absolute;
+        right: -7%;
+        bottom: -10%;
+        opacity: .6;
+        filter: invert();
+    }
+
+
+    .ftr-reveal {
+        height: 6rem;
+    }
+
+    .ftr-reveal .rev-letter {
+        font-size: 6.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    footer#site-footer {
+        padding: 4rem 6vw 0;
+    }
+
+    .ftr-top {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+    }
+
+    .ftr-bottom {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ftr-name {
+        font-size: 1.5rem;
+    }
+
+    .ftr-role {
+        font-size: .74rem;
+    }
+
+    .ftr-logo-mark {
+        width: 4.2rem;
+        height: 4.2rem;
+    }
+
+    .ftr-social {
+        height: 3rem;
+        width: 3rem;
+    }
+
+    .ftr-social i {
+        font-size: 1.6em;
+    }
+
+    .ftr-email {
+        font-size: .78rem;
+    }
+
+    /* ── Centered columns (everything except .ftr-brand) ── */
+    .ftr-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .ftr-col h4 {
+        font-size: .62rem;
+        margin-bottom: .9rem;
+    }
+
+    .ftr-col ul {
+        align-items: center;
+    }
+
+    .ftr-col a {
+        font-size: .82rem;
+    }
+
+    .ftr-col a::before {
+        display: none;
+    }
+
+    .ftr-col a:hover {
+        padding-left: 0;
+    }
+
+    .ftr-made {
+        width: 6em;
+        margin-top: 1rem;
+        align-self: center;
+    }
+
+    .ftr-bottom {
+        padding: 1.3rem 0 1.5rem;
+        font-size: .7rem;
+        gap: .5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    footer#site-footer {
+        padding: 3.5rem 5vw 0;
+    }
+
+    .ftr-name {
+        font-size: 1.35rem;
+    }
+
+    .ftr-role {
+        max-width: 50%;
+    }
+
+    .ftr-socials {
+        gap: .5rem;
+    }
+
+    .ftr-social {
+        height: 2.7rem;
+        width: 2.7rem;
+    }
+
+    .ftr-social i {
+        font-size: 1.4em;
+    }
+
+    .ftr-reveal {
+        height: 4.5rem;
+    }
+
+    .ftr-reveal .rev-letter {
+        font-size: 3.5rem;
+    }
+
+    .ftr-bottom {
+        font-size: .68rem;
+    }
+}

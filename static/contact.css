@@ -1,0 +1,568 @@
+/* ══════════════════════════════════════════════════════════════
+   CONTACT SECTION — uses the site's existing CSS custom properties
+   (--bg, --txt, --gtxt, --c1..c6, --bl, --neu-*, --card-bg)
+   ══════════════════════════════════════════════════════════════ */
+
+#contact {
+    position: relative;
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+    background: var(--bg);
+    overflow: hidden;
+}
+
+.cn-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
+    margin-top: 3.5rem;
+    padding-left: 6vw;
+    padding-right: 6vw;
+}
+
+.cn-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ══════════════ ID BADGE CARD ══════════════ */
+.idb-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 1.4rem;
+    padding: 1.8rem 1.8rem 1.4rem;
+    border-radius: 22px;
+    /* background: var(--card-bg); */
+    background-image: url(./img/LRoom.jpg);
+    background-size: cover;
+    background-position: 0% 15%;
+    box-shadow:
+        8px 8px 18px var(--neu-shadow-dark-soft),
+        -8px -8px 18px var(--neu-shadow-light-soft);
+    overflow: hidden;
+}
+
+
+.idb-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .25rem;
+}
+
+.idb-eyebrow {
+    font-family: var(--font-mono, "Courier New", monospace);
+    font-size: .62rem;
+    letter-spacing: .18em;
+    color: var(--c4);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.idb-name {
+    font-family: Font4;
+    font-size: 1.3rem;
+    color: var(--txt);
+    margin: 0;
+    letter-spacing: .01em;
+}
+
+.idb-role {
+    font-size: .8rem;
+    color: var(--gtxt);
+    margin: 0;
+}
+
+.idb-email {
+    margin-top: .35rem;
+    font-size: .78rem;
+    color: var(--c3);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .4em;
+    width: fit-content;
+    border-bottom: 1px dashed var(--c5);
+    padding-bottom: 1px;
+    transition: color .25s ease, border-color .25s ease;
+}
+
+.idb-email:hover {
+    color: var(--c4);
+    border-color: var(--c4);
+}
+
+.idb-email i {
+    font-size: .68rem;
+    opacity: .75;
+}
+
+/* Socials — always visible (no hover-only reveal, phone friendly) */
+.idb-socials {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.4rem;
+}
+
+.idb-social {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--txt);
+    border: 1px dashed var(--gtxt);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: .25s ease-in-out;
+}
+
+.idb-social i {
+    font-size: 1.6rem;
+}
+
+.idb-social:hover {
+    color: var(--c3);
+    background-color: var(--txt);
+    border: 1px solid var(--c2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px var(--accent-glow);
+    text-shadow: 0 0 5px var(--c3);
+}
+
+.idb-footer {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.3rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--neu-shadow-dark);
+}
+
+.idb-barcode {
+    width: 5rem;
+    height: 1.4rem;
+    background: repeating-linear-gradient(to right,
+            var(--txt) 0, var(--txt) 2px,
+            transparent 2px, transparent 4px,
+            var(--txt) 4px, var(--txt) 6px,
+            transparent 6px, transparent 10px,
+            var(--txt) 10px, var(--txt) 11px,
+            transparent 11px, transparent 15px,
+            var(--txt) 15px, var(--txt) 19px,
+            transparent 19px, transparent 22px);
+    opacity: .7;
+}
+
+.idb-serial {
+    font-family: var(--font-mono, "Courier New", monospace);
+    font-size: .65rem;
+    letter-spacing: .08em;
+    color: var(--gtxt);
+}
+
+/* ══════════════ RESUME / CV POSTER CARDS ══════════════ */
+.cn-docs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+}
+
+.dp-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.dp-poster {
+    position: relative;
+    height: 280px;
+    border-radius: 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--neu-shadow-dark);
+    box-shadow:
+        8px 8px 18px var(--neu-shadow-dark-soft),
+        -8px -8px 18px var(--neu-shadow-light-soft);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .5s cubic-bezier(.83, 0, .17, 1), box-shadow .5s ease;
+}
+
+.dp-link:hover .dp-poster {
+    transform: translateY(-6px) rotate(-1deg);
+    box-shadow:
+        12px 14px 24px var(--neu-shadow-dark-soft),
+        -6px -6px 16px var(--neu-shadow-light-soft);
+}
+
+.dp-grain {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--txt) 1px, transparent 1px);
+    background-size: 5px 5px;
+    opacity: .08;
+    pointer-events: none;
+}
+
+.dp-orb {
+    position: absolute;
+    top: -12%;
+    right: -8%;
+    width: 60%;
+    height: 45%;
+    border-radius: 0;
+    background: repeating-linear-gradient(45deg, var(--c4) 0 2px, transparent 2px 10px);
+    opacity: .5;
+    mix-blend-mode: multiply;
+}
+
+.dp-type {
+    position: absolute;
+    top: 10%;
+    left: 6%;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.dp-huge {
+    font-family: "Alata", sans-serif;
+    font-size: 2.4rem;
+    line-height: .85;
+    letter-spacing: -.02em;
+    color: var(--txt);
+    text-transform: uppercase;
+}
+
+.dp-huge.dp-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--txt);
+    letter-spacing: .01em;
+}
+
+.dp-tape {
+    position: absolute;
+    top: 52%;
+    left: -30%;
+    width: 160%;
+    background: var(--c4);
+    color: var(--bg);
+    transform: rotate(-9deg);
+    padding: .5rem 0;
+    font-family: var(--font-mono, "Courier New", monospace);
+    font-size: .65rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    z-index: 3;
+}
+
+.dp-tape-scroll {
+    display: flex;
+    width: max-content;
+    animation: dpScroll 9s linear infinite;
+}
+
+.dp-tape-scroll span {
+    padding-right: 1rem;
+}
+
+@keyframes dpScroll {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.dp-footer {
+    position: absolute;
+    bottom: 6%;
+    left: 6%;
+    right: 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 2;
+    border-top: 1px solid var(--txt);
+    padding-top: .6rem;
+}
+
+.dp-icon {
+    font-size: 1.1rem;
+    color: var(--c4);
+}
+
+.dp-caption {
+    max-width: 65%;
+    text-align: right;
+}
+
+.dp-vol {
+    font-family: var(--font-mono, "Courier New", monospace);
+    font-weight: 700;
+    font-size: .5rem;
+    text-transform: uppercase;
+    color: var(--txt);
+    margin: 0 0 .2rem;
+}
+
+.dp-desc {
+    font-size: .55rem;
+    line-height: 1.3;
+    color: var(--gtxt);
+    margin: 0;
+}
+
+/* ══════════════ CONTACT FORM ══════════════ */
+.cn-form-card {
+    padding: 2.4rem;
+    border-radius: 22px;
+    background: var(--card-bg);
+    box-shadow:
+        8px 8px 18px var(--neu-shadow-dark-soft),
+        -8px -8px 18px var(--neu-shadow-light-soft);
+}
+
+.cn-form-title {
+    font-family: "Alata", sans-serif;
+    font-size: 1.4rem;
+    color: var(--txt);
+    margin: 0 0 .4rem;
+}
+
+.cn-form-sub {
+    font-size: .82rem;
+    color: var(--gtxt);
+    margin: 0 0 2rem;
+}
+
+.cn-form {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.form-control {
+    position: relative;
+    margin: 0 0 2.2rem;
+    width: 100%;
+}
+
+.form-control input,
+.form-control textarea {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid var(--neu-shadow-dark);
+    display: block;
+    width: 100%;
+    padding: .9rem 0;
+    font-size: 1rem;
+    color: var(--txt);
+    font-family: inherit;
+    resize: none;
+}
+
+.form-control textarea {
+    min-height: 4.5rem;
+}
+
+.form-control input:focus,
+.form-control input:valid,
+.form-control textarea:focus,
+.form-control textarea:valid {
+    outline: 0;
+    border-bottom-color: var(--c4);
+}
+
+.form-control label {
+    position: absolute;
+    top: .9rem;
+    left: 0;
+    pointer-events: none;
+}
+
+.form-control label span {
+    display: inline-block;
+    font-size: 1rem;
+    min-width: 4px;
+    color: var(--gtxt);
+    transition: .3s cubic-bezier(.68, -.55, .265, 1.55);
+}
+
+.form-control input:focus+label span,
+.form-control input:valid+label span,
+.form-control textarea:focus+label span,
+.form-control textarea:valid+label span {
+    color: var(--c4);
+    transform: translateY(-1.6rem) scale(.82);
+}
+
+.cn-submit {
+    margin-top: .6rem;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: .6em;
+    padding: .9rem 1.8rem;
+    border: none;
+    border-radius: 50px;
+    background: var(--c4);
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    cursor: pointer;
+    box-shadow: 0 8px 20px var(--accent-glow);
+    transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease;
+}
+
+.cn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px var(--accent-glow);
+}
+
+.cn-submit:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.cn-submit .fa-circle-notch {
+    display: none;
+}
+
+.cn-submit.sending .fa-paper-plane {
+    display: none;
+}
+
+.cn-submit.sending .fa-circle-notch {
+    display: inline-block;
+    animation: cnSpin .8s linear infinite;
+}
+
+@keyframes cnSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* honeypot — hidden from real users */
+.cn-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* ══════════════ TOAST NOTIFICATIONS ══════════════ */
+#cn-toast-stack {
+    position: fixed;
+    top: 1.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .6rem;
+    pointer-events: none;
+}
+
+.cn-toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: .7em;
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a1d5c 0%, #1f0f3d 100%);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .08);
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 0;
+    transition: width .45s cubic-bezier(.65, 0, .35, 1), border-radius .4s ease;
+}
+
+.cn-toast.cn-error {
+    background: linear-gradient(135deg, #5c1d4a 0%, #2a0f24 100%);
+}
+
+.cn-toast.cn-show {
+    border-radius: 26px;
+    padding: 0 1.2rem 0 1rem;
+}
+
+.cn-toast.cn-hide {
+    opacity: 0;
+    transform: translateY(-8px) scale(.92);
+    transition: opacity .4s ease, transform .4s ease;
+}
+
+.cn-toast-icon {
+    font-size: .85rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cn-toast-text {
+    font-size: .82rem;
+    font-family: var(--font-mono, "Courier New", monospace);
+    opacity: 0;
+    transition: opacity .3s ease .28s;
+}
+
+.cn-toast.cn-show .cn-toast-text {
+    opacity: 1;
+}
+
+/* ══════════════ RESPONSIVE ══════════════ */
+@media (max-width: 900px) {
+    .cn-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cn-docs {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    #contact {
+        padding: 1rem 6vw 4rem;
+    }
+
+    .cn-grid {
+        padding-left: 0vw;
+        padding-right: 0vw;
+    }
+
+    .cn-docs {
+        grid-template-columns: 1fr;
+    }
+
+    .idb-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+
+    .idb-photo {
+        grid-row: auto;
+        margin-bottom: .8rem;
+    }
+
+    .cn-form-card {
+        padding: 1.6rem;
+    }
+}

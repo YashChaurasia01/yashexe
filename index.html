@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0, maximum-scale=1">
+    <meta name="color-scheme" content="only light">
+    <title>Yash Chaurasia's Portfolio 🥷</title>
+
+    <!-- ============Favicon==================== -->
+    <!-- Link to the main favicon.ico file -->
+    <link rel="icon" href="./static/img/favicon/favicon.ico" type="image/x-icon">
+    <!-- Link to Android Chrome icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./static/img/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./static/img/favicon/android-chrome-512x512.png">
+    <!-- Link to Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./static/img/favicon/apple-touch-icon.png">
+    <!-- Link to other favicon sizes -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./static/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./static/img/favicon/favicon-16x16.png">
+    <!-- Link to site.webmanifest -->
+    <link rel="manifest" href="./static/img/favicon/site.webmanifest">
+
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="./static/fonts.css" />
+    <link rel="stylesheet" href="./static/colourcode.css" />
+    <link rel="stylesheet" href="./static/style.css" />
+    <link rel="stylesheet" href="./static/home.css" />
+    <link rel="stylesheet" href="./static/about.css" />
+    <link rel="stylesheet" href="./static/project.css" />
+    <link rel="stylesheet" href="./static/resource.css" />
+    <link rel="stylesheet" href="./static/horiz.css" />
+    <link rel="stylesheet" href="./static/contact.css" />
+    <link rel="stylesheet" href="./static/footer.css" />
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- ============================================================
+    LENIS CSS — required for autoToggle & proper scroll behavior
+  ============================================================ -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
+
+
+    <!-- ============================================= Fontawsome ==================================================== -->
+    <script src="https://kit.fontawesome.com/def00d5f6e.js" crossorigin="anonymous"></script>
+    <!-- ============================================= Google Fonts ==================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto&family=Alata&family=Reggae+One&display=swap"
+        rel="stylesheet">
+    <!-- LINK MATERIAL SYMBOLS -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        .material-symbols-rounded {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 100,
+                'GRAD' 500,
+                'opsz' 48
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="top-progress-line"></div>
+    <!-- ══════════════════════════════════
+       Navigation
+       ══════════════════════════════════ -->
+    <div id="staggered-menu" class="staggered-menu-wrapper" data-position="right" style="--sm-accent: #c00707;">
+        <div id="sm-prelayers" class="sm-prelayers" aria-hidden="true"></div>
+
+        <header class="staggered-menu-header" aria-label="Main navigation header">
+            <button id="sm-toggle-btn" class="sm-toggle" aria-label="Open menu" aria-expanded="false"
+                aria-controls="staggered-menu-panel" type="button">
+                <span class="sm-toggle-textWrap" aria-hidden="true">
+                    <span id="sm-toggle-text-inner" class="sm-toggle-textInner">
+                        <span class="sm-toggle-line">Menu</span>
+                    </span>
+                </span>
+                <span id="sm-icon" class="sm-icon" aria-hidden="true">
+                    <span id="sm-plus-h" class="sm-icon-line"></span>
+                    <span id="sm-plus-v" class="sm-icon-line"></span>
+                </span>
+            </button>
+        </header>
+
+        <aside id="staggered-menu-panel" class="staggered-menu-panel" aria-hidden="true">
+            <div class="sm-panel-inner">
+                <img class="nav-logo" src="./static/img/Logo.png" alt="Logo">
+                <ul id="sm-panel-list" class="sm-panel-list" role="list" data-numbering="true"></ul>
+
+                <div class="sm-dark-row">
+                    <span class="sm-dark-label">Dark Theme</span>
+                    <label class="theme-switch" aria-label="Toggle dark theme">
+                        <input type="checkbox" class="theme-switch__checkbox" id="dark-theme-toggle">
+                        <div class="theme-switch__container">
+                            <div class="theme-switch__clouds"></div>
+                            <div class="theme-switch__stars-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 55" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.95722 137.172 7.25134 137.525 6.59129C137.886 5.93124 138.372 5.39954 138.98 5.00535C139.598 4.60199 140.268 4.39114 141 4.35447C139.88 4.2903 138.936 3.85027 138.16 3.00688C137.384 2.16348 136.996 1.16425 136.996 0C136.996 1.16425 136.607 2.16348 135.831 3.00688ZM31 23.3545C32.1114 23.2995 33.0551 22.8503 33.8313 22.0069C34.6075 21.1635 34.9956 20.1642 34.9956 19C34.9956 20.1642 35.3837 21.1635 36.1599 22.0069C36.9361 22.8503 37.8798 23.2903 39 23.3545C38.2679 23.3911 37.5976 23.602 36.9802 24.0053C36.3716 24.3995 35.8864 24.9312 35.5248 25.5913C35.172 26.2513 34.9956 26.9572 34.9956 27.7273C34.9956 26.563 34.6075 25.5546 33.8313 24.7112C33.0551 23.8587 32.1114 23.4095 31 23.3545ZM0 36.3545C1.11136 36.2995 2.05513 35.8503 2.83131 35.0069C3.6075 34.1635 3.99559 33.1642 3.99559 32C3.99559 33.1642 4.38368 34.1635 5.15987 35.0069C5.93605 35.8503 6.87982 36.2903 8 36.3545C7.26792 36.3911 6.59757 36.602 5.98015 37.0053C5.37155 37.3995 4.88644 37.9312 4.52481 38.5913C4.172 39.2513 3.99559 39.9572 3.99559 40.7273C3.99559 39.563 3.6075 38.5546 2.83131 37.7112C2.05513 36.8587 1.11136 36.4095 0 36.3545ZM56.8313 24.0069C56.0551 24.8503 55.1114 25.2995 54 25.3545C55.1114 25.4095 56.0551 25.8587 56.8313 26.7112C57.6075 27.5546 57.9956 28.563 57.9956 29.7273C57.9956 28.9572 58.172 28.2513 58.5248 27.5913C58.8864 26.9312 59.3716 26.3995 59.9802 26.0053C60.5976 25.602 61.2679 25.3911 62 25.3545C60.8798 25.2903 59.9361 24.8503 59.1599 24.0069C58.3837 23.1635 57.9956 22.1642 57.9956 21C57.9956 22.1642 57.6075 23.1635 56.8313 24.0069ZM81 25.3545C82.1114 25.2995 83.0551 24.8503 83.8313 24.0069C84.6075 23.1635 84.9956 22.1642 84.9956 21C84.9956 22.1642 85.3837 23.1635 86.1599 24.0069C86.9361 24.8503 87.8798 25.2903 89 25.3545C88.2679 25.3911 87.5976 25.602 86.9802 26.0053C86.3716 26.3995 85.8864 26.9312 85.5248 27.5913C85.172 28.2513 84.9956 28.9572 84.9956 29.7273C84.9956 28.563 84.6075 27.5546 83.8313 26.7112C83.0551 25.8587 82.1114 25.4095 81 25.3545ZM136 36.3545C137.111 36.2995 138.055 35.8503 138.831 35.0069C139.607 34.1635 139.996 33.1642 139.996 32C139.996 33.1642 140.384 34.1635 141.16 35.0069C141.936 35.8503 142.88 36.2903 144 36.3545C143.268 36.3911 142.598 36.602 141.98 37.0053C141.372 37.3995 140.886 37.9312 140.525 38.5913C140.172 39.2513 139.996 39.9572 139.996 40.7273C139.996 39.563 139.607 38.5546 138.831 37.7112C138.055 36.8587 137.111 36.4095 136 36.3545ZM101.831 49.0069C101.055 49.8503 100.111 50.2995 99 50.3545C100.111 50.4095 101.055 50.8587 101.831 51.7112C102.607 52.5546 102.996 53.563 102.996 54.7273C102.996 53.9572 103.172 53.2513 103.525 52.5913C103.886 51.9312 104.372 51.3995 104.98 51.0053C105.598 50.602 106.268 50.3911 107 50.3545C105.88 50.2903 104.936 49.8503 104.16 49.0069C103.384 48.1635 102.996 47.1642 102.996 46C102.996 47.1642 102.607 48.1635 101.831 49.0069Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </div>
+                            <div class="theme-switch__circle-container">
+                                <div class="theme-switch__sun-moon-container">
+                                    <div class="theme-switch__moon">
+                                        <div class="theme-switch__spot"></div>
+                                        <div class="theme-switch__spot"></div>
+                                        <div class="theme-switch__spot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div id="sm-socials-section" class="sm-socials" aria-label="Social links">
+                    <h3 class="sm-socials-title">Socials</h3>
+                    <ul id="sm-socials-list" class="sm-socials-list" role="list"></ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <!-- ════════════════════════════════════════════════════════════════════════════════════════════════════
+       ═══════════════════════════════════════════════════════ HERO ══════════════════════════════════════════
+       ════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+    <section id="hero">
+        <!-- Large faint typographic background -->
+        <div class="corner-card">
+            <svg viewBox="660 53 102 102" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path
+                        d="M664.508,152.805h-2v-36.147h8.787v-6.787h-8.787V99.083h10.787v8.787h6.787V92.296h-17.574      V81.509h8.787v-6.787h-8.787V55.148h19.574v8.787h6.787v-8.787h10.786v17.574h15.574v-6.787h-8.787V55.148h10.787v8.787h6.787      v-8.787h36.147v2h-34.147v8.787h-8.787v8.787h-17.574v8.787h-8.786v8.787h-8.787v17.574h-8.787v8.787h-8.787V152.805z       M664.508,107.87h6.787v-6.787h-6.787V107.87z M673.295,90.296h15.574v-6.787h-8.787v-8.787h-6.787V90.296z M664.508,90.296      h6.787v-6.787h-6.787V90.296z M690.869,81.509h6.786V65.936h-15.573v6.787h8.787V81.509z M682.082,81.509h6.787v-6.787h-6.787      V81.509z M673.295,72.723h6.787v-6.787h-6.787V72.723z M664.508,72.723h6.787v-8.787h8.787v-6.787h-15.574V72.723z       M708.442,63.936h6.787v-6.787h-6.787V63.936z M690.869,63.936h6.786v-6.787h-6.786V63.936z" />
+                </g>
+            </svg>
+        </div>
+        <div class="corner-card cc2">
+            <svg viewBox="660 53 102 102" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path
+                        d="M664.508,152.805h-2v-36.147h8.787v-6.787h-8.787V99.083h10.787v8.787h6.787V92.296h-17.574      V81.509h8.787v-6.787h-8.787V55.148h19.574v8.787h6.787v-8.787h10.786v17.574h15.574v-6.787h-8.787V55.148h10.787v8.787h6.787      v-8.787h36.147v2h-34.147v8.787h-8.787v8.787h-17.574v8.787h-8.786v8.787h-8.787v17.574h-8.787v8.787h-8.787V152.805z       M664.508,107.87h6.787v-6.787h-6.787V107.87z M673.295,90.296h15.574v-6.787h-8.787v-8.787h-6.787V90.296z M664.508,90.296      h6.787v-6.787h-6.787V90.296z M690.869,81.509h6.786V65.936h-15.573v6.787h8.787V81.509z M682.082,81.509h6.787v-6.787h-6.787      V81.509z M673.295,72.723h6.787v-6.787h-6.787V72.723z M664.508,72.723h6.787v-8.787h8.787v-6.787h-15.574V72.723z       M708.442,63.936h6.787v-6.787h-6.787V63.936z M690.869,63.936h6.786v-6.787h-6.786V63.936z" />
+                </g>
+            </svg>
+        </div>
+        <!-- KING WATERMARK -->
+        <!-- RED BANNER -->
+        <div class="red-banner"></div>
+        <div class="warning-box">
+            <span class="warning-icon"></span>
+            <div class="warning-text decrypt-text" data-shuffle-speed='70' data-speed='10'>
+                Become so <span class="warning-text-span">TALENTED</span> so <span
+                    class="warning-text-span">VIGILANT</span><br>flat out <span
+                    class="warning-text-span">FANTASTIC</span> that your<br>talent can never be <span
+                    class="warning-text-span">DISMISSED</span>.
+            </div>
+        </div>
+
+
+        <!-- TOP RIGHT BARCODE -->
+        <div class="top-right-meta">
+            <svg class="barcode" viewBox="-10 0 120 30" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="3" height="30" />
+                <rect x="5" y="0" width="1.5" height="30" />
+                <rect x="8" y="0" width="4" height="30" />
+                <rect x="14" y="0" width="1.5" height="30" />
+                <rect x="7" y="0" width="3" height="30" />
+                <rect x="22" y="0" width="5" height="30" />
+                <rect x="29" y="0" width="2" height="30" />
+                <rect x="33" y="0" width="4" height="30" />
+                <rect x="39" y="0" width="1.5" height="30" />
+                <rect x="42" y="0" width="3" height="30" />
+                <rect x="47" y="0" width="5" height="30" />
+                <rect x="54" y="0" width="2" height="30" />
+                <rect x="58" y="0" width="4" height="30" />
+                <rect x="64" y="0" width="1.5" height="30" />
+                <rect x="67" y="0" width="3" height="30" />
+                <rect x="72" y="0" width="5" height="30" />
+                <rect x="80" y="0" width="2" height="30" />
+                <rect x="84" y="0" width="4" height="30" />
+                <rect x="90" y="0" width="1.5" height="30" />
+                <rect x="93" y="0" width="5" height="30" />
+                <rect x="100" y="0" width="2" height="30" />
+                <rect x="104" y="0" width="6" height="30" />
+            </svg>
+            <div class="barcode-num decrypt-text" data-shuffle-speed='100' data-speed='60'>861 3453 222384</div>
+            <div class="serial decrypt-text" data-shuffle-speed='90' data-speed='80'>XU0k4qZ
+            </div>
+        </div>
+
+        <!-- FOUR ARMS TITLE -->
+        <div class="title-layer">
+            <div class="title-frame">
+                <span class="title-main decrypt-text">Yash</span>
+                <span class="surname">Chaurasia.
+                    <span class="japan-name decrypt-text" data-shuffle-speed='30' data-speed='70'>ショウヨウ—ナツ
+            </div>
+        </div>
+        <div class="bg-watermark ">
+            <h1 class="decrypt-text" data-shuffle-speed='100' data-speed='120'>権無</h1>
+        </div>
+
+
+        <!-- Always-visible base image -->
+        <div id="layer-bottom">
+            <img src="./static/img/Front.png" alt="" id="img-bottom" draggable="false" />
+        </div>
+        <!-- Masked reveal layer: cursor radius controls exposure -->
+        <div id="layer-top">
+            <img src="./static/img/Firefly.png" alt="" id="img-top" draggable="false" />
+        </div>
+    </section>
+
+
+    <!-- Gradient that fades hero into the projects bg (no hard line) -->
+    <div class="section-gradient-sep"></div>
+    <!-- ═════════════════════════════════════════════════════════════════════════════════════════════════════════════
+   ======================================================== ABOUT ME ================================================
+   ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+    <section id="about">
+
+        <div class="about-header">
+            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>About Me</span>
+            <h2 class="sec-title fade-right-item">
+                The person behind<br>
+                <em>the work.</em>
+            </h2>
+            <div class="sec-divider fade-bottom-item"></div>
+            <p class="sec-desc fade-bottom-item">A glimpse into who I am and what I love to create.</p>
+        </div>
+
+        <!-- ===== Intro Block ===== -->
+        <div class="about-intro neu-card fade-bottom-item">
+            <div class="about-intro-img">
+                <img src="./static/img/IMG_0745.png" alt="Yash Chaurasia" draggable="false" />
+            </div>
+            <div class="about-intro-text">
+                <h3 class="decrypt-text" data-shuffle-speed='90' data-speed='20'>Hey, I'm Yash.</h3>
+                <p class="decrypt-text" data-shuffle-speed='90' data-speed='9' data-mode="words">
+                    I'm a developer and designer who loves crafting bold, expressive web
+                    experiences. I enjoy blending clean code with creative visuals — turning
+                    simple ideas into interactive, memorable interfaces.
+                </p>
+            </div>
+        </div>
+
+        <!-- ===== ==========================================================Tab Navigation ===== -->
+        <div class="about-body">
+            <div class="about-nav-sticky">
+                <nav class="about-nav fade-left-item">
+                    <button class="nav-btn active" data-target="tab-10th">
+                        <span class="nav-index">01</span>
+                        <span class="nav-label decrypt-text" data-shuffle-speed='90' data-speed='20'>10th Grade</span>
+                    </button>
+                    <button class="nav-btn" data-target="tab-12th">
+                        <span class="nav-index">02</span>
+                        <span class="nav-label decrypt-text" data-shuffle-speed='90' data-speed='20'>12th Grade</span>
+                    </button>
+                    <button class="nav-btn" data-target="tab-degree">
+                        <span class="nav-index">03</span>
+                        <span class="nav-label decrypt-text" data-shuffle-speed='90' data-speed='20'>UG Degree</span>
+                    </button>
+                    <button class="nav-btn" data-target="tab-exp1">
+                        <span class="nav-index">04</span>
+                        <span class="nav-label decrypt-text" data-shuffle-speed='90' data-speed='20'>Internship</span>
+                    </button>
+                    <button class="nav-btn" data-target="tab-exp2">
+                        <span class="nav-index">05</span>
+                        <span class="nav-label decrypt-text" data-shuffle-speed='90' data-speed='20'>Freelance</span>
+                    </button>
+                    <button class="nav-btn" data-target="tab-exp3">
+                        <span class="nav-index">06</span>
+                        <span class="nav-label decrypt-text" data-shuffle-speed='90' data-speed='20'>Hackathon</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="about-content fade-right-item" data-lenis-prevent>
+
+                <div class="content-panel neu-card" id="tab-10th">
+                    <span class="panel-tag">2019 — 2020</span>
+                    <h3 class="decrypt-text" data-shuffle-speed='90' data-speed='15'>Secondary Education</h3>
+                    <h4 class="panel-school">Decent English School</h4>
+                    <p>
+                        Completed my 10th grade with a strong foundation in Mathematics and
+                        Science, scoring <strong>84%</strong>. This is where my curiosity
+                        for computers and problem-solving first took root.
+                    </p>
+                    <div class="panel-meta">
+                        <span>📍 Chhatarpur, Madhya Pradesh</span>
+                        <span>🎯 Score: <strong>84%</strong></span>
+                    </div>
+                </div>
+
+                <div class="content-panel neu-card" id="tab-12th">
+                    <span class="panel-tag">2021 — 2022</span>
+                    <h3 class="decrypt-text" data-shuffle-speed='90' data-speed='15'>Higher Secondary</h3>
+                    <h4 class="panel-school">Decent English School</h4>
+                    <p>
+                        Pursued the Science stream with Computer Science as an elective,
+                        scoring <strong>88%</strong>. Built my first programs and websites
+                        during this period, sparking my passion for development.
+                    </p>
+                    <div class="panel-meta">
+                        <span>📍 Chhatarpur, Madhya Pradesh</span>
+                        <span>🎯 Score: <strong>88%</strong></span>
+                    </div>
+                </div>
+
+                <div class="content-panel neu-card" id="tab-degree">
+                    <span class="panel-tag">2022 — 2026</span>
+                    <h3 class="decrypt-text" data-shuffle-speed='90' data-speed='15'>B.Tech — Computer Science</h3>
+                    <h4 class="panel-school">LNCT University</h4>
+                    <p>
+                        Currently pursuing my undergraduate degree with a CGPA of
+                        <strong>7.75</strong>. Focused on web development, UI/UX design,
+                        and building real-world projects alongside coursework.
+                    </p>
+                    <div class="panel-meta">
+                        <span>📍 Bhopal, Madhya Pradesh</span>
+                        <span>🎯 CGPA: <strong>7.75</strong></span>
+                    </div>
+                </div>
+
+                <div class="content-panel neu-card" id="tab-exp1">
+                    <span class="panel-tag">Mar — May 2025</span>
+                    <h3 class="decrypt-text" data-shuffle-speed='90' data-speed='15'>WordPress Intern</h3>
+                    <h4 class="panel-school">Allied IT Solutions</h4>
+                    <p>
+                        Developed, customized, and deployed responsive WordPress websites for
+                        multiple clients by implementing frontend and backend features, optimizing
+                        performance, ensuring cross-browser compatibility, and maintaining a
+                        zero-defect delivery standard across all projects.
+                    </p>
+                    <div class="panel-meta">
+                        <span>💻 WordPress · Envato</span>
+                        <span>⚡ Responsive UI</span>
+                    </div>
+                </div>
+
+                <div class="content-panel neu-card" id="tab-exp2">
+                    <span class="panel-tag">2023 — 2024</span>
+                    <h3 class="decrypt-text" data-shuffle-speed='90' data-speed='15'>Full Stack Freelance</h3>
+                    <h4 class="panel-school">Parts Drive India</h4>
+                    <p>
+                        Designed and delivered responsive websites for small businesses, focusing on usability,
+                        accessibility, modern UI/UX, and seamless WhatsApp integration with automated customer
+                        messaging.
+                    </p>
+                    <div class="panel-meta">
+                        <span>🎨 HTML · JS · Bootstrap · CSS</span>
+                        <span>📦Responsive for 5+ screen types.</span>
+                    </div>
+                </div>
+
+                <div class="content-panel neu-card" id="tab-exp3">
+                    <span class="panel-tag">2023</span>
+                    <h3 class="decrypt-text" data-shuffle-speed='90' data-speed='15'>Hackathon Participant</h3>
+                    <h4 class="panel-school">National Level Hackathon <br>Title - Plant Disease Detection and Cure
+                        Suggestion
+                    </h4>
+                    <p>
+                        Built an AI-powered web application that detects plant diseases from uploaded
+                        images and provides treatment suggestions. Implemented computer vision techniques
+                        using Python and OpenCV with a web interface designed for farmers and gardeners.
+                    </p>
+                    <div class="panel-meta">
+                        <span>Shortlisted</span>
+                        <span>👥 Team of 4</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ══════════════════════════════════════════════════════════════
+     SECTION: PROJECTS — Sticky Stacking Cards
+     ══════════════════════════════════════════════════════════════ -->
+    <section id="projects">
+        <div class="proj-sticky-outer">
+
+            <div class="proj-header">
+                <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Selected Work</span>
+                <h2 class="sec-title fade-right-item">Projects that<br><em>speak for themselves.</em></h2>
+                <div class="sec-divider fade-bottom-item"></div>
+                <p class="sec-desc fade-bottom-item">A handful of things I've designed, built, and obsessed over.
+                    <br><strong>Hint: </strong>Click the cards for a <strong>Tour</strong>.
+                </p>
+                <a href="#"><button class="animated-button fade-left-item">
+                        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                        <span class="text">See All The Projects</span>
+                        <span class="circle"></span>
+                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                    </button></a>
+            </div>
+
+            <!-- Card 01 -->
+            <article class="proj-card pc-link" style="--stk: 1;" data-href="./templates/projects/3.html">
+                <div class="pc-left">
+                    <span class="pc-num">01</span>
+
+                </div>
+                <div class="pc-body">
+                    <h3 class="pc-title fade-bottom-item">DeepSearch — C.B.I.R.</h3>
+                    <p class="pc-desc fade-bottom-item">
+                        <strong>DeepSearch</strong> is a <strong>Content-Based Image Retrieval (CBIR)</strong> web
+                        application that enables
+                        users to find visually similar images by uploading an image, delivering an experience inspired
+                        by Google Lens on a
+                        domain-specific dataset using <strong>deep learning-based feature extraction</strong> and
+                        similarity search.
+
+                        <br><br>
+
+                        I designed and developed the complete <strong>frontend</strong> using
+                        <strong>HTML5, CSS3, JavaScript, Bootstrap</strong>, and integrated it with
+                        <strong>Flask</strong> for seamless communication with the backend.
+
+                        The <strong>CBIR model and backend</strong> were developed by
+                        <a href="https://utkarshsaxena-deepnets.my.canva.site" class="project-link" target="_blank"
+                            rel="noopener noreferrer">Utkarsh Saxena</a>.
+
+                        <br><br>
+
+                        <strong>Technologies:</strong> HTML5, CSS3, JavaScript, Bootstrap, Flask, Python, OpenCV,
+                        TensorFlow/PyTorch, CNN, CBIR, Feature Embeddings, Cosine Similarity.
+                    </p>
+
+                </div>
+                <div class="pc-img-wrap">
+                    <div class="pc-img-placeholder fade-left-item">
+                        <img src="./static/img/sticky/deeps.png" alt="DeepSearch"
+                            style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="pc-tags fade-bottom-item">
+                        <span class="pc-tag">HTML</span>
+                        <span class="pc-tag">CSS</span>
+                        <span class="pc-tag">FLASK</span>
+                        <span class="pc-tag">JS</span>
+                        <span class="pc-tag">Python</span>
+                        <span class="pc-tag">opencv</span>
+                        <span class="pc-tag">bootstrap</span>
+                        <span class="pc-tag">tensorflow</span>
+                    </div>
+                    <a href="./templates/projects/3.html" class="button2 fade-bottom-item">Visit Project →</a>
+                </div>
+            </article>
+
+            <!-- Card 02 -->
+            <article class="proj-card pc2 pc-link" style="--stk: 2;" data-href="./templates/projects/1.html">
+                <div class="pc-left">
+                    <span class="pc-num pcn2">02</span>
+
+                </div>
+                <div class="pc-body">
+                    <h3 class="pc-title pt2 fade-bottom-item">CropCure — Plant Disease Detection & Cure.</h3>
+                    <p class="pc-desc pcd2 fade-bottom-item">
+                        <strong>CropCure</strong> is a <strong>machine learning-based plant disease detection</strong>
+                        web application that
+                        identifies diseases from uploaded leaf images and provides <strong>treatment
+                            recommendations</strong> to help
+                        farmers take timely action.
+
+                        <br><br>
+
+                        I designed and developed the complete <strong>frontend</strong> using
+                        <strong>HTML5, CSS3, JavaScript, Bootstrap</strong>, and integrated it with
+                        <strong>Flask</strong> to communicate with the machine learning model.
+
+                        <br><br>
+
+                        <strong>Technologies Used:</strong> HTML5, CSS3, JavaScript, Bootstrap, Flask, Python,
+                        TensorFlow/PyTorch,
+                        OpenCV, CNN, Computer Vision, Machine Learning.
+                    </p>
+
+                </div>
+                <div class="pc-img-wrap">
+                    <div class="pc-img-placeholder fade-left-item">
+                        <img src="./static/img/sticky/cropc.png" alt="CropCure"
+                            style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="pc-tags fade-bottom-item">
+                        <span class="pc-tag pct2">HTML</span>
+                        <span class="pc-tag pct2">CSS</span>
+                        <span class="pc-tag pct2">JS</span>
+                        <span class="pc-tag pct2">tensorflow</span>
+                        <span class="pc-tag pct2">Python</span>
+                        <span class="pc-tag pct2">FLASK</span>
+                        <span class="pc-tag pct2">Machine Learning</span>
+                        <span class="pc-tag pct2">Deep learning</span>
+                        <span class="pc-tag pct2">Computer Vision</span>
+                    </div>
+                    <a href="./templates/projects/1.html" class="button2 btc2 fade-bottom-item">Visit Project →</a>
+                </div>
+            </article>
+
+            <!-- Card 03 -->
+            <article class="proj-card pc3 pc-link" style="--stk: 3;" data-href="./templates/projects/2.html">
+                <div class="pc-left">
+                    <span class="pc-num pcn3">03</span>
+
+                </div>
+                <div class="pc-body">
+                    <h3 class="pc-title pt3 fade-bottom-item">CalculusPro — Where Mathematics Meets Innovation.</h3>
+                    <p class="pc-desc pcd3 fade-bottom-item">
+                        <strong>CalculusPro</strong> is a comprehensive <strong>mathematics and scientific computation
+                            platform</strong>
+                        that combines a <strong>scientific calculator, real-time currency converter, 2D & 3D graph
+                            visualization,</strong>
+                        and <strong>calculation history</strong> into a single modern web application. Designed with a
+                        focus on usability,
+                        it provides an intuitive interface for solving mathematical problems and visualizing functions.
+
+                        <br><br>
+
+                        I designed and developed the complete application using
+                        <strong>HTML5, CSS3, JavaScript</strong>, implementing responsive layouts, interactive graphing,
+                        and a clean,
+                        user-friendly interface.
+
+                        <br><br>
+
+                        <strong>Technologies:</strong> HTML5, CSS3, JavaScript, Mathematical Computation, Graph
+                        Visualization,
+                        Scientific Calculator, Currency Exchange API, Responsive Design, UI/UX.
+                    </p>
+
+                </div>
+                <div class="pc-img-wrap">
+                    <div class="pc-img-placeholder fade-left-item">
+                        <img src="./static/img/sticky/calculus.png" alt="CalculusPro"
+                            style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="pc-tags fade-bottom-item">
+                        <span class="pc-tag pct3">HTML</span>
+                        <span class="pc-tag pct3">CSS</span>
+                        <span class="pc-tag pct3">JS</span>
+                        <span class="pc-tag pct3">Doc Guide</span>
+                        <span class="pc-tag pct3">2D|3D Graph Visualization</span>
+                        <span class="pc-tag pct3">Use History</span>
+                        <span class="pc-tag pct3">Live Currency Exchange Monitoring</span>
+                        <span class="pc-tag pct3">Usage Manual</span>
+                    </div>
+                    <a href="./templates/projects/2.html" class="button2 btc3 fade-bottom-item">Visit Project →</a>
+                </div>
+            </article>
+
+            <!-- Card 04 -->
+            <article class="proj-card pc4 pc-link" style="--stk: 4;" data-href="./templates/projects/4.html">
+                <div class="pc-left">
+                    <span class="pc-num pcn4">04</span>
+
+                </div>
+                <div class="pc-body">
+                    <h3 class="pc-title pt4 fade-bottom-item">Parts Drive India — Mitsubishi Auto Parts Inventory.</h3>
+                    <p class="pc-desc pcd4 fade-bottom-item">
+                        <strong>Parts Drive India</strong> is a modern automotive platform designed to help users
+                        discover
+                        <strong>genuine Mitsubishi spare parts</strong>, reducing the risk of counterfeit products and
+                        improving trust in
+                        the purchasing process.
+
+                        <br><br>
+
+                        The platform features seamless <strong>WhatsApp API integration</strong> for direct
+                        customer-to-business
+                        communication, enabling users to quickly inquire about parts and receive personalized assistance
+                        without creating
+                        an account.
+
+                        <br><br>
+
+                        I designed and developed the complete website with a focus on
+                        <strong>responsive design, performance, accessibility, and cross-device compatibility</strong>,
+                        ensuring a smooth
+                        experience across desktops, tablets, and mobile devices.
+
+                        <br><br>
+
+                        <strong>Technologies:</strong> HTML5, CSS3, JavaScript, WhatsApp API, Responsive Design, UI/UX,
+                        Performance
+                        Optimization.
+                    </p>
+
+                </div>
+                <div class="pc-img-wrap">
+                    <div class="pc-img-placeholder fade-left-item">
+                        <img src="./static/img/sticky/pdi.png" alt="Parts Drive India"
+                            style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="pc-tags fade-bottom-item">
+                        <span class="pc-tag pct4">HTML</span>
+                        <span class="pc-tag pct4">CSS</span>
+                        <span class="pc-tag pct4">JS</span>
+                        <span class="pc-tag pct4">WhatsApp API</span>
+                        <span class="pc-tag pct4">Responsive UI</span>
+                    </div>
+                    <a href="./templates/projects/4.html" class="button2 btc4 fade-bottom-item">Visit Project →</a>
+                </div>
+            </article>
+
+        </div><!-- /proj-sticky-outer -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     SECTION: Resource — resource cards
+     ══════════════════════════════════════════════════════════════ -->
+    <section id="resources">
+        <div class="proj-header">
+            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Resource Vault</span>
+            <h2 class="sec-title fade-right-item">Things I've Built<br><em>documented & shared.</em></h2>
+            <div class="sec-divider fade-bottom-item"></div>
+            <p class="sec-desc fade-bottom-item">Guides and notes from things I've actually built and broken.</p>
+        </div>
+
+        <div class="rt-grid">
+
+            <!-- Resource 01 -->
+            <div class="ticket-canvas rt-card rt-link rt-theme-1 fade-left-item" data-href="./templates/Lenis.html">
+                <div class="ticket-wrapper">
+                    <div class="ticket">
+                        <div class="t-main">
+                            <div class="t-bg-img">
+                                <img src="./static/img/resource/lenis.jpg" alt="" draggable="false">
+                            </div>
+                            <div class="t-bg-overlay"></div>
+                            <div class="t-content">
+                                <div class="t-header">
+                                    <div class="t-logo">
+                                        <span class="material-symbols-rounded ico1">wind_power</span>
+                                        instruct
+                                    </div>
+                                    <div class="t-type typ1">Guide</div>
+                                </div>
+                                <div class="t-title">Lenis.js<br>Smooth Scroll</div>
+                                <div class="t-subtitle">A guide to learning Lenis — setup and everything in the
+                                    documentation.</div>
+                                <div class="t-details">
+                                    <div class="t-detail-item"><span class="t-label">Topic</span><span
+                                            class="t-value">Scroll Motion</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Updated</span><span
+                                            class="t-value">Jun 2026</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Format</span><span
+                                            class="t-value">Cheat-sheet</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Length</span><span
+                                            class="t-value">12 min read</span></div>
+                                </div>
+                            </div>
+                            <div class="t-perforation"
+                                style="position:absolute;bottom:0;left:0;width:100%;transform:translateY(50%);">
+                                <div class="t-perf-line"></div>
+                            </div>
+                        </div>
+                        <div class="t-stub tst1">
+                            <div class="t-barcode-container">
+                                <div class="t-barcode"></div>
+                                <div class="t-barcode-id">RES-LENIS-01</div>
+                            </div>
+                            <div class="t-admit">
+                                <div class="t-admit-text">Vault No.</div>
+                                <div class="t-admit-num tan1">01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource 02 -->
+            <div class="ticket-canvas rt-card rt-link rt-theme-1 fade-right-item"
+                data-href="./templates/Resources.html">
+                <div class="ticket-wrapper">
+                    <div class="ticket">
+                        <div class="t-main">
+                            <div class="t-bg-img">
+                                <img src="./static/img/resource/resource.jpg" alt="" draggable="false">
+                            </div>
+                            <div class="t-bg-overlay"></div>
+                            <div class="t-content">
+                                <div class="t-header">
+                                    <div class="t-logo">
+                                        <span class="material-symbols-rounded ico2">developer_guide</span>
+                                        VAULT
+                                    </div>
+                                    <div class="t-type typ2">Directory</div>
+                                </div>
+                                <div class="t-title">Ultimate Resource<br>Library</div>
+                                <div class="t-subtitle">Curated links, tools & references for developers and designers
+                                </div>
+                                <div class="t-details">
+                                    <div class="t-detail-item"><span class="t-label">Topic</span><span
+                                            class="t-value">Link Resources</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Updated</span><span
+                                            class="t-value">Jul 2026</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Format</span><span
+                                            class="t-value">Link Collection</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Length</span><span
+                                            class="t-value">50+ Resources</span></div>
+                                </div>
+                            </div>
+                            <div class="t-perforation"
+                                style="position:absolute;bottom:0;left:0;width:100%;transform:translateY(50%);">
+                                <div class="t-perf-line"></div>
+                            </div>
+                        </div>
+                        <div class="t-stub tst2">
+                            <div class="t-barcode-container">
+                                <div class="t-barcode"></div>
+                                <div class="t-barcode-id">RES-RESOURCE-02</div>
+                            </div>
+                            <div class="t-admit">
+                                <div class="t-admit-text">Vault No.</div>
+                                <div class="t-admit-num tan2">02</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource 03 -->
+            <div class="ticket-canvas rt-card rt-link rt-theme-1 fade-left-item" data-href="./templates/Chinese.html">
+                <div class="ticket-wrapper">
+                    <div class="ticket">
+                        <div class="t-main">
+                            <div class="t-bg-img">
+                                <img src="./static/img/resource/corner.jpg" alt="" draggable="false">
+                            </div>
+                            <div class="t-bg-overlay"></div>
+                            <div class="t-content">
+                                <div class="t-header">
+                                    <div class="t-logo">
+                                        <span class="material-symbols-rounded ico3">kanji_alcohol</span>
+                                        Package
+                                    </div>
+                                    <div class="t-type typ3">Asset Pack</div>
+                                </div>
+                                <div class="t-title">Chinese Corner<br>Vault</div>
+                                <div class="t-subtitle">Reusable decorative corner SVGs for modern UI designs</div>
+                                <div class="t-details">
+                                    <div class="t-detail-item"><span class="t-label">Topic</span><span
+                                            class="t-value">SVG Assets</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Updated</span><span
+                                            class="t-value">May 2026</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Format</span><span
+                                            class="t-value">SVG Collection</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Length</span><span
+                                            class="t-value">30+ Designs</span></div>
+                                </div>
+                            </div>
+                            <div class="t-perforation"
+                                style="position:absolute;bottom:0;left:0;width:100%;transform:translateY(50%);">
+                                <div class="t-perf-line"></div>
+                            </div>
+                        </div>
+                        <div class="t-stub tst3">
+                            <div class="t-barcode-container">
+                                <div class="t-barcode"></div>
+                                <div class="t-barcode-id">RES-CHINESE-03</div>
+                            </div>
+                            <div class="t-admit">
+                                <div class="t-admit-text">Vault No.</div>
+                                <div class="t-admit-num tan3">03</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource 04 -->
+            <div class="ticket-canvas rt-card rt-link rt-theme-1 fade-right-item"
+                data-href="https://calculuspro.vercel.app">
+                <div class="ticket-wrapper">
+                    <div class="ticket">
+                        <div class="t-main">
+                            <div class="t-bg-img">
+                                <img src="./static/img/resource/calculus.jpg" alt="" draggable="false">
+                            </div>
+                            <div class="t-bg-overlay"></div>
+                            <div class="t-content">
+                                <div class="t-header">
+                                    <div class="t-logo">
+                                        <span class="material-symbols-rounded ico4">function</span>
+                                        Utility
+                                    </div>
+                                    <div class="t-type typ4">Utility</div>
+                                </div>
+                                <div class="t-title">Calculus Pro<br>versatile Calculator</div>
+                                <div class="t-subtitle">Instant calculations for web, design, development & everyday use
+                                </div>
+                                <div class="t-details">
+                                    <div class="t-detail-item"><span class="t-label">Topic</span><span
+                                            class="t-value">Productivity</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Updated</span><span
+                                            class="t-value">Jan 2026</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Format</span><span
+                                            class="t-value">Web App</span></div>
+                                    <div class="t-detail-item"><span class="t-label">Length</span><span
+                                            class="t-value">100+ Functions</span></div>
+                                </div>
+                            </div>
+                            <div class="t-perforation"
+                                style="position:absolute;bottom:0;left:0;width:100%;transform:translateY(50%);">
+                                <div class="t-perf-line"></div>
+                            </div>
+                        </div>
+                        <div class="t-stub tst4">
+                            <div class="t-barcode-container">
+                                <div class="t-barcode"></div>
+                                <div class="t-barcode-id">RES-CALCULUS-04</div>
+                            </div>
+                            <div class="t-admit">
+                                <div class="t-admit-text">Vault No.</div>
+                                <div class="t-admit-num tan4">04</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ══════════════════════════════════════════════════════════════
+     SECTION: WORKING STYLE — Horizontal Scroll Cards
+     ══════════════════════════════════════════════════════════════ -->
+    <section id="working-style">
+
+        <div class="ws-label">
+            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Learning Journey</span>
+            <h2 class="sec-title fade-right-item">Certificates &amp; events<br><em id="ws-trigger">that shaped my
+                    craft.</em></h2>
+        </div>
+
+        <div id="ws-sticky" class="fade-bottom-item">
+
+            <div id="ws-track-wrap">
+                <div id="ws-track">
+
+                    <!-- Card A -->
+                    <!-- NEW -->
+                    <div class="ws-card has-img">
+                        <div class="wc-img-wrap"><img src="./static/img/horiz/h2.jpg" alt="" class="wc-img"></div>
+                        <div class="wc-overlay"></div>
+                        <div class="wc-content">
+                            <h4 class="wc-title">Web Dev Workshop</h4>
+                            <p class="wc-desc">At MANIT Bhopal</p>
+                        </div>
+                    </div>
+                    <div class="ws-card has-img">
+                        <div class="wc-img-wrap"><img src="./static/img/horiz/h1.jpg" alt="" class="wc-img"></div>
+                        <div class="wc-overlay"></div>
+                        <div class="wc-content">
+                            <h4 class="wc-title">MANIT Bhopal</h4>
+                            <p class="wc-desc">Workshop Completion Day</p>
+                        </div>
+                    </div>
+                    <div class="ws-card has-img">
+                        <div class="wc-img-wrap"><img src="./static/img/horiz/h3.jpg" alt="" class="wc-img"></div>
+                        <div class="wc-overlay"></div>
+                        <div class="wc-content">
+                            <h4 class="wc-title">ML Bhopal</h4>
+                            <p class="wc-desc">GDSC Workshop</p>
+                        </div>
+                    </div>
+                    <div class="ws-card has-img">
+                        <div class="wc-img-wrap"><img src="./static/img/horiz/h4.jpg" alt="" class="wc-img"></div>
+                        <div class="wc-overlay"></div>
+                        <div class="wc-content">
+                            <h4 class="wc-title">MLSA Hands-On Workshop</h4>
+                            <p class="wc-desc">Machine Learning Workshop at LNCT Bhopal</p>
+                        </div>
+                    </div>
+                    <div class="ws-card has-img">
+                        <div class="wc-img-wrap"><img src="./static/img/horiz/h5.png" alt="" class="wc-img"></div>
+                        <div class="wc-overlay"></div>
+                        <div class="wc-content">
+                            <h4 class="wc-title">Python Basics</h4>
+                            <p class="wc-desc">Certification by University of Michigan</p>
+                        </div>
+                    </div>
+                    <div class="ws-card has-img">
+                        <div class="wc-img-wrap"><img src="./static/img/horiz/h6.png" alt="" class="wc-img"></div>
+                        <div class="wc-overlay"></div>
+                        <div class="wc-content">
+                            <h4 class="wc-title">Python Functions, Files and Dictionaries</h4>
+                            <p class="wc-desc">Certification by University of Michigan</p>
+                        </div>
+                    </div>
+                    <div class="ws-card has-img">
+                        <div class="wc-img-wrap"><img src="./static/img/horiz/h7.png" alt="" class="wc-img"></div>
+                        <div class="wc-overlay"></div>
+                        <div class="wc-content">
+                            <h4 class="wc-title">Data Collection and Processing with Python</h4>
+                            <p class="wc-desc">Certification by University of Michigan</p>
+                        </div>
+                    </div>
+                    <div class="ws-card has-img">
+                        <div class="wc-img-wrap"><img src="./static/img/horiz/h8.png" alt="" class="wc-img"></div>
+                        <div class="wc-overlay"></div>
+                        <div class="wc-content">
+                            <h4 class="wc-title">Python Classes and Inheritance</h4>
+                            <p class="wc-desc">Certification by University of Michigan</p>
+                        </div>
+                    </div>
+                    <div class="ws-card has-img">
+                        <div class="wc-img-wrap"><img src="./static/img/horiz/h9.png" alt="" class="wc-img"></div>
+                        <div class="wc-overlay"></div>
+                        <div class="wc-content">
+                            <h4 class="wc-title">HTML & CSS Crash Course</h4>
+                            <p class="wc-desc">Certification by Scrimba</p>
+                        </div>
+                    </div>
+
+                </div><!-- /ws-track -->
+            </div><!-- /ws-track-wrap -->
+
+            <div id="ws-progress-wrap">
+                <div id="ws-progress-bar" class="fade-left-item"></div>
+            </div>
+
+        </div><!-- /ws-sticky -->
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     SECTION: CONTACT
+     ══════════════════════════════════════════════════════════════ -->
+    <section id="contact">
+        <div class="proj-header">
+            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Get In Touch</span>
+            <h2 class="sec-title fade-right-item">Let's build<br><em>something worth shipping.</em></h2>
+            <div class="sec-divider fade-bottom-item"></div>
+            <p class="sec-desc fade-bottom-item">Grab the résumé, skim the CV, or just say hi below.</p>
+        </div>
+
+        <div class="cn-grid">
+            <!-- ═══ LEFT: ID badge + résumé/CV posters ═══ -->
+            <div class="cn-left">
+
+                <!-- ID Badge -->
+                <div class="idb-card neu-card fade-left-item">
+                    <div class="idb-info">
+                        <span class="idb-eyebrow fade-left-item">Create · Innovate · Elevate</span>
+                        <h3 class="idb-name fade-right-item">Yash Chaurasia</h3>
+                        <p class="idb-role fade-bottom-item">Frontend Developer &amp; UI Designer</p>
+                        <a class="idb-email fade-bottom-item"
+                            href="https://mail.google.com/mail/?view=cm&fs=1&to=xukyosho@gmail.com" target="_blank"
+                            rel="noopener noreferrer">
+                            xukyosho@gmail.com
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+
+                    <div class="idb-socials fade-bottom-item">
+                        <a class="idb-social" href="https://instagram.com/yashc.exe" target="_blank"
+                            rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a class="idb-social" href="https://github.com/YashChaurasia01" target="_blank"
+                            rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a class="idb-social" href="https://linkedin.com/in/yashchaurasia01" target="_blank"
+                            rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a class="idb-social" href="https://mail.google.com/mail/?view=cm&fs=1&to=xukyosho@gmail.com"
+                            target="_blank" rel="noopener noreferrer" aria-label="Email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+
+                    <div class="idb-footer fade-left-item">
+                        <div class="idb-barcode fade-bottom-item"></div>
+                        <span class="idb-serial fade-bottom-item">ID · YC-2026</span>
+                    </div>
+                </div>
+
+                <!-- Résumé / CV posters -->
+                <div class="cn-docs">
+
+                    <a class="dp-link fade-bottom-item" href="./static/Downloads/Resume 2026.pdf" target="_blank"
+                        rel="noopener noreferrer">
+                        <div class="dp-poster">
+                            <div class="dp-grain"></div>
+                            <div class="dp-orb"></div>
+                            <div class="dp-type">
+                                <span class="dp-huge fade-left-item">MY</span>
+                                <span class="dp-huge dp-outline fade-right-item">RESUME.</span>
+                            </div>
+                            <div class="dp-tape">
+                                <div class="dp-tape-scroll fade-bottom-item">
+                                    <span>PDF // ONE PAGE // ATS FRIENDLY // TAP TO DOWNLOAD // </span>
+                                    <span>PDF // ONE PAGE // ATS FRIENDLY // TAP TO DOWNLOAD // </span>
+                                </div>
+                            </div>
+                            <div class="dp-footer">
+                                <i class="fa-regular fa-file-pdf dp-icon fade-left-item"></i>
+                                <div class="dp-caption fade-right-item">
+                                    <p class="dp-vol">VOL. 01 / RESUME</p>
+                                    <p class="dp-desc">Skills, experience &amp; contact — one page, quick read.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="dp-link fade-right-item" href="./static/Downloads/Yash Chaurasia CV.pdf" target="_blank"
+                        rel="noopener noreferrer">
+                        <div class="dp-poster">
+                            <div class="dp-grain"></div>
+                            <div class="dp-orb"></div>
+                            <div class="dp-type">
+                                <span class="dp-huge fade-bottom-item">FULL</span>
+                                <span class="dp-huge dp-outline fade-left-item">CV.</span>
+                            </div>
+                            <div class="dp-tape">
+                                <div class="dp-tape-scroll fade-bottom-item">
+                                    <span>PDF // DETAILED // PROJECTS + EDUCATION // TAP TO DOWNLOAD // </span>
+                                    <span>PDF // DETAILED // PROJECTS + EDUCATION // TAP TO DOWNLOAD // </span>
+                                </div>
+                            </div>
+                            <div class="dp-footer">
+                                <i class="fa-regular fa-file-pdf dp-icon fade-left-item"></i>
+                                <div class="dp-caption fade-right-item">
+                                    <p class="dp-vol">VOL. 02 / CV</p>
+                                    <p class="dp-desc">The long version — every project, every detail.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- ═══ RIGHT: contact form ═══ -->
+            <div class="cn-right fade-right-item">
+                <div class="cn-form-card neu-card">
+                    <h3 class="cn-form-title fade-right-item">Send a message</h3>
+                    <p class="cn-form-sub fade-bottom-item">I read everything — you'll hear back within a day or two.
+                    </p>
+
+                    <form id="cn-form" class="cn-form">
+                        <!-- Replace with your own Web3Forms access key -->
+                        <input type="hidden" name="access_key" value="156214a2-077a-4161-8299-c308eb6a2803">
+                        <input type="hidden" name="subject" value="New message from portfolio site">
+                        <input type="checkbox" name="botcheck" class="cn-hp" tabindex="-1" autocomplete="off">
+
+                        <div class="form-control fade-right-item">
+                            <input type="text" name="name" required autocomplete="off">
+                            <label data-text="Name"></label>
+                        </div>
+
+                        <div class="form-control fade-right-item">
+                            <input type="email" name="email" required autocomplete="off">
+                            <label data-text="Email"></label>
+                        </div>
+
+                        <div class="form-control fade-right-item">
+                            <textarea name="message" rows="4" required autocomplete="off"></textarea>
+                            <label data-text="Message"></label>
+                        </div>
+
+                        <button type="submit" class="cn-submit fade-bottom-item">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast notification stack — floats above every section -->
+    <div id="cn-toast-stack" aria-live="polite"></div>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════════════ -->
+    <footer id="site-footer">
+        <div class="ftr-top">
+
+            <!-- Brand -->
+            <div class="ftr-brand fade-left-item">
+                <div class="ftr-logo">
+                    <img class="ftr-logo-mark" src="./static/img/logo.png" alt="Yash Chaurasia">
+                </div>
+                <p class="ftr-name">Yash<br>&nbsp;&nbsp;Chaurasia</p>
+                <p class="ftr-role">Frontend Developer &amp; UI Designer — building bold, expressive web experiences.
+                </p>
+
+                <a class="ftr-email" href="https://mail.google.com/mail/?view=cm&fs=1&to=xukyosho@gmail.com"
+                    target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope"></i> xukyosho@gmail.com
+                </a>
+
+                <div class="ftr-socials">
+                    <a class="ftr-social" href="https://instagram.com/yashc.exe" target="_blank"
+                        rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a class="ftr-social" href="https://github.com/YashChaurasia01" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a class="ftr-social" href="https://linkedin.com/in/yashchaurasia01" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a class="ftr-social" href="https://mail.google.com/mail/?view=cm&fs=1&to=xukyosho@gmail.com"
+                        target="_blank" rel="noopener noreferrer" aria-label="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Site navigation -->
+            <div class="ftr-col fade-right-item">
+                <h4>Navigate</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#resources">Resource Vault</a></li>
+                    <li><a href="#working-style">Working Style</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Project links -->
+            <div class="ftr-col fade-left-item">
+                <h4>Projects Links</h4>
+                <ul>
+                    <li><a href="https://deepsearch-ssn5.onrender.com" target="_blank"
+                            rel="noopener noreferrer">DeepSearch — CBIR</a></li>
+                    <li><a href="https://cropcure-home.vercel.app" target="_blank"
+                            rel="noopener noreferrer">CropCure</a></li>
+                    <li><a href="https://calculuspro.vercel.app" target="_blank"
+                            rel="noopener noreferrer">CalculusPro</a></li>
+                    <li><a href="https://partsdrive.in" target="_blank" rel="noopener noreferrer">Parts Drive India</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Resource links -->
+            <div class="ftr-col fade-right-item">
+                <h4>Resource Vault</h4>
+                <ul>
+                    <li><a href="./templates/Lenis.html">Lenis Smooth Scroll</a></li>
+                    <li><a href="./templates/Resources.html">Ultimate Resource Library</a></li>
+                    <li><a href="./templates/Chinese.html">Chinese Corner Vault</a></li>
+                    <li><a href="https://calculuspro.vercel.app" target="_blank" rel="noopener noreferrer">Calculus
+                            Pro</a></li>
+                </ul>
+                <span class="ftr-made"><img src="./static/img/sign.png" alt="Yash Chaurasia"></span>
+            </div>
+
+        </div>
+
+        <!-- Text Reveal -->
+        <div class="ftr-reveal" data-word="Thank you">
+            <div class="ftr-reveal-track"></div>
+        </div>
+
+        <div class="ftr-bottom fade-bottom-item">
+            <span>&copy; <span id="ftr-year">2026</span> Yash Chaurasia. All rights reserved.<br>Made with <i
+                    class="fa-solid fa-heart"></i> by <span id="ftr-signature">Natsu</span>.</span>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+        LENIS SCRIPT
+      ============================================================ -->
+
+    <script src="./static/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- ============================================================
+    CONTACT + TOAST
+    Using CDN script tag as requested (not npm/import)
+    ============================================================ -->
+    <script>
+        const ftrYear = document.getElementById('ftr-year');
+        if (ftrYear) ftrYear.textContent = new Date().getFullYear();
+    </script>
+    <script>
+        document.querySelectorAll('.proj-card.pc-link, .rt-link').forEach(card => {
+            card.addEventListener('click', function (e) {
+                // Don't trigger if user clicked a real link or button
+                if (e.target.closest('a') || e.target.closest('button')) return;
+                const href = card.dataset.href;
+                if (href) window.location.href = href;
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("scroll", function () {
+            // Select all elements that should fade in
+            var fadeElements = document.querySelectorAll(
+                ".fade-left-item, .fade-right-item, .fade-bottom-item"
+            );
+
+            fadeElements.forEach(function (element) {
+                var rect = element.getBoundingClientRect();
+
+                // Check if the element is in the viewport (even partially)
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    element.classList.add("active");
+                } else {
+                    // Remove the active class if you want the animation to re-trigger on scroll
+                    element.classList.remove("active");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
