@@ -1,31 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/projects/deepsearch", "destination": "/templates/projects/3.html" },
-    { "source": "/projects/cropcure", "destination": "/templates/projects/1.html" },
-    { "source": "/projects/calculuspro", "destination": "/templates/projects/2.html" },
-    { "source": "/projects/partsdrive", "destination": "/templates/projects/4.html" },
-    { "source": "/resources/lenis", "destination": "/templates/Lenis.html" },
-    { "source": "/resources/library", "destination": "/templates/Resources.html" },
-    { "source": "/resources/chinese-corner", "destination": "/templates/Chinese.html" },
-    { "source": "/resume", "destination": "/static/Downloads/Resume%202026.pdf" },
-    { "source": "/cv", "destination": "/static/Downloads/Yash%20Chaurasia%20CV.pdf" }
-  ],
-  "redirects": [
-    { "source": "/templates/Resources.html", "destination": "/resources/library", "permanent": true },
-    { "source": "/templates/Resources", "destination": "/resources/library", "permanent": true },
-    { "source": "/templates/Lenis.html", "destination": "/resources/lenis", "permanent": true },
-    { "source": "/templates/Lenis", "destination": "/resources/lenis", "permanent": true },
-    { "source": "/templates/Chinese.html", "destination": "/resources/chinese-corner", "permanent": true },
-    { "source": "/templates/Chinese", "destination": "/resources/chinese-corner", "permanent": true },
-    { "source": "/templates/projects/1.html", "destination": "/projects/cropcure", "permanent": true },
-    { "source": "/templates/projects/1", "destination": "/projects/cropcure", "permanent": true },
-    { "source": "/templates/projects/2.html", "destination": "/projects/calculuspro", "permanent": true },
-    { "source": "/templates/projects/2", "destination": "/projects/calculuspro", "permanent": true },
-    { "source": "/templates/projects/3.html", "destination": "/projects/deepsearch", "permanent": true },
-    { "source": "/templates/projects/3", "destination": "/projects/deepsearch", "permanent": true },
-    { "source": "/templates/projects/4.html", "destination": "/projects/partsdrive", "permanent": true },
-    { "source": "/templates/projects/4", "destination": "/projects/partsdrive", "permanent": true }
-  ]
+  "trailingSlash": false
 }
