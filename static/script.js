@@ -687,35 +687,37 @@ document.addEventListener("DOMContentLoaded", () => {
   let innerCurrent = 0;
   const LERP = 0.03;
 
-  container.addEventListener(
-    "wheel",
-    (e) => {
-      e.preventDefault();
+  if (IS_DESKTOP) {
+    container.addEventListener(
+      "wheel",
+      (e) => {
+        e.preventDefault();
 
-      const maxScroll = container.scrollHeight - container.clientHeight;
-      const atTop = innerTarget <= 0;
-      const atBottom = innerTarget >= maxScroll - 2;
-      const goingUp = e.deltaY < 0;
-      const goingDown = e.deltaY > 0;
+        const maxScroll = container.scrollHeight - container.clientHeight;
+        const atTop = innerTarget <= 0;
+        const atBottom = innerTarget >= maxScroll - 2;
+        const goingUp = e.deltaY < 0;
+        const goingDown = e.deltaY > 0;
 
-      if ((atTop && goingUp) || (atBottom && goingDown)) {
-        if (lenis)
-          lenis.scrollTo(lenis.targetScroll + e.deltaY * 3, { lerp: 0.03 });
-        return;
-      }
+        if ((atTop && goingUp) || (atBottom && goingDown)) {
+          if (lenis)
+            lenis.scrollTo(lenis.targetScroll + e.deltaY * 3, { lerp: 0.03 });
+          return;
+        }
 
-      innerTarget = Math.min(Math.max(innerTarget + e.deltaY, 0), maxScroll);
-    },
-    { passive: false },
-  );
+        innerTarget = Math.min(Math.max(innerTarget + e.deltaY, 0), maxScroll);
+      },
+      { passive: false },
+    );
 
-  function lerpTick() {
-    innerCurrent += (innerTarget - innerCurrent) * LERP;
-    if (Math.abs(innerTarget - innerCurrent) < 0.1) innerCurrent = innerTarget;
-    container.scrollTop = innerCurrent;
+    function lerpTick() {
+      innerCurrent += (innerTarget - innerCurrent) * LERP;
+      if (Math.abs(innerTarget - innerCurrent) < 0.1) innerCurrent = innerTarget;
+      container.scrollTop = innerCurrent;
+      requestAnimationFrame(lerpTick);
+    }
     requestAnimationFrame(lerpTick);
   }
-  requestAnimationFrame(lerpTick);
 
   /* ── Click nav buttons → scroll to panel ─────────────── */
   navBtns.forEach((btn) => {
@@ -723,7 +725,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.getElementById(btn.dataset.target);
       if (!target) return;
       const maxScroll = container.scrollHeight - container.clientHeight;
-      innerTarget = Math.min(Math.max(target.offsetTop - 32, 0), maxScroll);
+      const dest = Math.min(Math.max(target.offsetTop - 32, 0), maxScroll);
+      if (IS_DESKTOP) {
+        innerTarget = dest;
+      } else {
+        container.scrollTo({ top: dest, behavior: "smooth" });
+      }
     });
   });
 });

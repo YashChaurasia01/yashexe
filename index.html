@@ -1134,10 +1134,14 @@
         </div>
 
         <div class="ftr-bottom fade-bottom-item">
-            <span>&copy; <span id="ftr-year">2026</span> Yash Chaurasia. All rights reserved.<br>Made with <i
+            <span>&copy; <span id="ftr-year"></span> Yash Chaurasia. All rights reserved.<br>Made with <i
                     class="fa-solid fa-heart"></i> by <span id="ftr-signature">Natsu</span>.</span>
         </div>
     </footer>
+
+    <script>
+        document.getElementById("ftr-year").textContent = new Date().getFullYear();
+    </script>
 
     <!-- ============================================================
         LENIS SCRIPT
