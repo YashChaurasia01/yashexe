@@ -3,7 +3,7 @@
     --bg: #F9F6EE;
     --txt: #000;
     --gtxt: #0f0f0fd4;
-    --homebg: url("./img/light.png");
+    --homebg: url("./img/light.webp");
     --selection: #debefa;
 
     /* ===== Accent Reds ===== */
@@ -55,7 +55,7 @@ body.dark-theme {
     --bg: #16161A;
     --txt: #F5F1EA;
     --gtxt: #C9C5BEcc;
-    --homebg: url("./img/dark.png");
+    --homebg: url("./img/dark.webp");
     --selection: #4c2b67;
 
     /* ===== Accent Reds (DB0037 family) ===== */
