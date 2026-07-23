@@ -1,10 +1,31 @@
-/* ============================================================
-   LENIS — Page smooth scroll
-   Only what's needed: lerp, multipliers, anchors, progress bar
-============================================================ */
-let lenis;
+"use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
+/* ============================================================
+   FEATURE DETECTION — single source of truth
+   Every section below reads IS_DESKTOP / IS_TOUCH instead of
+   re-deriving its own check, so no section can disagree with
+   another about what kind of device this is.
+============================================================ */
+const IS_TOUCH =
+  window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+
+const IS_DESKTOP =
+  !IS_TOUCH && window.matchMedia("(min-width: 1024px)").matches;
+
+/* ============================================================
+   SHARED STATE
+   `lenis` is used by several independent sections (workflow
+   scroll, footer reveal, about boundary handoff). Declaring it
+   once here — before anything else runs — means every section
+   can safely check `if (lenis)` without caring about init order.
+============================================================ */
+let lenis = null;
+let siteReady = false;
+
+/* ============================================================
+   LENIS — page smooth scroll (desktop feel, native on touch)
+============================================================ */
+function initLenis() {
   lenis = new Lenis({
     lerp: 0.03,
     wheelMultiplier: 0.5,
@@ -16,40 +37,30 @@ document.addEventListener("DOMContentLoaded", () => {
     autoResize: true,
   });
 
-  // Drive Lenis on GSAP ticker (keeps Lenis + ScrollTrigger in sync)
+  // Drive Lenis on GSAP's ticker (keeps Lenis + ScrollTrigger in sync)
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
   lenis.on("scroll", ScrollTrigger.update);
 
   // Top progress bar
   const progressLine = document.getElementById("top-progress-line");
-  lenis.on("scroll", (l) => {
-    if (progressLine) progressLine.style.width = l.progress * 100 + "%";
-  });
-});
+  if (progressLine) {
+    lenis.on("scroll", (l) => {
+      progressLine.style.width = l.progress * 100 + "%";
+    });
+  }
+}
 
 /* ============================================================
-   FEATURE DETECT — desktop-only effects
+   HERO — cursor reveal mask (desktop only — needs a real cursor)
 ============================================================ */
-const IS_DESKTOP =
-  window.matchMedia("(min-width:1024px)").matches &&
-  window.matchMedia("(pointer:fine)").matches &&
-  !("ontouchstart" in window) &&
-  !navigator.maxTouchPoints;
-
-/* ============================================================
-   HERO — cursor reveal mask
-============================================================ */
-if (IS_DESKTOP) {
-  const MASK_CFG = {
-    maskRadius: 290,
-    maskFeather: 80,
-    lagSpeed: 0.1,
-  };
+function initHeroMask() {
+  const MASK_CFG = { maskRadius: 290, maskFeather: 80, lagSpeed: 0.1 };
 
   const topLayer = document.getElementById("layer-top");
   const imgTop = document.getElementById("img-top");
   const heroEl = document.getElementById("hero");
+  if (!topLayer || !imgTop || !heroEl) return;
 
   let mouse = { x: innerWidth / 2, y: innerHeight / 2 };
   let msmooth = { x: innerWidth / 2, y: innerHeight / 2 };
@@ -96,12 +107,7 @@ if (IS_DESKTOP) {
     prevMsm.x = msmooth.x;
     prevMsm.y = msmooth.y;
 
-    const mask = buildMask(
-      msmooth.x,
-      msmooth.y,
-      targetRadius,
-      MASK_CFG.maskFeather,
-    );
+    const mask = buildMask(msmooth.x, msmooth.y, targetRadius, MASK_CFG.maskFeather);
     topLayer.style.webkitMaskImage = mask;
     topLayer.style.maskImage = mask;
 
@@ -126,7 +132,7 @@ if (IS_DESKTOP) {
 /* ============================================================
    NAVIGATION — staggered side menu
 ============================================================ */
-document.addEventListener("DOMContentLoaded", () => {
+function initStaggeredMenu() {
   const NAV_CFG = {
     position: "right",
     colors: ["#BC002D", "#ffffffff", "#032b22"],
@@ -160,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const socialsSection = document.getElementById("sm-socials-section");
   const socialsList = document.getElementById("sm-socials-list");
   const darkToggle = document.getElementById("dark-theme-toggle");
+  if (!wrapper || !toggleBtn || !panel) return;
 
   let isOpen = false,
     isBusy = false;
@@ -172,10 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Build DOM
   wrapper.setAttribute("data-position", NAV_CFG.position);
-  panelList.setAttribute(
-    "data-numbering",
-    NAV_CFG.displayItemNumbering ? "true" : "false",
-  );
+  panelList.setAttribute("data-numbering", NAV_CFG.displayItemNumbering ? "true" : "false");
 
   preLayersCon.innerHTML = "";
   preLayerEls = NAV_CFG.colors.slice(0, 4).map((color) => {
@@ -219,9 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (openTL) openTL.kill();
     const itemEls = Array.from(panel.querySelectorAll(".sm-panel-itemLabel"));
     const numberEls = Array.from(
-      panel.querySelectorAll(
-        '.sm-panel-list[data-numbering="true"] .sm-panel-item',
-      ),
+      panel.querySelectorAll('.sm-panel-list[data-numbering="true"] .sm-panel-item'),
     );
     const socialTitle = panel.querySelector(".sm-socials-title");
     const socialLinks = Array.from(panel.querySelectorAll(".sm-socials-link"));
@@ -237,54 +239,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const off = 100;
 
     preLayerEls.forEach((el, i) => {
-      tl.fromTo(
-        el,
-        { xPercent: off },
-        { xPercent: 0, duration: 0.45, ease: "power4.out" },
-        i * 0.06,
-      );
+      tl.fromTo(el, { xPercent: off }, { xPercent: 0, duration: 0.45, ease: "power4.out" }, i * 0.06);
     });
     const t0 = preLayerEls.length * 0.06 + 0.02;
-    tl.fromTo(
-      panel,
-      { xPercent: off },
-      { xPercent: 0, duration: 0.6, ease: "power4.out" },
-      t0,
-    );
+    tl.fromTo(panel, { xPercent: off }, { xPercent: 0, duration: 0.6, ease: "power4.out" }, t0);
     tl.to(icon, { rotate: 225, duration: 0.6, ease: "power3.out" }, t0);
     tl.to(textInner, { yPercent: -50, duration: 0.4, ease: "power3.out" }, t0);
-    tl.to(
-      itemEls,
-      {
-        yPercent: 0,
-        rotate: 0,
-        duration: 0.75,
-        ease: "power4.out",
-        stagger: 0.07,
-      },
-      t0 + 0.15,
-    );
-    tl.to(
-      numberEls,
-      {
-        "--sm-num-opacity": 1,
-        duration: 0.5,
-        ease: "power2.out",
-        stagger: 0.07,
-      },
-      t0 + 0.2,
-    );
-    tl.to(
-      darkRow,
-      { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
-      t0 + 0.35,
-    );
+    tl.to(itemEls, { yPercent: 0, rotate: 0, duration: 0.75, ease: "power4.out", stagger: 0.07 }, t0 + 0.15);
+    tl.to(numberEls, { "--sm-num-opacity": 1, duration: 0.5, ease: "power2.out", stagger: 0.07 }, t0 + 0.2);
+    tl.to(darkRow, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, t0 + 0.35);
     tl.to(socialTitle, { opacity: 1, duration: 0.4 }, t0 + 0.4);
-    tl.to(
-      socialLinks,
-      { y: 0, opacity: 1, duration: 0.4, stagger: 0.05 },
-      t0 + 0.45,
-    );
+    tl.to(socialLinks, { y: 0, opacity: 1, duration: 0.4, stagger: 0.05 }, t0 + 0.45);
 
     openTL = tl;
     return tl;
@@ -305,9 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
         s.textContent = "Close";
         textInner.appendChild(s);
       }
-      buildOpenTL()
-        .eventCallback("onComplete", () => (isBusy = false))
-        .play(0);
+      buildOpenTL().eventCallback("onComplete", () => (isBusy = false)).play(0);
     } else {
       wrapper.removeAttribute("data-open");
       toggleBtn.setAttribute("aria-expanded", "false");
@@ -327,11 +290,10 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleBtn.addEventListener("click", toggleMenu);
   if (NAV_CFG.closeOnClickAway) {
     document.addEventListener("mousedown", (e) => {
-      if (isOpen && !panel.contains(e.target) && !toggleBtn.contains(e.target))
-        toggleMenu();
+      if (isOpen && !panel.contains(e.target) && !toggleBtn.contains(e.target)) toggleMenu();
     });
   }
-});
+}
 
 /* ============================================================
    DECRYPT TEXT — glitch/Japanese shuffle reveal
@@ -343,16 +305,6 @@ const JAPANESE_CHARS =
   "겨녀뎌려며벼셔여져쳐켜텨펴혀";
 
 const SHUFFLE_ROUNDS = 3;
-let siteReady = false;
-
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    siteReady = true;
-    document.querySelectorAll(".decrypt-text").forEach((el) => {
-      if (el.__isInView && el.__startDecrypt) el.__startDecrypt();
-    });
-  }, 300);
-});
 
 function randChar() {
   return JAPANESE_CHARS[Math.floor(Math.random() * JAPANESE_CHARS.length)];
@@ -374,19 +326,13 @@ function setupCharDecrypt(el) {
   const nodes = [];
   tpl.content.childNodes.forEach((n) => {
     if (n.nodeType === Node.TEXT_NODE)
-      Array.from(n.textContent).forEach((c) =>
-        nodes.push({ type: "char", value: c }),
-      );
+      Array.from(n.textContent).forEach((c) => nodes.push({ type: "char", value: c }));
     else if (n.nodeName === "BR") nodes.push({ type: "br" });
-    else if (n.nodeType === Node.ELEMENT_NODE)
-      nodes.push({ type: "element", value: n.cloneNode(true) });
+    else if (n.nodeType === Node.ELEMENT_NODE) nodes.push({ type: "element", value: n.cloneNode(true) });
   });
 
   const state = nodes.map((n) => ({
-    shuffleCount:
-      n.type === "char" && n.value !== " " ?
-        SHUFFLE_ROUNDS + Math.floor(Math.random() * 3)
-        : 0,
+    shuffleCount: n.type === "char" && n.value !== " " ? SHUFFLE_ROUNDS + Math.floor(Math.random() * 3) : 0,
     revealed: false,
     current: n.type === "char" && n.value !== " " ? randChar() : n.value,
   }));
@@ -420,8 +366,7 @@ function setupCharDecrypt(el) {
 
   function shuffleTick() {
     nodes.forEach((n, i) => {
-      if (n.type === "char" && n.value !== " " && !state[i].revealed)
-        state[i].current = randChar();
+      if (n.type === "char" && n.value !== " " && !state[i].revealed) state[i].current = randChar();
     });
     render();
   }
@@ -451,12 +396,8 @@ function setupCharDecrypt(el) {
     cursor = 0;
     nodes.forEach((n, i) => {
       state[i].revealed = false;
-      state[i].shuffleCount =
-        n.type === "char" && n.value !== " " ?
-          SHUFFLE_ROUNDS + Math.floor(Math.random() * 3)
-          : 0;
-      state[i].current =
-        n.type === "char" && n.value !== " " ? randChar() : n.value;
+      state[i].shuffleCount = n.type === "char" && n.value !== " " ? SHUFFLE_ROUNDS + Math.floor(Math.random() * 3) : 0;
+      state[i].current = n.type === "char" && n.value !== " " ? randChar() : n.value;
     });
     render();
     sI = setInterval(shuffleTick, shuffleSpeed);
@@ -469,8 +410,7 @@ function setupCharDecrypt(el) {
     cursor = 0;
     nodes.forEach((n, i) => {
       state[i].revealed = false;
-      state[i].current =
-        n.type === "char" && n.value !== " " ? randChar() : n.value;
+      state[i].current = n.type === "char" && n.value !== " " ? randChar() : n.value;
     });
     render();
   }
@@ -492,16 +432,13 @@ function setupWordDecrypt(el) {
     if (n.nodeType === Node.TEXT_NODE) {
       n.textContent.split(/(\s+)/).forEach((w) => {
         if (!w) return;
-        /\s+/.test(w) ?
-          words.push({ type: "space", value: w })
-          : words.push({ type: "word", value: w });
+        /\s+/.test(w) ? words.push({ type: "space", value: w }) : words.push({ type: "word", value: w });
       });
     } else if (n.nodeName === "BR") words.push({ type: "br" });
   });
 
   const state = words.map((w) => ({
-    shuffleCount:
-      w.type === "word" ? SHUFFLE_ROUNDS + Math.floor(Math.random() * 3) : 0,
+    shuffleCount: w.type === "word" ? SHUFFLE_ROUNDS + Math.floor(Math.random() * 3) : 0,
     revealed: false,
     current: w.type === "word" ? randWord(w.value.length) : w.value,
   }));
@@ -534,8 +471,7 @@ function setupWordDecrypt(el) {
 
   function shuffleTick() {
     words.forEach((w, i) => {
-      if (w.type === "word" && !state[i].revealed)
-        state[i].current = randWord(w.value.length);
+      if (w.type === "word" && !state[i].revealed) state[i].current = randWord(w.value.length);
     });
     render();
   }
@@ -565,8 +501,7 @@ function setupWordDecrypt(el) {
     cursor = 0;
     words.forEach((w, i) => {
       state[i].revealed = false;
-      state[i].shuffleCount =
-        w.type === "word" ? SHUFFLE_ROUNDS + Math.floor(Math.random() * 3) : 0;
+      state[i].shuffleCount = w.type === "word" ? SHUFFLE_ROUNDS + Math.floor(Math.random() * 3) : 0;
       state[i].current = w.type === "word" ? randWord(w.value.length) : w.value;
     });
     render();
@@ -589,24 +524,25 @@ function setupWordDecrypt(el) {
   return { start, reset };
 }
 
-document.querySelectorAll(".decrypt-text").forEach((el) => {
-  const ctrl =
-    el.dataset.mode === "words" ? setupWordDecrypt(el) : setupCharDecrypt(el);
-  el.__startDecrypt = ctrl.start;
-  el.__resetDecrypt = ctrl.reset;
-  el.__isInView = false;
+function initDecryptText() {
+  document.querySelectorAll(".decrypt-text").forEach((el) => {
+    const ctrl = el.dataset.mode === "words" ? setupWordDecrypt(el) : setupCharDecrypt(el);
+    el.__startDecrypt = ctrl.start;
+    el.__resetDecrypt = ctrl.reset;
+    el.__isInView = false;
 
-  new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        el.__isInView = entry.isIntersecting;
-        if (!siteReady) return;
-        entry.isIntersecting ? ctrl.start() : ctrl.reset();
-      });
-    },
-    { threshold: 0.35 },
-  ).observe(el);
-});
+    new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          el.__isInView = entry.isIntersecting;
+          if (!siteReady) return;
+          entry.isIntersecting ? ctrl.start() : ctrl.reset();
+        });
+      },
+      { threshold: 0.35 },
+    ).observe(el);
+  });
+}
 
 /* ============================================================
    ABOUT — scroll-spy + sticky nav + boundary handoff
@@ -615,18 +551,45 @@ document.querySelectorAll(".decrypt-text").forEach((el) => {
    Strategy:
    - .about-content has overflow-y: scroll (native, no Lenis)
    - data-lenis-prevent stops outer Lenis touching it
-   - A native wheel listener on the container checks boundaries:
-       • inner has room  → let container scroll natively (do nothing)
-       • at boundary     → preventDefault + push delta to outer lenis
-   - A rAF loop reads container.scrollTop every frame to update
-     the vertical progress bar and scroll-spy
+   - On desktop only: a wheel listener drives a custom lerp
+     scroll, and hands off to the outer Lenis at the boundaries.
+   - On touch devices: none of the desktop-only listeners attach
+     at all, so native touch scrolling is never fought or reset.
+   - The progress bar / scroll-spy read container.scrollTop
+     directly, so they work identically on both paths — and are
+     now driven by scroll/resize events (rAF-throttled) instead
+     of an unconditional loop, so there's no needless per-frame
+     layout work fighting the browser's own scroll physics.
 ============================================================ */
-document.addEventListener("DOMContentLoaded", () => {
+function initAboutScrollSpy() {
+  const navEl = document.querySelector(".about-nav");
   const navBtns = Array.from(document.querySelectorAll(".about-nav .nav-btn"));
   const panels = Array.from(document.querySelectorAll(".content-panel"));
   const container = document.querySelector(".about-content");
 
   if (!navBtns.length || !panels.length || !container) return;
+
+  /* ── Keep the active tab visible inside .about-nav itself ──
+     Works for both layouts: horizontal strip on mobile
+     (scrollLeft), vertical stack on desktop (scrollTop) —
+     it only acts if .about-nav is actually a scroll container. */
+  function scrollActiveTabIntoView(btn) {
+    if (!navEl || !btn) return;
+    const isRow = getComputedStyle(navEl).flexDirection === "row";
+
+    const navRect = navEl.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+
+    if (isRow) {
+      const offset = btnRect.left - navRect.left + navEl.scrollLeft;
+      const target = offset - navRect.width / 2 + btnRect.width / 2;
+      navEl.scrollTo({ left: target, behavior: "smooth" });
+    } else {
+      const offset = btnRect.top - navRect.top + navEl.scrollTop;
+      const target = offset - navRect.height / 2 + btnRect.height / 2;
+      navEl.scrollTo({ top: target, behavior: "smooth" });
+    }
+  }
 
   /* ── Build vertical progress bar ─────────────────────── */
   const progressBar = document.createElement("div");
@@ -634,7 +597,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressFill = document.createElement("div");
   progressFill.className = "about-scroll-fill";
   progressBar.appendChild(progressFill);
-  // Insert it as a sibling right after .about-content inside .about-body
   container.parentElement.appendChild(progressBar);
 
   /* ── Scroll-spy via IntersectionObserver ─────────────── */
@@ -649,45 +611,69 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.classList.add("active");
         navBtns.forEach((b) => b.classList.remove("active"));
         const btn = navBtns.find((b) => b.dataset.target === id);
-        if (btn) btn.classList.add("active");
+        if (btn) {
+          btn.classList.add("active");
+          scrollActiveTabIntoView(btn);
+        }
       });
     },
     { root: container, rootMargin: "-30% 0px -30% 0px", threshold: 0 },
   );
-
   panels.forEach((p) => spy.observe(p));
 
-  /* ── rAF loop: update progress bar from scrollTop ────── */
+  /* ── Progress bar: event-driven, rAF-throttled ───────── */
   const aboutBarQuery = window.matchMedia("(max-width: 768px)");
+  let progressQueued = false;
 
   function updateProgress() {
+    progressQueued = false;
     const max = container.scrollHeight - container.clientHeight;
-    if (max > 0) {
-      const pct = (container.scrollTop / max) * 100 + "%";
-      if (aboutBarQuery.matches) {
-        progressFill.style.width = pct;
-        progressFill.style.height = "100%";
-      } else {
-        progressFill.style.height = pct;
-        progressFill.style.width = "100%";
-      }
+    if (max <= 0) return;
+    const pct = (container.scrollTop / max) * 100 + "%";
+    if (aboutBarQuery.matches) {
+      progressFill.style.width = pct;
+      progressFill.style.height = "100%";
+    } else {
+      progressFill.style.height = pct;
+      progressFill.style.width = "100%";
     }
+  }
+
+  function queueProgressUpdate() {
+    if (progressQueued) return;
+    progressQueued = true;
     requestAnimationFrame(updateProgress);
   }
-  requestAnimationFrame(updateProgress);
 
-  /* ── Boundary handoff to outer Lenis ─────────────────── 
-     passive:false lets us call preventDefault() to block
-     the browser's own scroll when inner has room.
-     At the boundary we let it propagate so outer Lenis
-     picks it up naturally — no manual lenis.scrollTo needed.
-  ─────────────────────────────────────────────────────── */
-  /* ── Inner scroll lerp (lerp = 0.03) ─────────────────── */
-  let innerTarget = 0;
-  let innerCurrent = 0;
-  const LERP = 0.03;
+  container.addEventListener("scroll", queueProgressUpdate, { passive: true });
+  window.addEventListener("resize", queueProgressUpdate);
+  queueProgressUpdate();
 
+  /* ── Desktop-only: custom wheel lerp + boundary handoff ── */
   if (IS_DESKTOP) {
+    let innerTarget = container.scrollTop;
+    let innerCurrent = innerTarget;
+    let lerpRunning = false;
+    const LERP = 0.03;
+
+    function lerpTick() {
+      innerCurrent += (innerTarget - innerCurrent) * LERP;
+      if (Math.abs(innerTarget - innerCurrent) < 0.1) innerCurrent = innerTarget;
+      container.scrollTop = innerCurrent;
+
+      if (innerCurrent !== innerTarget) {
+        requestAnimationFrame(lerpTick);
+      } else {
+        lerpRunning = false;
+      }
+    }
+
+    function ensureLerpRunning() {
+      if (lerpRunning) return;
+      lerpRunning = true;
+      requestAnimationFrame(lerpTick);
+    }
+
     container.addEventListener(
       "wheel",
       (e) => {
@@ -700,45 +686,44 @@ document.addEventListener("DOMContentLoaded", () => {
         const goingDown = e.deltaY > 0;
 
         if ((atTop && goingUp) || (atBottom && goingDown)) {
-          if (lenis)
-            lenis.scrollTo(lenis.targetScroll + e.deltaY * 3, { lerp: 0.03 });
+          if (lenis) lenis.scrollTo(lenis.targetScroll + e.deltaY * 3, { lerp: 0.03 });
           return;
         }
 
         innerTarget = Math.min(Math.max(innerTarget + e.deltaY, 0), maxScroll);
+        ensureLerpRunning();
       },
       { passive: false },
     );
 
-    function lerpTick() {
-      innerCurrent += (innerTarget - innerCurrent) * LERP;
-      if (Math.abs(innerTarget - innerCurrent) < 0.1) innerCurrent = innerTarget;
-      container.scrollTop = innerCurrent;
-      requestAnimationFrame(lerpTick);
-    }
-    requestAnimationFrame(lerpTick);
-  }
-
-  /* ── Click nav buttons → scroll to panel ─────────────── */
-  navBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const target = document.getElementById(btn.dataset.target);
-      if (!target) return;
-      const maxScroll = container.scrollHeight - container.clientHeight;
-      const dest = Math.min(Math.max(target.offsetTop - 32, 0), maxScroll);
-      if (IS_DESKTOP) {
-        innerTarget = dest;
-      } else {
-        container.scrollTo({ top: dest, behavior: "smooth" });
-      }
+    /* ── Click nav buttons → scroll to panel (desktop path) ── */
+    navBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        const maxScroll = container.scrollHeight - container.clientHeight;
+        innerTarget = Math.min(Math.max(target.offsetTop - 32, 0), maxScroll);
+        ensureLerpRunning();
+      });
     });
-  });
-});
+  } else {
+    /* ── Click nav buttons → scroll to panel (touch path) ── */
+    navBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        const maxScroll = container.scrollHeight - container.clientHeight;
+        const dest = Math.min(Math.max(target.offsetTop - 32, 0), maxScroll);
+        container.scrollTo({ top: dest, behavior: "smooth" });
+      });
+    });
+  }
+}
 
 /* ============================================================
    WORKFLOW SECTION — horizontal scrolling + progress bar
-   ============================================================ */
-(function () {
+============================================================ */
+function initWorkflowScroll() {
   const wsSection = document.getElementById("working-style");
   const wsTrigger = document.getElementById("ws-trigger");
   const wsSticky = document.getElementById("ws-sticky");
@@ -751,13 +736,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sectionRect = wsSection.getBoundingClientRect();
     const stickyRect = wsSticky.getBoundingClientRect();
 
-    // Distance from the section's top to #ws-trigger's top. Both rects move
-    // together as you scroll, so subtracting them cancels out the scroll
-    // offset and leaves a stable distance — no offsetTop/sticky quirks.
-    const pinStart = wsTrigger
-      ? wsTrigger.getBoundingClientRect().top - sectionRect.top
-      : 0;
-
+    const pinStart = wsTrigger ? wsTrigger.getBoundingClientRect().top - sectionRect.top : 0;
     const totalScrollRange = sectionRect.height - stickyRect.height - pinStart;
     if (totalScrollRange <= 0) return;
 
@@ -766,12 +745,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const maxOffset = wsTrack.scrollWidth - stickyRect.width;
     wsTrack.style.transform = `translateX(${-progress * maxOffset}px)`;
-    if (wsBar) {
-      wsBar.style.width = `${progress * 100}%`;
-    }
+    if (wsBar) wsBar.style.width = `${progress * 100}%`;
   }
 
-  if (typeof lenis !== "undefined" && lenis) {
+  if (lenis) {
     lenis.on("scroll", updateWS);
   } else {
     window.addEventListener("scroll", updateWS, { passive: true });
@@ -779,36 +756,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateWS();
   window.addEventListener("resize", updateWS);
-})();
+}
 
-
-/* ══════════════════════════════════════════════════════════════
-   CONTACT + TOAST — load after script.js, before </body>
-   ══════════════════════════════════════════════════════════════ */
-
-document.addEventListener('DOMContentLoaded', () => {
-
-  /* ---------- 1. Build the letter-by-letter floating labels ---------- */
-  document.querySelectorAll('.form-control label[data-text]').forEach(label => {
+/* ============================================================
+   CONTACT + TOAST
+============================================================ */
+function initContactForm() {
+  /* ---------- 1. Letter-by-letter floating labels ---------- */
+  document.querySelectorAll(".form-control label[data-text]").forEach((label) => {
     const text = label.dataset.text;
-    label.innerHTML = '';
+    label.innerHTML = "";
     [...text].forEach((ch, i) => {
-      const span = document.createElement('span');
-      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      const span = document.createElement("span");
+      span.textContent = ch === " " ? "\u00A0" : ch;
       span.style.transitionDelay = `${i * 25}ms`;
       label.appendChild(span);
     });
   });
 
-  /* ---------- 2. Toast notifications (Apple-style dot → pill) ---------- */
-  const stack = document.getElementById('cn-toast-stack');
+  /* ---------- 2. Toast notifications ---------- */
+  const stack = document.getElementById("cn-toast-stack");
 
   function measureWidth(innerHTML) {
-    const probe = document.createElement('div');
-    probe.className = 'cn-toast cn-show';
-    probe.style.position = 'fixed';
-    probe.style.visibility = 'hidden';
-    probe.style.width = 'auto';
+    const probe = document.createElement("div");
+    probe.className = "cn-toast cn-show";
+    probe.style.position = "fixed";
+    probe.style.visibility = "hidden";
+    probe.style.width = "auto";
     probe.innerHTML = innerHTML;
     document.body.appendChild(probe);
     const w = probe.offsetWidth;
@@ -816,87 +790,82 @@ document.addEventListener('DOMContentLoaded', () => {
     return w;
   }
 
-  window.showToast = function (message, type = 'success') {
-    const icon = type === 'success' ? 'fa-check' : 'fa-triangle-exclamation';
+  window.showToast = function (message, type = "success") {
+    if (!stack) return;
+    const icon = type === "success" ? "fa-check" : "fa-triangle-exclamation";
     const inner = `<span class="cn-toast-icon"><i class="fa-solid ${icon}"></i></span><span class="cn-toast-text">${message}</span>`;
 
-    const toast = document.createElement('div');
-    toast.className = `cn-toast${type === 'error' ? ' cn-error' : ''}`;
+    const toast = document.createElement("div");
+    toast.className = `cn-toast${type === "error" ? " cn-error" : ""}`;
     toast.innerHTML = inner;
     stack.appendChild(toast);
 
     const targetWidth = Math.min(measureWidth(inner) + 8, window.innerWidth * 0.86, 380);
 
-    // Force layout as a dot first, then expand.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         toast.style.width = `${Math.max(targetWidth, 44)}px`;
-        toast.classList.add('cn-show');
+        toast.classList.add("cn-show");
       });
     });
 
     setTimeout(() => {
-      toast.classList.add('cn-hide');
-      toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+      toast.classList.add("cn-hide");
+      toast.addEventListener("transitionend", () => toast.remove(), { once: true });
     }, 5000);
   };
 
-  /* ---------- 3. Web3Forms submit (no redirect / no default success page) ---------- */
-  const form = document.getElementById('cn-form');
+  /* ---------- 3. Web3Forms submit ---------- */
+  const form = document.getElementById("cn-form");
   if (!form) return;
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const submitBtn = form.querySelector('.cn-submit');
+    const submitBtn = form.querySelector(".cn-submit");
     submitBtn.disabled = true;
-    submitBtn.classList.add('sending');
+    submitBtn.classList.add("sending");
 
     const formData = new FormData(form);
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: formData
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
       });
       const data = await res.json();
 
       if (data.success) {
-        showToast('Message sent — thanks for reaching out!', 'success');
+        showToast("Message sent — thanks for reaching out!", "success");
         form.reset();
-        // Reset floating labels after programmatic clear
-        form.querySelectorAll('input, textarea').forEach(el => el.blur());
+        form.querySelectorAll("input, textarea").forEach((el) => el.blur());
       } else {
-        showToast(data.message || 'Something went wrong. Please try again.', 'error');
+        showToast(data.message || "Something went wrong. Please try again.", "error");
       }
     } catch (err) {
-      showToast('Network error — please try again.', 'error');
+      showToast("Network error — please try again.", "error");
     } finally {
       submitBtn.disabled = false;
-      submitBtn.classList.remove('sending');
+      submitBtn.classList.remove("sending");
     }
   });
-
-});
+}
 
 /* ============================================================
-   FOOTER TEXT REVEAL — rises up from under .ftr-bottom
-   as the user nears the true bottom of the page
+   FOOTER TEXT REVEAL
 ============================================================ */
-document.addEventListener("DOMContentLoaded", () => {
-  const REVEAL_CFG = {
-    triggerRange: 500, // px of scroll, before hitting the very bottom, over which the reveal completes
-  };
+function initFooterReveal() {
+  const REVEAL_CFG = { triggerRange: 500 };
 
-  document.querySelectorAll('.ftr-reveal').forEach(section => {
-    const track = section.querySelector('.ftr-reveal-track');
-    const word = section.dataset.word || 'TEXT';
+  document.querySelectorAll(".ftr-reveal").forEach((section) => {
+    const track = section.querySelector(".ftr-reveal-track");
+    const word = section.dataset.word || "TEXT";
     const letters = [];
 
-    word.split('').forEach(char => {
-      const el = document.createElement('span');
-      el.className = 'rev-letter';
-      el.textContent = char === ' ' ? '\u00A0' : char;
+    word.split("").forEach((char) => {
+      const el = document.createElement("span");
+      el.className = "rev-letter";
+      el.textContent = char === " " ? "\u00A0" : char;
       track.appendChild(el);
       letters.push(el);
     });
@@ -907,29 +876,48 @@ document.addEventListener("DOMContentLoaded", () => {
       const scrollY = window.scrollY;
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const distFromBottom = Math.max(0, maxScroll - scrollY);
-
-      // 0 = far from bottom (hidden), 1 = fully at bottom (revealed)
       const p = 1 - Math.min(1, distFromBottom / REVEAL_CFG.triggerRange);
 
       letters.forEach((el, i) => {
         const stagger = N > 1 ? i / (N - 1) : 0;
-        // each letter has its own arrival point so they don't all land at once
         const arrivalStart = stagger * 0.5;
-        const localP = Math.max(0, Math.min(1,
-          (p - arrivalStart) / (1 - arrivalStart + 0.001)
-        ));
-        // 100% = fully below the box (hidden), 0% = landed in place
+        const localP = Math.max(0, Math.min(1, (p - arrivalStart) / (1 - arrivalStart + 0.001)));
         const currentDrop = 120 * (1 - localP);
         el.style.transform = `translateY(${currentDrop}%)`;
       });
     }
 
-    if (typeof lenis !== "undefined" && lenis) {
-      lenis.on('scroll', update);
+    if (lenis) {
+      lenis.on("scroll", update);
     } else {
-      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener("scroll", update, { passive: true });
     }
-    window.addEventListener('resize', update);
+    window.addEventListener("resize", update);
     update();
   });
+}
+
+/* ============================================================
+   ORCHESTRATION — one entry point, fixed order.
+   Lenis is initialized first so every later section can safely
+   read the shared `lenis` variable without racing its creation.
+============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  initLenis();
+  if (IS_DESKTOP) initHeroMask();
+  initStaggeredMenu();
+  initDecryptText();
+  initAboutScrollSpy();
+  initWorkflowScroll();
+  initContactForm();
+  initFooterReveal();
+});
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    siteReady = true;
+    document.querySelectorAll(".decrypt-text").forEach((el) => {
+      if (el.__isInView && el.__startDecrypt) el.__startDecrypt();
+    });
+  }, 300);
 });
