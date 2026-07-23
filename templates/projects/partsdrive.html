@@ -1,4 +1,4 @@
-<!-- This is 2.html  -->
+<!-- This is 3.html  -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,22 +50,14 @@
         }
 
         :root {
-            --bg: #0a0904;
-            /* near-black, slight warm tint */
-            --surface: #121006;
-            /* card/panel surface */
-            --border: rgba(255, 255, 255, 0.07);
-            /* unchanged — stays neutral */
-            --accent: #f2ff1a;
-            /* primary neon yellow */
-            --accent2: #ffcc00;
-            /* secondary — deeper amber-yellow */
+            --bg: #0a0005;
+            --surface: #12000a;
+            --border: rgba(255, 0, 102, 0.08);
+            --accent: #FF0066;
+            --accent2: #ff3d9a;
             --text: #e8e8e8;
-            /* unchanged */
             --muted: #555;
-            /* unchanged */
             --white: #ffffff;
-            /* unchanged */
             --fd: 'PublicaPlay', 'Arial Black', sans-serif;
             --fb: 'DM Sans', 'Inter', sans-serif;
             --ease: cubic-bezier(0.65, 0, 0.076, 1);
@@ -331,7 +323,7 @@
         #hero-bg {
             position: absolute;
             inset: 0;
-            background: url('https://i.pinimg.com/1200x/de/43/55/de43557e7c7fc391a31899fd513ff480.jpg') center/cover no-repeat;
+            background: url('https://i.pinimg.com/736x/70/42/8c/70428cecb13f2e3bd3a8bcc3d67728bf.jpg') center/cover no-repeat;
             filter: brightness(0.22);
             transform: scale(1.05);
             transition: transform 8s ease;
@@ -397,6 +389,15 @@
             font-weight: 500;
         }
 
+        .hero-meta a {
+            color: var(--accent);
+            transition: 0.3s ease-in-out;
+        }
+
+        .hero-meta a:hover {
+            color: var(--accent2);
+        }
+
         /* ══════════════════════════════
        SECTION LABEL
     ══════════════════════════════ */
@@ -421,7 +422,7 @@
         #grid-section {
             position: relative;
             height: 600vh;
-            background: radial-gradient(circle, rgb(53, 36, 0) 0%, rgba(102, 58, 1, 0.505) 50%, hsla(0, 0%, 11%, 1) 100%);
+            background: radial-gradient(circle, rgb(40, 8, 66) 0%, rgba(75, 10, 110, 0.5) 50%, hsla(280, 30%, 6%, 1) 100%);
         }
 
         #grid-sticky {
@@ -509,6 +510,18 @@
         .about-body p strong {
             color: var(--text);
             font-weight: 500;
+        }
+
+        .disclaimer {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 18px 24px;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            line-height: 1.7;
+            color: var(--muted);
         }
 
         /* stats */
@@ -1087,234 +1100,201 @@
 
 <body>
 
-    <div id="pt">
-        <div id="pt-panel"></div>
-    </div>
+<div id="pt">
+    <div id="pt-panel"></div>
+</div>
 
-    <!-- NAV -->
-    <nav id="nav">
-        <a id="logo" href="../../index.html#projects">
-            <i class="fa-solid fa-shapes"></i>
-            To Origin
-        </a>
-        <div id="socials">
-            <a class="social-btn" href="https://instagram.com/yashc.exe" target="_blank" rel="noopener noreferrer"
-                aria-label="Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a class="social-btn" href="https://github.com/YashChaurasia01" target="_blank" rel="noopener noreferrer"
-                aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-            </a>
-            <a class="social-btn" href="https://linkedin.com/in/yashchaurasia01" target="_blank"
-                rel="noopener noreferrer" aria-label="LinkedIn">
-                <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            <a class="social-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=xukyosho@gmail.com"
-                target="_blank" rel="noopener noreferrer" aria-label="Email">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
+<nav id="nav">
+    <a id="logo" href="../../index.html#projects">
+        <i class="fa-solid fa-shapes"></i>
+        To Origin
+    </a>
+    <div id="socials">
+        <a class="social-btn" href="https://instagram.com/yashc.exe" target="_blank" rel="noopener noreferrer"
+            aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a class="social-btn" href="https://github.com/YashChaurasia01" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a class="social-btn" href="https://linkedin.com/in/yashchaurasia01" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a class="social-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=xukyosho@gmail.com"
+            target="_blank" rel="noopener noreferrer" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+</nav>
+
+<div id="fixed-bottom">
+    <button class="pill-btn" onclick="window.location.href='../../index.html#projects'">
+        <span class="circle"><span class="icon arrow"></span></span>
+        <span class="btn-text">Back to home</span>
+    </button>
+    <button class="pill-btn" onclick="window.open('https://partsdrive.in','_blank')">
+        <span class="circle"><span class="icon arrow"></span></span>
+        <span class="btn-text">&nbsp;Visit Partsdrive</span>
+    </button>
+    <button class="pill-btn" onclick="window.open('https://github.com/YashChaurasia01/PartsDriveIndia','_blank')">
+        <span class="circle"><span class="icon arrow"></span></span>
+        <span class="btn-text">GitHub</span>
+    </button>
+</div>
+
+<section id="hero">
+    <div id="hero-bg"></div>
+    <p class="hero-eyebrow reveal">— Project Showcase</p>
+    <h1 class="hero-title reveal">
+        Parts<span>Drive</span>
+    </h1>
+    <p class="hero-sub reveal">
+        A dealership platform for new &amp; quality-tested used auto parts, built for Mitsubishi and luxury
+        cars — covering upholstery, customization, LED lighting, off-road gear, and full workshop services.
+    </p>
+    <div class="hero-meta">
+        <span>Year</span><strong>2024</strong>
+        <span>Role</span><strong>Design &amp; Development</strong>
+        <span>Category</span><strong>Automotive · Web App</strong>
+    </div>
+</section>
+
+<section id="grid-section">
+    <div id="grid-sticky">
+        <div id="grid">
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80&auto=format&fit=crop"
+                    alt="New Parts" loading="lazy" />
+                <span class="cell-label">New Parts</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80&auto=format&fit=crop"
+                    alt="Used Parts" loading="lazy" />
+                <span class="cell-label">Used Parts</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&q=80&auto=format&fit=crop"
+                    alt="Upholstery" loading="lazy" />
+                <span class="cell-label">Upholstery</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=1200&q=80&auto=format&fit=crop"
+                    alt="Customization" loading="lazy" />
+                <span class="cell-label">Customization</span>
+            </div>
+            <div class="grid-cell" id="zoom-source-cell">
+                <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&q=80&auto=format&fit=crop"
+                    alt="LED Lighting" loading="lazy" />
+                <span class="cell-label">LED Lighting</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1200&q=80&auto=format&fit=crop"
+                    alt="Mitsubishi Workshop" loading="lazy" />
+                <span class="cell-label">Mitsubishi Workshop</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=1200&q=80&auto=format&fit=crop"
+                    alt="Repaint" loading="lazy" />
+                <span class="cell-label">Repaint</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&q=80&auto=format&fit=crop"
+                    alt="Off-Road Equipment" loading="lazy" />
+                <span class="cell-label">Off-Road Gear</span>
+            </div>
+            <div class="grid-cell">
+                <img src="https://images.unsplash.com/photo-1600661653561-629509216228?w=1200&q=80&auto=format&fit=crop"
+                    alt="Luxury Car Service" loading="lazy" />
+                <span class="cell-label">Luxury Service</span>
+            </div>
         </div>
-    </nav>
-
-    <!-- FIXED BOTTOM-LEFT LINKS -->
-    <div id="fixed-bottom">
-        <button class="pill-btn" onclick="window.location.href='../../index.html#projects'">
-            <span class="circle"><span class="icon arrow"></span></span>
-            <span class="btn-text">Back to home</span>
-        </button>
-        <!-- ✦ EDIT: swap in the live CalculusPro deployment URL ✦ -->
-        <button class="pill-btn" onclick="window.location.href='https://calculuspro.vercel.app','_blank'">
-            <span class="circle"><span class="icon arrow"></span></span>
-            <span class="btn-text">&nbsp;Calculus Pro</span>
-        </button>
-        <button class="pill-btn" onclick="window.open('https://github.com/YashChaurasia01/calculuspro','_blank')">
-            <span class="circle"><span class="icon arrow"></span></span>
-            <span class="btn-text">GitHub</span>
-        </button>
     </div>
+</section>
 
-    <!-- HERO -->
-    <section id="hero">
-        <div id="hero-bg"></div>
-        <p class="hero-eyebrow reveal">— Project Showcase</p>
-        <h1 class="hero-title reveal">
-            Calculus<br /><span>Pro</span><br />Suite
-        </h1>
-        <p class="hero-sub reveal">
-            A Casio fx-CG100-level scientific calculator, a real-time currency dashboard, and an interactive graphing
-            engine — all fused into one premium web application.
+<section id="about">
+    <p class="section-label reveal">Overview</p>
+    <h2 class="reveal">Genuine parts.<br />Trusted <em>service</em>.</h2>
+    <div class="about-body">
+        <p class="reveal">
+            <strong>Parts Drive India is a New and Used Car Parts</strong> platform offering new and
+            quality-tested used auto parts for Mitsubishi and luxury cars. Value-added services span
+            upholstery, seat covers, and 7D floor matting, along with customization and restoration projects
+            for every kind of build.
         </p>
-        <div class="hero-meta">
-            <span>Year</span><strong>2024</strong>
-            <span>Role</span><strong>Design &amp; Development</strong>
-            <span>Category</span><strong>EdTech · Web App</strong>
-        </div>
-    </section>
+        <p class="reveal">
+            The platform also covers a wide range of high-performance multi-LED head and fog lamps, imported
+            off-road equipment like snorkels and winches, and a dedicated Mitsubishi service workshop staffed
+            by trained mechanics with 10+ years of experience across Audi, BMW, Mercedes Benz, and Volvo.
+        </p>
+    </div>
+</section>
 
-    <!-- ══════════════════════════════════════
-     3×3 GRID  → one cell zooms to fullscreen
-══════════════════════════════════════ -->
-    <section id="grid-section">
-        <div id="grid-sticky">
-            <div id="grid">
-                <div class="grid-cell">
-                    <img src="https://i.pinimg.com/1200x/0b/91/f2/0b91f2f4370cf26f23e44efe7136195c.jpg"
-                        alt="Scientific calculator" loading="lazy" />
-                    <span class="cell-label">Scientific Calc</span>
-                </div>
-                <div class="grid-cell">
-                    <img src="https://i.pinimg.com/1200x/fd/0c/93/fd0c9376e8c15097b446b32177a32cfb.jpg"
-                        alt="Live currency" loading="lazy" />
-                    <span class="cell-label">Live Currency</span>
-                </div>
-                <div class="grid-cell">
-                    <img src="https://i.pinimg.com/1200x/89/f5/02/89f5021d480eea487eb35f1b1239617d.jpg"
-                        alt="Graph plotting" loading="lazy" />
-                    <span class="cell-label">2D/3D Graphing</span>
-                </div>
-                <div class="grid-cell">
-                    <img src="https://i.pinimg.com/1200x/a9/ac/92/a9ac92a464169e0a02cc4c32db5cdf63.jpg"
-                        alt="Matrix solver" loading="lazy" />
-                    <span class="cell-label">Matrix Solver</span>
-                </div>
-                <div class="grid-cell" id="zoom-source-cell">
-                    <img src="https://i.pinimg.com/1200x/3e/95/c6/3e95c690850d32f97d8328ffd9238548.jpg"
-                        alt="Calculation engine" loading="lazy" />
-                    <span class="cell-label">Core Engine</span>
-                </div>
-                <div class="grid-cell">
-                    <img src="https://i.pinimg.com/736x/14/3e/68/143e68fb835981646ef458ab95bad3c3.jpg" alt="History log"
-                        loading="lazy" />
-                    <span class="cell-label">Calc History</span>
-                </div>
-                <div class="grid-cell">
-                    <img src="https://i.pinimg.com/1200x/df/f5/48/dff548283f98c24c7715e2250ed3649f.jpg"
-                        alt="Statistics module" loading="lazy" />
-                    <span class="cell-label">Statistics</span>
-                </div>
-                <div class="grid-cell">
-                    <img src="https://i.pinimg.com/1200x/4e/e0/07/4ee007a459130d6bbcf613ef9c5d36c8.jpg"
-                        alt="Documentation" loading="lazy" />
-                    <span class="cell-label">Docs</span>
-                </div>
-                <div class="grid-cell">
-                    <img src="https://i.pinimg.com/736x/ef/de/f9/efdef9be64aaa7d8f03572982c5b5ee9.jpg"
-                        alt="Financial tools" loading="lazy" />
-                    <span class="cell-label">Financial Mode</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="stats-row">
+    <div class="stat reveal"><span class="stat-num">10<span>+</span></span><span class="stat-label">Years
+            experience</span></div>
+    <div class="stat reveal"><span class="stat-num">04<span>+</span></span><span class="stat-label">Core
+            services</span></div>
+    <div class="stat reveal"><span class="stat-num">10<span>yr</span></span><span class="stat-label">Repaint
+            guarantee</span></div>
+    <div class="stat reveal"><span class="stat-num">01<span>.</span></span><span class="stat-label">Solo
+            developer</span></div>
+</div>
 
-    <!-- ══════════════════════════════════════
-     ABOUT  (revealed after grid zoom)
-══════════════════════════════════════ -->
-    <section id="about">
-        <p class="section-label reveal">Overview</p>
-        <h2 class="reveal">Compute fast.<br />Solve <em>smarter</em>.</h2>
-        <div class="about-body">
-            <p class="reveal">
-                <strong>CalculusPro is an all-in-one computation workspace</strong> built for students and professionals
-                who
-                outgrow a stock calculator app. It bundles a full scientific engine — trigonometry, matrices,
-                statistics,
-                derivatives, integrals, and financial functions — into a single, fast, distraction-free interface.
-            </p>
-            <p class="reveal">
-                Beyond raw computation, CalculusPro layers in a live currency dashboard covering 150+ currencies, an
-                interactive 2D/3D graphing engine for parametric and implicit equations, and a persistent calculation
-                history so every past result is one tap away from being reused.
-            </p>
-        </div>
-    </section>
+<div class="wide-img-wrap">
+    <img src="https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=1600&q=80&auto=format&fit=crop"
+        alt="Workshop interior" loading="lazy" />
+</div>
+<div class="img-caption"><span>Mitsubishi service workshop</span><span>01 / 04</span></div>
 
-    <div class="stats-row">
-        <div class="stat reveal"><span class="stat-num">150<span>+</span></span><span class="stat-label">Currencies
-                supported</span></div>
-        <div class="stat reveal"><span class="stat-num">02<span>&amp;</span></span><span class="stat-label">2D
-                &amp; 3D plotting</span>
+<section id="process">
+    <p class="section-label reveal">Process</p>
+    <h3 class="reveal">How we made it</h3>
+    <div class="process-list">
+        <div class="process-item reveal">
+            <span class="process-num">01</span>
+            <span class="process-title">Research &amp; Inventory</span>
+            <p class="process-desc">Mapped out the full parts catalogue — new and used, Mitsubishi and luxury
+                brands — alongside the value-added and workshop service categories.</p>
         </div>
-        <div class="stat reveal"><span class="stat-num">100<span>%</span></span><span class="stat-label">Client-side
-                engine</span>
+        <div class="process-item reveal">
+            <span class="process-num">02</span>
+            <span class="process-title">Service Structuring</span>
+            <p class="process-desc">Organized offerings into clear service pillars: parts, upholstery &amp;
+                customization, Mitsubishi workshop, and automotive repaint.</p>
         </div>
-        <div class="stat reveal"><span class="stat-num">01<span>.</span></span><span class="stat-label">Solo
-                developer</span>
+        <div class="process-item reveal">
+            <span class="process-num">03</span>
+            <span class="process-title">Interface Design</span>
+            <p class="process-desc">Designed a dealership-style browsing experience for parts discovery and
+                service booking, built for clarity and trust.</p>
+        </div>
+        <div class="process-item reveal">
+            <span class="process-num">04</span>
+            <span class="process-title">Testing &amp; Refinement</span>
+            <p class="process-desc">Refined navigation and layout across desktop and mobile for a smoother
+                customer journey from browsing to service inquiry.</p>
         </div>
     </div>
+</section>
 
-    <div class="wide-img-wrap">
-        <img src="https://i.pinimg.com/736x/0f/39/b7/0f39b73c5fcec2a44e89b72ad75c3f30.jpg" alt="Calculator interface"
-            loading="lazy" />
-    </div>
-    <div class="img-caption"><span>Scientific calculator — full operation set</span><span>01 / 04</span></div>
+<div class="wide-img-wrap">
+    <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1600&q=80&auto=format&fit=crop"
+        alt="Repaint craftsmanship" loading="lazy" />
+</div>
+<div class="img-caption"><span>Automotive repaint services</span><span>02 / 04</span></div>
 
-    <section id="process">
-        <p class="section-label reveal">Process</p>
-        <h3 class="reveal">How we made it</h3>
-        <div class="process-list">
-            <div class="process-item reveal">
-                <span class="process-num">01</span>
-                <span class="process-title">Engine Architecture</span>
-                <p class="process-desc">Designed a modular calculation core covering scientific, matrix, statistical,
-                    and
-                    calculus operations, structured so each mode plugs into a shared expression parser.</p>
-            </div>
-            <div class="process-item reveal">
-                <span class="process-num">02</span>
-                <span class="process-title">Live Data Integration</span>
-                <p class="process-desc">Wired up a real-time currency exchange feed spanning 150+ currencies with
-                    auto-refresh, and cached rates locally to keep the dashboard responsive offline.</p>
-            </div>
-            <div class="process-item reveal">
-                <span class="process-num">03</span>
-                <span class="process-title">Graphing Engine</span>
-                <p class="process-desc">Built an interactive 2D/3D plotting surface supporting parametric, implicit, and
-                    ML-driven equations, with smooth pan/zoom and live coefficient scrubbing.</p>
-            </div>
-            <div class="process-item reveal">
-                <span class="process-num">04</span>
-                <span class="process-title">History &amp; Refinement</span>
-                <p class="process-desc">Added a persistent calculation log with one-tap reuse, then refined keypad
-                    ergonomics
-                    and layout across desktop and mobile after rounds of real-use testing.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="wide-img-wrap">
-        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Graphing engine" loading="lazy" />
-    </div>
-    <div class="img-caption"><span>Graphing engine — parametric &amp; implicit plots</span><span>02 / 04</span></div>
-
-    <!-- ══════════════════════════════════════
-     NEXT PROJECT  (pinned zoom + progress)
-══════════════════════════════════════ -->
-    <section id="next-section">
-        <div id="next-sticky">
-
-            <div id="next-img-wrap">
-                <div id="next-img-inner">
-                    <!-- ✦ EDIT: next project image ✦ -->
-                    <img id="next-img" src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1600&q=80"
-                        alt="Next project" />
-                    <div id="progress-bar-wrap">
-                        <div id="progress-bar-fill"></div>
-                    </div>
-                    <div id="next-percent">0%</div>
+<section id="next-section">
+    <div id="next-sticky">
+        <div id="next-img-wrap">
+            <div id="next-img-inner">
+                <img id="next-img" src="https://i.pinimg.com/736x/c1/a4/9e/c1a49ee3c08151db097ade7114a3c067.jpg"
+                    alt="More projects" />
+                <div id="progress-bar-wrap">
+                    <div id="progress-bar-fill"></div>
                 </div>
+                <div id="next-percent">0%</div>
             </div>
-
-            <div id="next-content">
-                <span class="next-eyebrow">Next Project →</span>
-                <!-- ✦ EDIT: replace with your next case-study filename below (see handleNav call in the script) ✦ -->
-                <div id="next-title">DeepSearch</div>
-            </div>
-
         </div>
-    </section>
-
+        <div id="next-content">
+            <span class="next-eyebrow">Next Project →</span>
+            <div id="next-title">CropCure</div>
+        </div>
+    </div>
+</section>
 
     <!-- ══════════════════════════════════════
      SCRIPTS
@@ -1526,7 +1506,7 @@
                     nextActive = true;
                     // small delay so the 100% state is visible for a moment
                     setTimeout(() => {
-                        handleNav({ preventDefault: () => { } }, '3.html');
+                        handleNav({ preventDefault: () => { } }, 'calculuspro.html');
                     }, 400);
                 }
             }

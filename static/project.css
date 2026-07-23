@@ -6,7 +6,7 @@
 .proj-sticky-outer {
   position: relative;
   /* 100vh header + 80vh per card */
-  height: calc(40vh + 80vh * 4);
+  height: calc(100vh + 80vh * 4);
 }
 
 /* All Project button */
