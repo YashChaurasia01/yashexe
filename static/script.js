@@ -562,7 +562,7 @@ function initDecryptText() {
      layout work fighting the browser's own scroll physics.
 ============================================================ */
 function initAboutScrollSpy() {
-  const navEl = document.querySelector(".about-nav");
+const navEl = document.querySelector(".about-nav");
   const navBtns = Array.from(document.querySelectorAll(".about-nav .nav-btn"));
   const panels = Array.from(document.querySelectorAll(".content-panel"));
   const container = document.querySelector(".about-content");
@@ -602,7 +602,7 @@ function initAboutScrollSpy() {
   /* ── Scroll-spy via IntersectionObserver ─────────────── */
   panels[0].classList.add("active");
 
-  const spy = new IntersectionObserver(
+const spy = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
