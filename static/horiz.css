@@ -65,8 +65,7 @@
   width: 300px;      /* default for cards without an image */
   height: 100%;
   flex-shrink: 0;
-  padding: 2rem 1.75rem;
-  border-radius: 26px;
+  border-radius: 15px;
   position: relative;
   overflow: hidden;
   box-shadow:
@@ -104,13 +103,12 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
   pointer-events: none;
 }
 
 .wc-content {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   z-index: 2;
   padding: 2rem 1.75rem;
@@ -126,7 +124,7 @@
   color: var(--c4);
 }
 
-.ws-card.has-img .wc-desc { color: #afa7a7 } 
+.ws-card.has-img .wc-desc { color: #040404 } 
 .ws-card:hover {
   transform: translateY(-6px);
   box-shadow:
