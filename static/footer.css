@@ -9,7 +9,7 @@ footer#site-footer {
     color: #F1ECE2;
     background:
         linear-gradient(180deg, rgba(10, 6, 6, 0.17) 0%, rgba(8, 4, 4, 0.299) 55%, #08050580 100%),
-        url("./img/foot.png") center 30% / cover no-repeat;
+        url("./img/foot.webp") center 30% / cover no-repeat;
     padding: 5rem 6vw 0;
     overflow: hidden;
 }
