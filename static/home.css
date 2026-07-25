@@ -615,14 +615,14 @@ h1.hero-title em {
   }
 
   .barcode {
-    width: 20vw;
-    height: 4vw;
+    width: 25vw;
+    height: 8vw;
     margin-bottom: 1vw;
   }
 
   .barcode-num {
     font-size: 1.8vw;
-    --encrypt-size: 0.3rem;
+    --encrypt-size: 0.2rem;
     letter-spacing: 0px;
   }
 
