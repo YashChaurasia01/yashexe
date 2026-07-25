@@ -118,7 +118,7 @@
 
 .barcode {
     width: 6.5vw;
-    height: 1.6vw;
+    height: 2.6vw;
     margin-left: auto;
     margin-bottom: 0.2vw;
 }
@@ -615,7 +615,7 @@ h1.hero-title em {
   }
 
   .barcode {
-    width: 16vw;
+    width: 20vw;
     height: 4vw;
     margin-bottom: 1vw;
   }
