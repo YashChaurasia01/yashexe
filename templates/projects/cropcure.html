@@ -29,6 +29,12 @@
       font-weight: normal;
       font-style: normal;
     }
+    @font-face {
+      font-family: 'Load';
+      src: url('../../static/Fonts/Akowakowkaowka.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
   </style>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -113,6 +119,50 @@
       background: var(--accent);
       border-radius: 6px 6px 0 0;
       will-change: transform, bottom;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #pt-loading {
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--bg);
+        font-family: Load;
+        font-size: 5rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    #pt-panel.show-loading #pt-loading {
+        opacity: 0.85;
+    }
+
+    .pt-dots {
+        display: inline-flex;
+        gap: 3px;
+    }
+
+    .pt-dots i {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: currentColor;
+        display: inline-block;
+        animation: ptDotPulse 1s infinite ease-in-out;
+    }
+
+    .pt-dots i:nth-child(2) { animation-delay: 0.15s; }
+    .pt-dots i:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes ptDotPulse {
+        0%, 80%, 100% { opacity: 0.25; transform: scale(0.7); }
+        40% { opacity: 1; transform: scale(1); }
     }
 
     /* entry: panel arrives from top (reverse) */
@@ -1080,7 +1130,9 @@
 
   <!-- PAGE TRANSITION PANEL -->
   <div id="pt">
-    <div id="pt-panel"></div>
+    <div id="pt-panel">
+            <div id="pt-loading"><span>Loading</span><span class="pt-dots"><i></i><i></i><i></i></span></div>
+        </div>
   </div>
 
   <!-- NAV -->
@@ -1171,7 +1223,7 @@
           <span class="cell-label">Upload Flow</span>
         </div>
         <div class="grid-cell" id="zoom-source-cell">
-          <img src="../../static/img/sticky/cropc.png" alt="AI model" loading="lazy" />
+          <img src="../../static/img/sticky/cropc.webp" alt="AI model" loading="lazy" />
           <span class="cell-label">AI Model</span>
         </div>
         <div class="grid-cell">
@@ -1324,6 +1376,16 @@
       // scrollRestoration='manual' stops the browser restoring position;
       // scrollTo(0,0) guarantees the page always starts at the top.
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+            // FIX: mobile back-button showing a stuck full-screen transition panel.
+            // Mobile browsers restore this page from the back/forward cache (bfcache)
+            // instead of reloading it, so the panel stays frozen exactly as it was
+            // right before you navigated away (covering the whole screen). Forcing a
+            // reload on a persisted pageshow makes Back behave like a fresh page load,
+            // same as desktop.
+            window.addEventListener('pageshow', function (e) {
+                if (e.persisted) window.location.reload();
+            });
       window.scrollTo(0, 0);
 
       /* ─────────────────────────────────
@@ -1415,6 +1477,8 @@
             panel.style.maxHeight = '100vh';
             panel.style.transform = 'translateX(-50%) scale(1)';
             panel.style.borderRadius = '0';
+
+            setTimeout(() => { panel.classList.add('show-loading'); }, 650);
 
             setTimeout(() => {
               sessionStorage.setItem('ptActive', '1');
