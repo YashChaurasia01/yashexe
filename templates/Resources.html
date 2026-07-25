@@ -125,6 +125,7 @@
       height: auto;
       display: block;
       overflow: hidden;
+      border-radius: 12px;
     }
 
     .logo-mark {
@@ -132,7 +133,6 @@
       height: 42px;
       border-radius: 12px;
       background: var(--card-bg);
-      box-shadow: 4px 4px 10px var(--neu-shadow-dark), -4px -4px 10px var(--neu-shadow-light);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -140,12 +140,12 @@
       font-weight: 700;
       font-size: 1.15rem;
       color: var(--c3);
-      transition: box-shadow 0.2s;
+      transition: 0.3s ease-in-out;
       overflow: hidden;
     }
 
     .logo-mark:hover {
-      box-shadow: 6px 6px 14px var(--neu-shadow-dark), -6px -6px 14px var(--neu-shadow-light);
+      filter: brightness(1.03) saturate(1.5);
     }
 
     .logo-label {
