@@ -677,7 +677,10 @@ h1.hero-title em {
   }
 
   .corner-card svg {
-    width: 16%;
-    margin: 8px;
+    display: none;
+  }
+
+  .cc2{
+    display: none;
   }
 }
