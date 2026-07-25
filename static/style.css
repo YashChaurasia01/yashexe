@@ -27,7 +27,7 @@ DESIGN TOKENS — edit these to retheme the whole site
 }
 
 
-::selection{
+::selection {
     background-color: var(--selection);
     color: var(--gtxt);
 }
@@ -53,16 +53,17 @@ body::-webkit-scrollbar {
     left: 0;
     height: 4px;
     width: 0%;
-    background: linear-gradient(90deg, var(--c1),var(--c2),var(--c3));
+    background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3));
     z-index: 9999;
     transition: none;
     box-shadow:
-    0 0 10px var(--c3),
-    0 0 20px var(--c3),
-    0 0 40px var(--c3);
+        0 0 10px var(--c3),
+        0 0 20px var(--c3),
+        0 0 40px var(--c3);
     border-radius: 50px;
     /* driven by JS every raf tick */
 }
+
 /* =============================GLITCH JAPAANESE TEXT */
 .encrypted {
     background: linear-gradient(125deg, var(--encrypt-color, var(--c2) 0%, var(--c3) 50%, var(--c4) 100%));
@@ -77,63 +78,64 @@ body::-webkit-scrollbar {
     font-size: var(--encrypt-size, inherit);
     opacity: var(--encrypt-opacity, 1);
 }
+
 /* ========================================= */
 /*-------------------------------------------- Keyframes for fade-in animations */
 /* ========================================= */
 @keyframes fadeInFromLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
 
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 @keyframes fadeInFromRight {
-  0% {
-    opacity: 0;
-    transform: translateX(50px);
-  }
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
 
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 @keyframes fadeInFromBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
 
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Initial state for fade items */
 .fade-left-item,
 .fade-right-item,
 .fade-bottom-item {
-  opacity: 0;
+    opacity: 0;
 }
 
 /* Active state to trigger animations */
 .fade-left-item.active {
-  animation: fadeInFromLeft 0.8s ease-out forwards;
+    animation: fadeInFromLeft 0.8s ease-out forwards;
 }
 
 .fade-right-item.active {
-  animation: fadeInFromRight 0.8s ease-out forwards;
+    animation: fadeInFromRight 0.8s ease-out forwards;
 }
 
 .fade-bottom-item.active {
-  animation: fadeInFromBottom 0.8s ease-out forwards;
+    animation: fadeInFromBottom 0.8s ease-out forwards;
 }
 
 
@@ -194,7 +196,7 @@ body::-webkit-scrollbar {
     color: var(--bg);
     background-color: var(--c3);
     box-shadow: inset 20px 20px 60px var(--c3),
-            inset -20px -20px 60px var(--c4);
+        inset -20px -20px 60px var(--c4);
 }
 
 .sm-toggle:focus-visible {
@@ -650,85 +652,94 @@ a.sm-panel-item:hover::before {
 
 /* ── Shared helpers ─────────────────────────────────────────── */
 .sec-eyebrow {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--c3);
-  margin-bottom: 0.75rem;
-  --encrypt-size:0.6rem;
-  --encrypt-color: var(--txt);
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--c3);
+    margin-bottom: 0.75rem;
+    --encrypt-size: 0.6rem;
+    --encrypt-color: var(--txt);
 }
+
 .sec-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(2rem, 4.5vw, 3.8rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: var(--txt);
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--txt);
 }
+
 .sec-title em {
-  font-style: italic;
-  color: var(--c3);
+    font-style: italic;
+    color: var(--c3);
 }
+
 .sec-divider {
-  width: 52px;
-  height: 3px;
-  background: var(--c3);
-  border-radius: 10px;
-  margin: 1.25rem 0;
-  box-shadow: 0 0 10px var(--accent-glow);
+    width: 52px;
+    height: 3px;
+    background: var(--c3);
+    border-radius: 10px;
+    margin: 1.25rem 0;
+    box-shadow: 0 0 10px var(--accent-glow);
 }
+
 .sec-desc {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--gtxt);
-  max-width: 520px;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--gtxt);
+    max-width: 520px;
 }
- 
- 
+
+
 /* ═══════════════════════════════════════════════════
    RESPONSIVE — shared section-header helpers
    ═══════════════════════════════════════════════════ */
 
 /* Tablet */
 @media (max-width: 768px) {
-  .sec-title {
-    font-size: clamp(1.75rem, 6vw, 2.6rem);
-  }
+    .sec-title {
+        font-size: clamp(1.75rem, 6vw, 2.6rem);
+    }
 
-  .sec-desc {
-    font-size: 0.95rem;
-    max-width: 460px;
-  }
+    .sec-desc {
+        font-size: 0.95rem;
+        max-width: 460px;
+    }
 
-  .sec-divider {
-    margin: 1rem 0;
-  }
+    .sec-divider {
+        margin: 1rem 0;
+    }
 }
 
 /* Mobile — centered layout */
 @media (max-width: 480px) {
-  .sec-eyebrow {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    --encrypt-size: 0.55rem;
-  }
 
-  .sec-title {
-    font-size: clamp(1.5rem, 7vw, 2.1rem);
-  }
+    .staggered-menu-panel {
+    width: 100%;
+}
+
+    .sec-eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        --encrypt-size: 0.55rem;
+    }
+
+    .sec-title {
+        font-size: clamp(1.5rem, 7vw, 2.1rem);
+    }
 
 
-  .sec-desc {
-    font-size: 0.9rem;
-    max-width: 100%;
-  }
+    .sec-desc {
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
 
-  .staggered-menu-header {
-    position: absolute;
-    left: 4%;
-  }
+    .staggered-menu-header {
+        position: absolute;
+        left: 4%;
+    }
 
 }
