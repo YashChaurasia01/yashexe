@@ -29,7 +29,7 @@ function initLenis() {
   lenis = new Lenis({
     lerp: 0.03,
     wheelMultiplier: 0.5,
-    touchMultiplier: 1,
+    touchMultiplier: 0.5,
     syncTouchLerp: 0.075,
     smoothWheel: true,
     anchors: true,
@@ -562,7 +562,7 @@ function initDecryptText() {
      layout work fighting the browser's own scroll physics.
 ============================================================ */
 function initAboutScrollSpy() {
-const navEl = document.querySelector(".about-nav");
+  const navEl = document.querySelector(".about-nav");
   const navBtns = Array.from(document.querySelectorAll(".about-nav .nav-btn"));
   const panels = Array.from(document.querySelectorAll(".content-panel"));
   const container = document.querySelector(".about-content");
@@ -602,7 +602,7 @@ const navEl = document.querySelector(".about-nav");
   /* ── Scroll-spy via IntersectionObserver ─────────────── */
   panels[0].classList.add("active");
 
-const spy = new IntersectionObserver(
+  const spy = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -654,7 +654,7 @@ const spy = new IntersectionObserver(
     let innerTarget = container.scrollTop;
     let innerCurrent = innerTarget;
     let lerpRunning = false;
-    const LERP = 0.03;
+    const LERP = 0.04;
 
     function lerpTick() {
       innerCurrent += (innerTarget - innerCurrent) * LERP;
@@ -674,11 +674,13 @@ const spy = new IntersectionObserver(
       requestAnimationFrame(lerpTick);
     }
 
+    const MOUSE_WHEEL_BOUNDARY_MULTIPLIER = 0.5;   // big single notches
+    const TRACKPAD_BOUNDARY_MULTIPLIER = 0.2;        // stream of tiny deltas
+    const TRACKPAD_DELTA_THRESHOLD = 50;           // below this = trackpad-like
+
     container.addEventListener(
       "wheel",
       (e) => {
-        e.preventDefault();
-
         const maxScroll = container.scrollHeight - container.clientHeight;
         const atTop = innerTarget <= 0;
         const atBottom = innerTarget >= maxScroll - 2;
@@ -686,10 +688,22 @@ const spy = new IntersectionObserver(
         const goingDown = e.deltaY > 0;
 
         if ((atTop && goingUp) || (atBottom && goingDown)) {
-          if (lenis) lenis.scrollTo(lenis.targetScroll + e.deltaY * 3, { lerp: 0.03 });
+          if (!lenis) return;
+          e.preventDefault();
+
+          const isTrackpad = Math.abs(e.deltaY) < TRACKPAD_DELTA_THRESHOLD;
+
+          if (isTrackpad) {
+            lenis.scrollTo(lenis.scroll + e.deltaY * TRACKPAD_BOUNDARY_MULTIPLIER, {
+              immediate: true,
+            });
+          } else {
+            lenis.scrollTo(lenis.targetScroll + e.deltaY * MOUSE_WHEEL_BOUNDARY_MULTIPLIER);
+          }
           return;
         }
 
+        e.preventDefault();
         innerTarget = Math.min(Math.max(innerTarget + e.deltaY, 0), maxScroll);
         ensureLerpRunning();
       },
@@ -731,6 +745,20 @@ function initWorkflowScroll() {
   const wsBar = document.getElementById("ws-progress-bar");
 
   if (!wsSection || !wsSticky || !wsTrack) return;
+
+  /* ── Slow down the horizontal scroll on mobile ───────────
+     The section's pinned height (set in CSS) decides how much
+     vertical scroll it takes to travel the full horizontal
+     distance. On mobile that height is proportionally shorter,
+     so the same horizontal distance finishes too fast. Growing
+     the section's actual height here (inline style beats the
+     stylesheet, no CSS file edit needed) spreads it back out —
+     raise MOBILE_SPEED_FACTOR for even slower, lower for faster. */
+  const MOBILE_SPEED_FACTOR = 1.8;
+  if (!IS_DESKTOP) {
+    const baseHeight = wsSection.getBoundingClientRect().height;
+    wsSection.style.height = `${baseHeight * MOBILE_SPEED_FACTOR}px`;
+  }
 
   function updateWS() {
     const sectionRect = wsSection.getBoundingClientRect();
