@@ -115,7 +115,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--txt);
+    color: #fff;
+    opacity: .8;
     border: 1px dashed var(--gtxt);
     text-decoration: none;
     font-size: 1rem;
@@ -321,7 +322,7 @@
 
 /* ══════════════ CONTACT FORM ══════════════ */
 .cn-form-card {
-    padding: 2.4rem;
+    padding: 2.6rem;
     border-radius: 22px;
     background: var(--card-bg);
     box-shadow:
