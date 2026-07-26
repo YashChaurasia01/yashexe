@@ -665,7 +665,7 @@
 }
 
 /* ── Mobile — centered ── */
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   .proj-sticky-outer {
     height: calc(28vh + 90vh * 4);
   }
@@ -686,15 +686,15 @@
   }
 
   .pc2 {
-    top: 6vh;
+    top: 7vh;
   }
 
   .pc3 {
-    top: 11vh;
+    top: 14vh;
   }
 
   .pc4 {
-    top: 16vh;
+    top: 18vh;
   }
 
   .pc-left {
