@@ -65,23 +65,6 @@
 </head>
 
 <body>
-
-    <div id="debug-vw"
-        style="position:fixed;top:0;left:0;z-index:99999;background:red;color:white;font-size:14px;padding:6px;font-family:monospace;">
-    </div>
-    <script>
-        const el = document.getElementById('debug-vw');
-        function updateDebug() {
-            el.innerHTML = `innerWidth: ${window.innerWidth}px<br>
-      DPR: ${window.devicePixelRatio}<br>
-      1024 match: ${matchMedia('(max-width:1024px)').matches}<br>
-      768 match: ${matchMedia('(max-width:768px)').matches}<br>
-      480 match: ${matchMedia('(max-width:480px)').matches}`;
-        }
-        updateDebug();
-        window.addEventListener('resize', updateDebug);
-    </script>
-
     <div id="top-progress-line"></div>
     <!-- ══════════════════════════════════
        Navigation

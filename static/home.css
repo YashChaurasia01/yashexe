@@ -578,7 +578,7 @@ h1.hero-title em {
 }
 
 /* ── Mobile — centered ── */
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   #hero {
     height: 100svh;
   }

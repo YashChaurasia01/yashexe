@@ -252,7 +252,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   #working-style {
     height: 160vh;
   }

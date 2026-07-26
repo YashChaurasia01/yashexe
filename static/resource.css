@@ -391,7 +391,7 @@ body.dark-theme .rt-theme-3 {
 
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
 
     .rt-grid{
         padding: 2rem 8% 2rem;

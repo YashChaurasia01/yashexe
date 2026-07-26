@@ -377,7 +377,7 @@ footer#site-footer::before {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
     footer#site-footer {
         padding: 3.5rem 5vw 0;
     }

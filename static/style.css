@@ -715,7 +715,7 @@ a.sm-panel-item:hover::before {
 }
 
 /* Mobile — centered layout */
-@media (max-width: 480px) {
+@media (max-width: 500px) {
 
     .staggered-menu-panel {
     width: 100%;

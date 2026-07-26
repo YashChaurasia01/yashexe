@@ -436,7 +436,7 @@
 }
 
 /* ── Mobile — centered ── */
-@media (max-width: 480px) {
+@media (max-width: 500px) {
     #about {
         padding: 4rem 6% 4.5rem;
     }
