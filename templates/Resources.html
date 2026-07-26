@@ -918,7 +918,7 @@
         category: 'tools',
         link: 'https://coolors.co',
         domain: 'coolors.co',
-        image: 'https://i0.wp.com/straightforward.se/wp-content/uploads/2023/04/coolors-homepage.png?resize=1536%2C745&ssl=1',
+        image: 'https://i.ytimg.com/vi/Zc6Xeo07dJk/sddefault.jpg',
         emoji: '🎨',
         gradient: 'linear-gradient(135deg,#e8e0dc,#d8d0cc)',
       },
@@ -1603,10 +1603,17 @@
   </a>`;
     }
 
+    function optimizedImg(url, width = 400, quality = 70) {
+      if (!url) return '';
+      // Skip the proxy for local/relative paths — only proxy external URLs
+      if (!/^https?:\/\//i.test(url)) return url;
+      return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&output=webp`;
+    }
+
     /* ── Build cards ── */
     function buildCard(r) {
       const imgHTML = r.image
-        ? `<img src="${r.image}" alt="${r.title}" loading="lazy"/>`
+        ? `<img src="${optimizedImg(r.image)}" alt="${r.title}" loading="lazy" decoding="async"/>`
         : `<div class="card-image-placeholder" style="background:${r.gradient}">${r.emoji}</div>`;
 
       const article = document.createElement('article');
@@ -1636,7 +1643,7 @@
     document.getElementById('resource-count').textContent = RESOURCES.length;
 
     /* ── Lenis (lerp 0.03) ── */
-    const lenis = new Lenis({ lerp: 0.03, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
@@ -1650,15 +1657,15 @@
     /* ── Card scroll animations — repeating scale 0.9 → 1 ── */
     document.querySelectorAll('.resource-card').forEach(card => {
       gsap.set(card, { scale: 0.9, opacity: 0 });
+    });
 
-      ScrollTrigger.create({
-        trigger: card,
-        start: 'top 88%',
-        onEnter: () => gsap.to(card, { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }),
-        onLeaveBack: () => gsap.to(card, { scale: 0.9, opacity: 0, duration: 0.4, ease: 'power2.in' }),
-        onEnterBack: () => gsap.to(card, { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }),
-        onLeave: () => gsap.to(card, { scale: 0.9, opacity: 0, duration: 0.4, ease: 'power2.in' }),
-      });
+    ScrollTrigger.batch('.resource-card', {
+      start: 'top 88%',
+      once: true,
+      onEnter: batch => gsap.to(batch, {
+        scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out',
+        stagger: 0.05, overwrite: true
+      }),
     });
 
     /* ── Filter pills ── */
