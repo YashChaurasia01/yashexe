@@ -66,6 +66,22 @@
 
 <body>
 
+    <div id="debug-vw"
+        style="position:fixed;top:0;left:0;z-index:99999;background:red;color:white;font-size:14px;padding:6px;font-family:monospace;">
+    </div>
+    <script>
+        const el = document.getElementById('debug-vw');
+        function updateDebug() {
+            el.innerHTML = `innerWidth: ${window.innerWidth}px<br>
+      DPR: ${window.devicePixelRatio}<br>
+      1024 match: ${matchMedia('(max-width:1024px)').matches}<br>
+      768 match: ${matchMedia('(max-width:768px)').matches}<br>
+      480 match: ${matchMedia('(max-width:480px)').matches}`;
+        }
+        updateDebug();
+        window.addEventListener('resize', updateDebug);
+    </script>
+
     <div id="top-progress-line"></div>
     <!-- ══════════════════════════════════
        Navigation
@@ -224,7 +240,8 @@
     <section id="about">
 
         <div class="about-header">
-            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>About Me</span>
+            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>About
+                Me</span>
             <h2 class="sec-title fade-right-item">
                 The person behind<br>
                 <em>the work.</em>
@@ -384,7 +401,8 @@
         <div class="proj-sticky-outer">
 
             <div class="proj-header">
-                <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Selected Work</span>
+                <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Selected
+                    Work</span>
                 <h2 class="sec-title fade-right-item">Projects that<br><em>speak for themselves.</em></h2>
                 <div class="sec-divider fade-bottom-item"></div>
                 <p class="sec-desc fade-bottom-item">A handful of things I've designed, built, and obsessed over.
@@ -620,7 +638,8 @@
      ══════════════════════════════════════════════════════════════ -->
     <section id="resources">
         <div class="proj-header">
-            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Resource Vault</span>
+            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Resource
+                Vault</span>
             <h2 class="sec-title fade-right-item">Things I've Built<br><em>documented & shared.</em></h2>
             <div class="sec-divider fade-bottom-item"></div>
             <p class="sec-desc fade-bottom-item">Guides and notes from things I've actually built and broken.</p>
@@ -837,7 +856,8 @@
     <section id="working-style">
 
         <div class="ws-label">
-            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Learning Journey</span>
+            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Learning
+                Journey</span>
             <h2 class="sec-title fade-right-item">Certificates &amp; events<br><em id="ws-trigger">that shaped my
                     craft.</em></h2>
         </div>
@@ -898,7 +918,8 @@
      ══════════════════════════════════════════════════════════════ -->
     <section id="contact">
         <div class="proj-header">
-            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Get In Touch</span>
+            <span class="sec-eyebrow fade-left-item decrypt-text" data-shuffle-speed='100' data-speed='60'>Get In
+                Touch</span>
             <h2 class="sec-title fade-right-item">Let's build<br><em>something worth shipping.</em></h2>
             <div class="sec-divider fade-bottom-item"></div>
             <p class="sec-desc fade-bottom-item">Grab the résumé, skim the CV, or just say hi below.</p>
