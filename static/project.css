@@ -665,7 +665,7 @@
 }
 
 /* ── Mobile — centered ── */
-@media (max-width: 500px) {
+@media (max-width: 480px) {
   .proj-sticky-outer {
     height: calc(28vh + 90vh * 4);
   }

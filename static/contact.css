@@ -11,6 +11,10 @@
     overflow: hidden;
 }
 
+.proj-header {
+    padding: 4rem 6% 2rem;
+}
+
 .cn-grid {
     display: grid;
     grid-template-columns: 1.05fr 1fr;
@@ -539,9 +543,13 @@
     }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 520px) {
     #contact {
         padding: 1rem 6vw 4rem;
+    }
+
+    .proj-header {
+        padding: 4rem 5% 2rem;
     }
 
     .cn-grid {
