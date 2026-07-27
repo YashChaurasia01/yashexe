@@ -21,6 +21,9 @@
     <!-- Link to site.webmanifest -->
     <link rel="manifest" href="./static/img/favicon/site.webmanifest">
 
+    <link rel="preload" as="image" href="./static/img/Front.webp" fetchpriority="high">
+        <link rel="preload" as="image" href="./static/img/Firefly.webp" fetchpriority="high">
+
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="./static/fonts.css" />
     <link rel="stylesheet" href="./static/colourcode.css" />
@@ -34,7 +37,6 @@
     <link rel="stylesheet" href="./static/footer.css" />
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- ============================================================
     LENIS CSS — required for autoToggle & proper scroll behavior
   ============================================================ -->
@@ -42,7 +44,7 @@
 
 
     <!-- ============================================= Fontawsome ==================================================== -->
-    <script src="https://kit.fontawesome.com/def00d5f6e.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/def00d5f6e.js" crossorigin="anonymous" defer></script>
     <!-- ============================================= Google Fonts ==================================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,6 +61,19 @@
                 'wght' 100,
                 'GRAD' 500,
                 'opsz' 48
+        }
+    </style>
+    <style>
+        .decrypt-text {
+            opacity: 0;
+            animation: forceReveal 0s 1.2s forwards;
+        }
+        @keyframes forceReveal {
+            to { opacity: 1; }
+        }
+        body.js-ready .decrypt-text {
+            animation: none;
+            opacity: 1;
         }
     </style>
 
@@ -206,11 +221,11 @@
 
         <!-- Always-visible base image -->
         <div id="layer-bottom">
-            <img src="./static/img/Front.webp" alt="" id="img-bottom" draggable="false" />
+            <img src="./static/img/Front.webp" alt="" id="img-bottom" draggable="false" fetchpriority="high"/>
         </div>
         <!-- Masked reveal layer: cursor radius controls exposure -->
         <div id="layer-top">
-            <img src="./static/img/Firefly.webp" alt="" id="img-top" draggable="false" />
+            <img src="./static/img/Firefly.webp" alt="" id="img-top" draggable="false" fetchpriority="high"/>
         </div>
     </section>
 
@@ -1146,10 +1161,10 @@
         LENIS SCRIPT
       ============================================================ -->
 
-    <script src="./static/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" defer></script>
+    <script src="./static/script.js" defer></script>
 
     <!-- ============================================================
     CONTACT + TOAST
