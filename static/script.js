@@ -1,4 +1,3 @@
-document.body.classList.add('js-ready');
 "use strict";
 
 /* ============================================================
