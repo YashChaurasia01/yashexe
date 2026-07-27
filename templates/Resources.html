@@ -89,12 +89,16 @@
       position: fixed;
       top: 0;
       left: 0;
-      height: 3px;
+      height: 4px;
       width: 0%;
       background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4));
       z-index: 9999;
       transition: width 0.05s linear;
-      box-shadow: 0 0 8px var(--accent-glow);
+      box-shadow:
+        0 0 10px var(--c3),
+        0 0 20px var(--c3),
+        0 0 40px var(--c3);
+      border-radius: 50px;
     }
 
     /* ── Nav ── */

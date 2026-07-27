@@ -566,24 +566,12 @@ body.notfound-body {
     }
 }
 
-@media only screen and (max-width: 1024px) {
-    .screenM {
-        display: flex;
-    }
-
-    .screen {
-        display: none;
-    }
+.screen {
+    display: flex;
 }
 
-@media only screen and (min-width: 1025px) {
-    .screen {
-        display: flex;
-    }
-
-    .screenM {
-        display: none;
-    }
+.screenM {
+    display: none;
 }
 
 /* ============ Home button ============ */
