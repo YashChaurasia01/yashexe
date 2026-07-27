@@ -56,6 +56,7 @@ function initLenis() {
 ============================================================ */
 function initHeroMask() {
   const MASK_CFG = { maskRadius: 290, maskFeather: 80, lagSpeed: 0.1 };
+  const FIREFLY_SCALE = 1.1;
 
   const topLayer = document.getElementById("layer-top");
   const imgTop = document.getElementById("img-top");
@@ -111,8 +112,8 @@ function initHeroMask() {
     topLayer.style.webkitMaskImage = mask;
     topLayer.style.maskImage = mask;
 
-    const scX = 1 + Math.abs(stretchX) * 0.25;
-    const scY = 1 + Math.abs(stretchY) * 0.25;
+    const scX = FIREFLY_SCALE * (1 + Math.abs(stretchX) * 0.25);
+    const scY = FIREFLY_SCALE * (1 + Math.abs(stretchY) * 0.25);
     imgTop.style.transform = `translateY(-38px) scale(${scX.toFixed(4)},${scY.toFixed(4)}) translate(${(stretchX * 2.5).toFixed(3)}px,${(stretchY * 2.5).toFixed(3)}px)`;
 
     requestAnimationFrame(maskTick);

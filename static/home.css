@@ -282,12 +282,13 @@
 }
 
 #layer-top img {
-    height: 110%;
-    width: 50%;
+    height: 97%;
+    width: 100%;
     object-fit: contain;
     object-position: center bottom;
     filter: saturate(1.2) brightness(1.05);
     z-index: 50;
+    margin-left: 1%;  
 }
 
 #ui {
