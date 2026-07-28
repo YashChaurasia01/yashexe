@@ -9,12 +9,18 @@
   height: calc(100vh + 80vh * 4);
 }
 
+.hint{
+  color: var(--c4);
+  font-size: 1.2rem;
+}
+
 /* All Project button */
 .animated-button {
   position: relative;
   display: flex;
   align-items: center;
   margin-top: 50px;
+  margin-bottom: 70px;
   gap: 10px;
   padding: 10px 35px;
   border: 4px solid;
