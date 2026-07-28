@@ -28,8 +28,8 @@ let siteReady = false;
 function initLenis() {
   lenis = new Lenis({
     lerp: 0.03,
-    wheelMultiplier: 0.5,
-    touchMultiplier: 0.5,
+    wheelMultiplier: 0.9,
+    touchMultiplier: 0.9,
     syncTouchLerp: 0.075,
     smoothWheel: true,
     anchors: true,
