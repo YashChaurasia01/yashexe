@@ -268,7 +268,7 @@
       background: var(--card-bg);
       color: var(--gtxt);
       box-shadow: 3px 3px 7px var(--neu-shadow-dark), -3px -3px 7px var(--neu-shadow-light);
-      transition: all 0.2s;
+      transition: 0.3s ease-in-out;
     }
 
     .filter-pill:hover {
@@ -276,9 +276,12 @@
     }
 
     .filter-pill.active {
-      background: var(--c3);
+      background: #0f0f0fcd;
       color: #fff;
-      box-shadow: inset 2px 2px 5px var(--c2), inset -2px -2px 5px var(--c4);
+      box-shadow: inset 2px 2px 5px var(--txt), inset -2px -2px 5px var(--txt);
+    }
+    .filter-pill.active i{
+      color: var(--c4);
     }
 
     /* ── Section Divider ── */
@@ -409,13 +412,9 @@
       flex-shrink: 0;
     }
 
-    .card-pill::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--c3);
-      flex-shrink: 0;
+    .card-pill i{
+      color: var(--txt);
+      text-shadow: 0 0 15px var(--c4);
     }
 
     .card-title {
@@ -802,7 +801,7 @@
 
   <!-- Filter Bar -->
   <div class="filter-bar" id="filter-bar">
-    <button class="filter-pill active" data-filter="all">All</button>
+    <button class="filter-pill active" data-filter="all"><i class="fa-solid fa-border-all"></i> All</button>
   </div>
 
   <!-- Divider -->
@@ -838,21 +837,66 @@
        ============================================================ */
 
     const CATEGORIES = {
-      animation: 'Animation',
-      design: 'Design',
-      dev: 'Dev',
-      inspiration: 'Inspiration',
-      tools: 'Tools',
-      fonts: 'Fonts',
-      d3: '3D Modals',
-      pirate: 'Pirated OTT',
-      llm: 'LLMs',
-      anime: 'Anime',
-      image: 'Vision',
-      shop: 'Shopping',
-      git: 'Git Resources',
-      video: 'Video',
-      learn: 'Learning',
+      animation: {
+        label: 'Animation',
+        icon: 'fa-solid fa-wand-magic-sparkles'
+      },
+      design: {
+        label: 'Design',
+        icon: 'fa-solid fa-pen-ruler'
+      },
+      dev: {
+        label: 'Dev',
+        icon: 'fa-solid fa-code'
+      },
+      inspiration: {
+        label: 'Inspiration',
+        icon: 'fa-solid fa-lightbulb'
+      },
+      tools: {
+        label: 'Tools',
+        icon: 'fa-solid fa-screwdriver-wrench'
+      },
+      fonts: {
+        label: 'Fonts',
+        icon: 'fa-solid fa-font'
+      },
+      d3: {
+        label: '3D Modals',
+        icon: 'fa-solid fa-cube'
+      },
+      pirate: {
+        label: 'Pirated OTT',
+        icon: 'fa-solid fa-skull-crossbones'
+      },
+      llm: {
+        label: 'LLMs',
+        icon: 'fa-solid fa-brain'
+      },
+      anime: {
+        label: 'Anime',
+        icon: 'fa-solid fa-torii-gate'
+      },
+      image: {
+        label: 'Vision',
+        icon: 'fa-solid fa-eye'
+      },
+      shop: {
+        label: 'Shopping',
+        icon: 'fa-solid fa-bag-shopping'
+      },
+      git: {
+        label: 'Git Resources',
+        icon: 'fa-brands fa-github'
+      },
+      video: {
+        label: 'Video',
+        icon: 'fa-solid fa-video'
+      },
+      learn: {
+        label: 'Learning',
+        icon: 'fa-solid fa-graduation-cap'
+      },
     };
 
     const RESOURCES = [
@@ -1586,6 +1630,146 @@
         emoji: '🌊',
         gradient: 'linear-gradient(135deg,#0EA5E9,#6366F1)',
       },
+      {
+        title: 'The Souled Store — Pop Culture Fashion & Merchandise',
+        desc: 'Shop officially licensed pop-culture merchandise, apparel, sneakers, accessories, and fandom-inspired fashion featuring Marvel, DC, Naruto, One Piece, Harry Potter, sports, movies, TV shows, and more.',
+        category: 'shop',
+        link: 'https://www.thesouledstore.com',
+        domain: 'thesouledstore.com',
+        image: 'https://img-cdn.publive.online/fit-in/640x430/filters:format(webp)/entrackr/media/post_attachments/wp-content/uploads/2022/06/The-souled-store.jpg',
+        emoji: '👕',
+        gradient: 'linear-gradient(135deg,#E11D48,#7C3AED)',
+      },
+      {
+        title: 'WTFlex — Premium Indian Streetwear',
+        desc: 'Explore original Indian streetwear designed for Gen Z, featuring oversized T-shirts, baggy jeans, varsity jackets, hoodies, shirts, pants, caps, and expressive unisex fashion with bold contemporary styling.',
+        category: 'shop',
+        link: 'https://wtflex.in',
+        domain: 'wtflex.in',
+        image: 'https://wtflex.in/cdn/shop/files/7649894F-60C3-4F69-A3B2-7FE96223817C.jpg?v=1767708049&width=990',
+        emoji: '🧢',
+        gradient: 'linear-gradient(135deg,#111111,#6B7280)',
+      },
+      {
+        title: 'Kreo — Gaming & Creator Gear',
+        desc: 'Shop gaming and content-creation gear including mechanical keyboards, gaming mice, monitors, microphones, webcams, headphones, controllers, ergonomic chairs, and other performance-focused PC accessories.',
+        category: 'shop',
+        link: 'https://kreo-tech.com',
+        domain: 'kreo-tech.com',
+        image: 'https://i.pinimg.com/1200x/55/d5/5d/55d55d5cf1e5f198b6e37397266d061a.jpg',
+        emoji: '🎮',
+        gradient: 'linear-gradient(135deg,#7C3AED,#EC4899)',
+      },
+      {
+        title: 'Zenshi — Anime-Coded Streetwear',
+        desc: 'Shop anime-inspired streetwear featuring oversized T-shirts, sweatshirts, hoodies, waffle-knit tees, and limited-edition collections with designs inspired by popular anime and manga aesthetics.',
+        category: 'shop',
+        link: 'https://www.zenshi.in',
+        domain: 'zenshi.in',
+        image: 'https://www.zenshi.in/cdn/shop/files/MOB_PSYCHO_tshirt_2.png?v=1782905749&width=832',
+        emoji: '👹',
+        gradient: 'linear-gradient(135deg,#7C2D12,#DC2626)',
+      },
+      {
+        title: 'Sagacity — Anime-Inspired Streetwear',
+        desc: 'Explore distinctive anime-inspired streetwear featuring oversized T-shirts, armored designs, patchwork apparel, washed tees, vests, pants, and experimental fashion influenced by popular anime aesthetics.',
+        category: 'shop',
+        link: 'https://thesagacity.in',
+        domain: 'thesagacity.in',
+        image: 'https://thesagacity.in/cdn/shop/files/edit-78.jpg?v=1749319263&width=600',
+        emoji: '⚔️',
+        gradient: 'linear-gradient(135deg,#18181B,#52525B)',
+      },
+      {
+        title: 'Uppercase — Sustainable Bags & Travel Gear',
+        desc: 'Shop eco-friendly backpacks, laptop bags, trolley bags, duffles, shoulder bags, and travel gear crafted with recycled materials, functional designs, durable construction, and modern everyday styling.',
+        category: 'shop',
+        link: 'https://uppercase.co.in',
+        domain: 'uppercase.co.in',
+        image: 'https://uppercase.co.in/cdn/shop/files/6_49d0459d-7090-4645-ae6e-0e68707608ee.png?v=1757258090',
+        emoji: '🎒',
+        gradient: 'linear-gradient(135deg,#16A34A,#0F766E)',
+      },
+      {
+        title: 'Chozen — Premium Comfort Streetwear',
+        desc: 'Discover premium heavyweight hoodies, oversized T-shirts, caps, joggers, and everyday essentials crafted with comfort-first designs, quality fabrics, and modern minimalist streetwear aesthetics.',
+        category: 'shop',
+        link: 'https://chozen.store',
+        domain: 'chozen.store',
+        image: 'https://chozen.store/cdn/shop/files/1_8ee532bf-e24b-4c37-99d8-eb823ec77e93.png?v=1750506348',
+        emoji: '🖤',
+        gradient: 'linear-gradient(135deg,#111827,#4B5563)',
+      },
+      {
+        title: 'HAVVOK — Bold Oversized Streetwear',
+        desc: 'Explore bold unisex streetwear featuring heavyweight oversized T-shirts, acid-wash designs, graphic prints, cropped fits, and statement apparel crafted with premium fabrics and expressive contemporary aesthetics.',
+        category: 'shop',
+        link: 'https://havvok.in',
+        domain: 'havvok.in',
+        image: 'https://havvok.in/cdn/shop/files/gzwfnlphmfaa2ugdqmkg.webp?v=1781080478&width=1200',
+        emoji: '🔥',
+        gradient: 'linear-gradient(135deg,#DC2626,#18181B)',
+      },
+      {
+        title: 'GetSetWear — Motorsport & Pop Culture Streetwear',
+        desc: 'Shop premium oversized streetwear featuring Formula 1, motorsport, anime, football, UFC, and pop-culture inspired T-shirts, hoodies, jackets, cargos, and graphic apparel with heavyweight fabrics and bold designs.',
+        category: 'shop',
+        link: 'https://getsetwear.in',
+        domain: 'getsetwear.in',
+        image: 'https://getsetwear.in/cdn/shop/files/rn-image_picker_lib_temp_990600fd-2e1c-4c96-a7eb-c868b45e0cd2.jpg?v=1780760084&width=1946',
+        emoji: '🏎️',
+        gradient: 'linear-gradient(135deg,#00A19C,#111827)',
+      },
+      {
+        title: 'LottieFiles — Lightweight Web & App Animations',
+        desc: 'Discover, create, edit, and integrate lightweight Lottie and dotLottie animations for websites, mobile apps, and digital products, with ready-made animation assets, browser-based creation tools, plugins, and developer runtimes.',
+        category: 'animation',
+        link: 'https://lottiefiles.com',
+        domain: 'lottiefiles.com',
+        image: 'https://user-images.githubusercontent.com/23125742/201124166-c2a0bc2a-018b-463b-b291-944fb767b5c2.png',
+        emoji: '✨',
+        gradient: 'linear-gradient(135deg,#00DDB3,#00A5A8)',
+      },
+      {
+        title: 'Kaihama — Anime Merchandise & Streetwear',
+        desc: 'Shop anime-inspired merchandise and streetwear featuring keychains, oversized T-shirts, collectible figures, desk pads, tote bags, jewellery, and accessories inspired by One Piece, Demon Slayer, Pokémon, Dragon Ball, and more.',
+        category: 'shop',
+        link: 'https://www.kaihamastore.com',
+        domain: 'kaihamastore.com',
+        image: 'https://www.kaihamastore.com/cdn/shop/files/8_c5599a73-93fa-4420-b5f4-da43d7894238.jpg?v=1761038190&width=480',
+        emoji: '🏴‍☠️',
+        gradient: 'linear-gradient(135deg,#0F172A,#DC2626)',
+      },
+      {
+        title: 'Ace Blend — Plant-Based Nutrition & Wellness',
+        desc: 'Explore plant-based nutrition and wellness products including premium protein blends, functional drinks, multivitamins, creatine, Omega-3, functional mushroom concentrates, and other everyday health essentials.',
+        category: 'shop',
+        link: 'https://aceblend.com',
+        domain: 'aceblend.com',
+        image: 'https://aceblend.com/cdn/shop/files/Curated_By_Experts-_Desktop.jpg?v=1730720315&width=1944',
+        emoji: '🌿',
+        gradient: 'linear-gradient(135deg,#84CC16,#166534)',
+      },
+      {
+        title: 'YourHappyLife — Science-Backed Health & Wellness',
+        desc: 'Explore clinically backed health and wellness supplements for skin, hair, sleep, recovery, and everyday nutrition, including marine collagen, glutathione, Omega-3, magnesium, hair-growth formulas, and curated wellness stacks.',
+        category: 'shop',
+        link: 'https://yourhappylife.com',
+        domain: 'yourhappylife.com',
+        image: 'https://yourhappylife.com/cdn/shop/files/Omega.png?v=1763375864',
+        emoji: '💊',
+        gradient: 'linear-gradient(135deg,#F59E0B,#F97316)',
+      },
+      {
+        title: 'Oniisaab — Premium Anime Streetwear',
+        desc: 'Explore premium anime-inspired streetwear featuring oversized T-shirts, bamboo-cotton apparel, hoodies, jackets, joggers, polos, and statement pieces inspired by One Piece, Naruto, Jujutsu Kaisen, Dragon Ball Z, Demon Slayer, and more.',
+        category: 'shop',
+        link: 'https://oniisaab.com',
+        domain: 'oniisaab.com',
+        image: 'https://oniisaab.com/cdn/shop/files/Futura_3.svg?v=1772365387&width=750',
+        emoji: '⛩️',
+        gradient: 'linear-gradient(135deg,#7C3AED,#E11D48)',
+      },
     ];
 
     /* ── Build filter pills from categories used ── */
@@ -1595,7 +1779,9 @@
       const btn = document.createElement('button');
       btn.className = 'filter-pill';
       btn.dataset.filter = cat;
-      btn.textContent = CATEGORIES[cat] || cat;
+      btn.innerHTML = CATEGORIES[cat]
+        ? `<i class="${CATEGORIES[cat].icon}"></i> ${CATEGORIES[cat].label}`
+        : cat;
       filterBar.appendChild(btn);
     });
 
@@ -1629,7 +1815,11 @@
     </div>
     <div class="card-body">
       <div class="card-top">
-        <span class="card-pill">${CATEGORIES[r.category] || r.category}</span>
+        <span class="card-pill">
+          ${CATEGORIES[r.category]
+            ? `<i class="${CATEGORIES[r.category].icon}"></i> ${CATEGORIES[r.category].label}`
+            : r.category}
+        </span>
         <h2 class="card-title">${r.title}</h2>
         <p class="card-desc">${r.desc}</p>
       </div>
