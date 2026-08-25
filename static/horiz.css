@@ -5,12 +5,12 @@
   height: 400vh;
   position: relative;
 }
- 
+
 .ws-label {
   padding: 6rem 6% 3rem;
   pointer-events: none;
 }
- 
+
 #ws-sticky {
   position: sticky;
   top: 0;
@@ -19,36 +19,32 @@
   display: flex;
   flex-direction: column;
 }
- 
+
 #ws-track-wrap {
   flex: 1;
   overflow: hidden;
   display: flex;
   align-items: center;
-      -webkit-mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        rgba(0,0,0,0.15) 2%,
-        rgba(0,0,0,0.5) 4%,
-        black 7%,
-        black 93%,
-        rgba(0,0,0,0.5) 96%,
-        rgba(0,0,0,0.15) 98%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        rgba(0,0,0,0.15) 2%,
-        rgba(0,0,0,0.5) 4%,
-        black 7%,
-        black 93%,
-        rgba(0,0,0,0.5) 96%,
-        rgba(0,0,0,0.15) 98%,
-        transparent 100%
-    );
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.15) 2%,
+      rgba(0, 0, 0, 0.5) 4%,
+      black 7%,
+      black 93%,
+      rgba(0, 0, 0, 0.5) 96%,
+      rgba(0, 0, 0, 0.15) 98%,
+      transparent 100%);
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.15) 2%,
+      rgba(0, 0, 0, 0.5) 4%,
+      black 7%,
+      black 93%,
+      rgba(0, 0, 0, 0.5) 96%,
+      rgba(0, 0, 0, 0.15) 98%,
+      transparent 100%);
 }
- 
+
 #ws-track {
   display: flex;
   gap: 28px;
@@ -58,10 +54,11 @@
   align-items: stretch;
   will-change: transform;
 }
- 
+
 /* NEW */
 .ws-card {
-  width: 300px;      /* default for cards without an image */
+  width: 500px;
+  /* default for cards without an image */
   height: 100%;
   flex-shrink: 0;
   border-radius: 15px;
@@ -79,12 +76,15 @@
 /* Image cards: width comes from the image, not a fixed value */
 .ws-card.has-img {
   width: auto;
-  padding: 0;          /* padding moves to .wc-content */
-  display: block;       /* card just wraps the in-flow img now */
+  padding: 0;
+  /* padding moves to .wc-content */
+  display: block;
+  /* card just wraps the in-flow img now */
 }
 
 .wc-img-wrap {
-  position: relative;   /* IN FLOW — this is what sets the card width */
+  position: relative;
+  /* IN FLOW — this is what sets the card width */
   height: 100%;
   width: auto;
   display: block;
@@ -123,7 +123,10 @@
   color: var(--c4);
 }
 
-.ws-card.has-img .wc-desc { color: #040404 } 
+.ws-card.has-img .wc-desc {
+  color: #040404
+}
+
 .ws-card:hover {
   transform: translateY(-6px);
   box-shadow:
@@ -131,8 +134,8 @@
     -14px -14px 30px var(--neu-shadow-light),
     0 0 0 1px var(--c6);
 }
- 
- 
+
+
 .wc-title {
   font-family: Font4;
   font-size: 1.2rem;
@@ -140,14 +143,155 @@
   letter-spacing: .1em;
   color: var(--c4);
 }
- 
+
 .wc-desc {
   font-size: 0.88rem;
   line-height: 1.7;
   color: var(--txt);
   flex: 1;
 }
- 
+
+.wc-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--c3);
+  height: 100%;
+  width: 100%;
+  margin-right: 40px;
+}
+
+.wc-all-1 {
+  position: absolute;
+  top: 4%;
+  left: 13%;
+  height: 100%;
+  width: 100%;
+  background-image: url(./img/horiz/certall.webp);
+  background-size: cover;
+  background-position: 120% 120%;
+  opacity: .2;
+  transform: scaleX(-1);
+  filter: drop-shadow(15px 15px 12px rgb(0, 0, 0));
+}
+
+/* Button========================================= */
+
+.button {
+  --white: #ffe7ff;
+  --bg: #080808;
+  --radius: 100px;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  position: relative;
+  border-radius: var(--radius);
+  background-color: var(--bg);
+  transition: all 0.2s ease;
+  box-shadow:
+    inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.3),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.5),
+    0 3rem 3rem rgba(0, 0, 0, 0.3),
+    0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
+}
+
+.button .wrap {
+  font-size: 25px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 32px 45px;
+  border-radius: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.button .wrap p span:nth-child(2) {
+  display: none;
+}
+
+.button:hover .wrap p span:nth-child(1) {
+  display: none;
+}
+
+.button:hover .wrap p span:nth-child(2) {
+  display: inline-block;
+}
+
+.button .wrap p {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  transition: all 0.2s ease;
+  transform: translateY(2%);
+  mask-image: linear-gradient(to bottom, white 40%, transparent);
+}
+
+.button .wrap::before,
+.button .wrap::after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.button .wrap::before {
+  left: -15%;
+  right: -15%;
+  bottom: 25%;
+  top: -100%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.button .wrap::after {
+  left: 6%;
+  right: 6%;
+  top: 12%;
+  bottom: 40%;
+  border-radius: 22px 22px 0 0;
+  box-shadow: inset 0 10px 8px -10px rgba(255, 255, 255, 0.8);
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0) 100%);
+}
+
+.button:hover {
+  box-shadow:
+    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.4),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.7),
+    0 3rem 3rem rgba(0, 0, 0, 0.3),
+    0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
+}
+
+.button:hover .wrap::before {
+  transform: translateY(-5%);
+}
+
+.button:hover .wrap::after {
+  opacity: 0.4;
+  transform: translateY(5%);
+}
+
+.button:hover .wrap p {
+  transform: translateY(-4%);
+}
+
+.button:active {
+  transform: translateY(4px);
+  box-shadow:
+    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.5),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.8),
+    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.4),
+    0 3rem 3rem rgba(0, 0, 0, 0.3),
+    0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
+}
+
+
+/* \\Button========================================= */
+
 /* Progress bar */
 #ws-progress-wrap {
   height: 3px;
@@ -156,7 +300,7 @@
   border-radius: 10px;
   overflow: hidden;
 }
- 
+
 #ws-progress-bar {
   width: 0%;
   height: 100%;
@@ -165,7 +309,7 @@
   box-shadow: 0 0 8px var(--accent-glow);
   transition: width 0.05s linear;
 }
- 
+
 /* ═══════════════════════════════════════════════════
    RESPONSIVE — WORKING STYLE
    ═══════════════════════════════════════════════════ */

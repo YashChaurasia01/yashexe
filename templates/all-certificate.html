@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash Chaurasia's Certifications</title>
+
+    <link rel="stylesheet" href="../static/all-certificate.css" />
+
+    <!-- ============Favicon==================== -->
+    <link rel="icon" href="../static/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/img/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/img/favicon/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../static/img/favicon/site.webmanifest">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Doto&family=Alata&family=Reggae+One&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <div class="nav-wrap">
+        <nav class="nav-glass">
+            <a href="../index.html#working-style" class="nav-logo" title="Back to portfolio">
+                <div class="logo-mark"><img src="../static/img/logo.webp" alt="Logo" class="logo"></div>
+                <span class="logo-label">Yash Chaurasia's <strong
+                        style="color: var(--c3);">Certifications.</strong></span>
+            </a>
+
+
+            <div class="nav-actions">
+                <ul class="nav-socials" style="list-style:none; display:flex; gap:0.85rem;">
+                    <li><a href="https://github.com/YashChaurasia01" target="_blank" rel="noopener noreferrer"
+                            aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a href="https://linkedin.com/in/yashchaurasia01" target="_blank" rel="noopener noreferrer"
+                            aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+                    <li><a href="https://instagram.com/yashc.exe" target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=xukyosho@gmail.com" aria-label="Email"><i
+                                class="fa-solid fa-envelope"></i></a>
+                    </li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="eyebrow">Credentials</div>
+        <h1>Certifications</h1>
+        <p>A collection of courses, workshops, and programs I've completed — click any card for a closer look, or open
+            the
+            original file.</p>
+    </section>
+
+    <!-- ================= FILTERS ================= -->
+    <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="image">Images</button>
+        <button class="filter-btn" data-filter="pdf">PDFs</button>
+    </div>
+
+    <!-- ================= CERT GRID ================= -->
+    <section class="cert-grid" id="certGrid"></section>
+
+    <!-- ================= MODAL ================= -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modalTitle">Certificate</h3>
+                <button class="close-btn" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <a id="modalOpenFull" href="#" target="_blank" rel="noopener noreferrer">
+                    Open original file <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* =========================================================
+           CERTIFICATE DATA
+           Add a new certificate by adding an object here:
+           { title: "Name of certificate", file: "path/to/file", type: "image" | "pdf" }
+           - type "image" works for .png, .jpg, .jpeg, .webp
+           - type "pdf" works for .pdf files
+           ========================================================= */
+        const certificates = [
+            { title: "Flair Haven | Web Dev Workshop", file: "../static/img/horiz/h2.webp", type: "image" },
+            { title: "University of Michigan | Python Basics", file: "../static/img/horiz/h5.webp", type: "image" },
+            { title: "University of Michigan | Python Functions, Files and Dictionaries", file: "../static/img/horiz/h6.webp", type: "image" },
+            { title: "University of Michigan | Data Collection and Processing with Python", file: "../static/img/horiz/h7.webp", type: "image" },
+            { title: "University of Michigan | Python Classes and Inheritance", file: "../static/img/horiz/h8.webp", type: "image" },
+            { title: "Scrimba | HTML & CSS Crash Course", file: "../static/img/horiz/h9.webp", type: "image" },
+            { title: "Samatrix | Intro to Programming", file: "../static/img/horiz/h10.webp", type: "image" },
+            { title: "Samatrix | Python", file: "../static/img/horiz/h11.webp", type: "image" },
+            { title: "Samatrix | Natural Language Processing", file: "../static/img/horiz/q1.pdf", type: "pdf" },
+            { title: "Samatrix | Data Science - Tools and Techniques", file: "../static/img/horiz/q2.pdf", type: "pdf" },
+            { title: "Samatrix | Machine Learning & Pattern Recognition", file: "../static/img/horiz/q3.pdf", type: "pdf" },
+            { title: "Samatrix | Deep Learning", file: "../static/img/horiz/q4.pdf", type: "pdf" },
+            { title: "Samatrix | Data Visualization", file: "../static/img/horiz/q5.pdf", type: "pdf" },
+            { title: "Samatrix | DevOps", file: "../static/img/horiz/q6.pdf", type: "pdf" },
+            { title: "Samatrix | Deep Learning and Neural Networks", file: "../static/img/horiz/q7.pdf", type: "pdf" },
+        ];
+
+        const grid = document.getElementById('certGrid');
+        const filtersWrap = document.getElementById('filters');
+        let activeFilter = 'all';
+
+        function iconForType(type) {
+            return type === 'pdf' ? 'fa-file-pdf' : 'fa-file-image';
+        }
+
+        function buildPreview(cert) {
+            if (cert.type === 'image') {
+                return `<img src="${cert.file}" alt="${cert.title}" loading="lazy"
+                 onerror="this.closest('.cert-preview').innerHTML='<div class=&quot;pdf-fallback&quot;><i class=&quot;fa-solid fa-image-slash&quot;></i><span>Preview unavailable</span></div>'">`;
+            }
+            // PDF preview: renders inline on most desktop browsers.
+            // Falls back gracefully (blank/empty) on browsers that block inline PDFs (e.g. some mobile browsers) —
+            // the badge + click-to-open still make the file accessible.
+            return `<embed src="${cert.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH" type="application/pdf">
+              <div class="pdf-fallback" style="display:none;"><i class="fa-solid fa-file-pdf"></i><span>Tap to view PDF</span></div>`;
+        }
+
+        function renderGrid() {
+            const list = certificates.filter(c => activeFilter === 'all' || c.type === activeFilter);
+
+            if (!list.length) {
+                grid.innerHTML = `<div class="empty-state">
+            <i class="fa-solid fa-folder-open"></i>
+            <p>No certificates in this category yet.</p>
+          </div>`;
+                return;
+            }
+
+            grid.innerHTML = list.map((cert, i) => `
+        <article class="cert-card" data-index="${certificates.indexOf(cert)}">
+          <div class="cert-preview">
+            ${buildPreview(cert)}
+            <span class="cert-badge"><i class="fa-solid ${iconForType(cert.type)}"></i> ${cert.type}</span>
+            <div class="expand-hint"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div>
+          </div>
+          <div class="cert-info">
+            <h3>${cert.title}</h3>
+            <a class="cert-link" href="${cert.file}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+              View full file <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </article>
+      `).join('');
+
+            grid.querySelectorAll('.cert-card').forEach(card => {
+                card.addEventListener('click', () => openModal(certificates[+card.dataset.index]));
+            });
+        }
+
+        filtersWrap.addEventListener('click', (e) => {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            filtersWrap.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeFilter = btn.dataset.filter;
+            renderGrid();
+        });
+
+        /* ===================== MODAL ===================== */
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalOpenFull = document.getElementById('modalOpenFull');
+        const modalClose = document.getElementById('modalClose');
+
+        function openModal(cert) {
+            modalTitle.textContent = cert.title;
+            modalOpenFull.href = cert.file;
+            modalBody.innerHTML = cert.type === 'image'
+                ? `<img src="${cert.file}" alt="${cert.title}">`
+                : `<embed src="${cert.file}#toolbar=0" type="application/pdf">`;
+            modalOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+            setTimeout(() => { modalBody.innerHTML = ''; }, 300);
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+        /* ===================== THEME TOGGLE ===================== */
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+
+        function applyTheme(isDark) {
+            document.body.classList.toggle('dark-theme', isDark);
+            themeIcon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = !document.body.classList.contains('dark-theme');
+            applyTheme(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        renderGrid();
+    </script>
+</body>
+
+</html>

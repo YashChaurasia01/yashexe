@@ -272,7 +272,7 @@
 .dp-tape-scroll {
     display: flex;
     width: max-content;
-    animation: dpScroll 9s linear infinite;
+    animation: dpScroll 10s linear infinite;
 }
 
 .dp-tape-scroll span {
