@@ -44,7 +44,7 @@ body.dark-theme {
     --txt: #F5F1EA;
     --gtxt: #C9C5BEcc;
     --homebg: url("./img/dark.webp");
-    --selection: #4c2b67;
+    --selection: #000000;
 
     --c1: #4D0017;
     --c2: #8A0027;
