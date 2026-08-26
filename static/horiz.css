@@ -289,19 +289,27 @@
     0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
 }
 
-.ws-card.ws-cta-card {
-    width: 420px;
-}
+
 
 @media (max-width: 1024px) {
     .ws-card.ws-cta-card {
-        width: 380px;
+        width: 580px;
+        padding: 0;
     }
 }
 
 @media (max-width: 768px) {
     .ws-card.ws-cta-card {
-        width: 320px;
+        width: 420px;
+        padding: 0;
+    }
+    .wc-all-1 {
+      position: absolute;
+      top: -17%;
+      left: -3%;
+      height: 160%;
+      width: 120%;
+      margin-top: 85px;
     }
 }
 
@@ -309,6 +317,14 @@
     .ws-card.ws-cta-card {
         width: 400px;
         padding: 0;
+    }
+    .wc-all-1 {
+      position: absolute;
+      top: -17%;
+      left: -3%;
+      height: 160%;
+      width: 100%;
+      margin-top: 85px;
     }
 }
 
