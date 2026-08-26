@@ -289,6 +289,28 @@
     0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
 }
 
+.ws-card.ws-cta-card {
+    width: 420px;
+}
+
+@media (max-width: 1024px) {
+    .ws-card.ws-cta-card {
+        width: 380px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ws-card.ws-cta-card {
+        width: 320px;
+    }
+}
+
+@media (max-width: 500px) {
+    .ws-card.ws-cta-card {
+        width: 400px;
+        padding: 0;
+    }
+}
 
 /* \\Button========================================= */
 
